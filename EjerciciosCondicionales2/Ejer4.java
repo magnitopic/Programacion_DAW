@@ -12,21 +12,15 @@ public class Ejer4 {
 		puntos = sn.nextInt();
 
 		if (puntos >= 120)
-		{
-			System.out.println("Informática: 120 puntos.");
-			System.out.println("Informática: 120 puntos.");
-			System.out.println("Informática: 120 puntos.");
-			System.out.println("Informática: 120 puntos.");
-			
-		}
+			System.out.println("Informática, Sistemas, Derecho, Empresariales, Bilogía");
 		else if (puntos >= 100)
-			System.out.println("");
+			System.out.println("Sistemas, Derecho, Empresariales, Bilogía");
 		else if (puntos >= 90)
-			System.out.println("");
+			System.out.println("Derecho, Empresariales, Bilogía");
 		else if (puntos >= 79)
-			System.out.println("");
+			System.out.println("Empresariales, Bilogía");
 		else if (puntos >= 45)
-			System.out.println("");
+			System.out.println("Bilogía");
 		else
 			System.out.println("Ud no puede acceder a numgún grado.");
 		sn.close();
