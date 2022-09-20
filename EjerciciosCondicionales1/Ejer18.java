@@ -17,7 +17,7 @@ public class Ejer18 {
 		if ((day > 1 && day < 31) && (month > 1 && month < 12) && (year > 2000 && year < 2100))
 			System.out.println("La fecha es valida");
 		else 
-			System.out.println("La frcha es invalida, vuelve a intentarlo");
+			System.out.println("La fecha es invalida, vuelve a intentarlo");
 
 		sn.close();
 	}

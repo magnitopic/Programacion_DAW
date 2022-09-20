@@ -1,3 +1,5 @@
+package EjerciciosIniciales1;
+
 import java.util.Scanner;
 
 public class Ejer19 {
