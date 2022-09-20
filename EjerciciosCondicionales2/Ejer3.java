@@ -19,7 +19,7 @@ public class Ejer3 {
 			System.out.println("Otoño");
 		else if ((dia >= 21 && mes == 12) || mes == 1 || mes == 2 || (dia <= 20 && mes == 3))
 			System.out.println("Invierno");
-		else if ((dia >= 21 && mes == 3) || mes == 4|| mes == 5 || (dia <= 21 && mes == 6))
+		else if ((dia >= 21 && mes == 3) || mes == 4 || mes == 5 || (dia <= 21 && mes == 6))
 			System.out.println("Primavera");
 		else
 			System.out.println("Valor invalido");
