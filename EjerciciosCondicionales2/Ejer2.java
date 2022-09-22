@@ -7,7 +7,8 @@ public class Ejer2 {
 	public static void main(String[] args) {
 		Scanner sn = new Scanner(System.in);
 		Scanner si = new Scanner(System.in);
-		int sueldoAnual, sueldoMensual, antiquity, age, children;
+		int antiquity, age, children;
+		double sueldoAnual, sueldoMensual; 
 		String name, surname;
 
 		System.out.print("Indica tu nombre: ");
@@ -15,7 +16,7 @@ public class Ejer2 {
 		System.out.print("Indica tu apellido: ");
 		surname = si.nextLine();
 		System.out.print("Introduce tu sueldo base: ");
-		sueldoMensual = sn.nextInt();
+		sueldoMensual = sn.nextDouble();
 		System.out.print("Introduce tu antigüedad: ");
 		antiquity = sn.nextInt();
 		System.out.print("Introduce tu edad: ");
@@ -25,10 +26,10 @@ public class Ejer2 {
 
 		if (age > 50 && age < 60)
 			sueldoMensual += (sueldoMensual * .1);
-		sueldoMensual = (antiquity / 5) * 45;
+		sueldoMensual += (antiquity / 5) * 45;
 		sueldoAnual = sueldoMensual * 12;
 		if (children > 2)
-			sueldoAnual += 300;
+			sueldoAnual += 400;
 		else if (children == 0)
 			sueldoAnual -= 50;
 
