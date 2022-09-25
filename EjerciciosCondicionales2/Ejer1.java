@@ -22,7 +22,7 @@ public class Ejer1 {
 		if (num == 5)
 			System.out.println("Viernes");
 		if (num == 6)
-			System.out.println("Savado");
+			System.out.println("Sabado");
 		if (num == 7)
 			System.out.println("Domingo");
 		sn.close();
