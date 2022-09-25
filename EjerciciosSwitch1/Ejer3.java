@@ -98,7 +98,7 @@ public class Ejer3 {
 				break;
 			case 7:
 				System.out.println(
-						"La nota media de sistemas es de: " + (alu1DB + alu2DB + alu3DB + alu4DB + alu5DB) / 5);
+						"La nota media de Bases de Datos es de: " + (alu1DB + alu2DB + alu3DB + alu4DB + alu5DB) / 5);
 				break;
 			default:
 				System.out.println("Adiós.");
