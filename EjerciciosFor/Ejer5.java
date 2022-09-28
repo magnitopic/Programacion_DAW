@@ -13,7 +13,7 @@ public class Ejer5 {
 			age = si.nextInt();
 			if (age < 18)
 				menor++;
-			if (age < 65)
+			else if (age < 65)
 				adulto++;
 			else
 				age++;
