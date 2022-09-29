@@ -1,13 +1,15 @@
-package EjerciciosFor;
+package EjerciciosWhile;
 
-public class Ejer9 {
+public class Ejer4 {
 
 	public static void main(String[] args) {
-		for (int i = 1; i <= 33; i++) {
+		int i = 0;
+		while (i <= 33) {
 			if (i == 33)
 				System.out.print(i + ".");
 			else
 				System.out.print(i + ", ");
+			i++;
 		}
 	}
 
