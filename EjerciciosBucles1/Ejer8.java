@@ -8,7 +8,7 @@ public class Ejer8 {
 		int secNum, userNum;
 		Scanner sc = new Scanner(System.in);
 
-		secNum = (int) (Math.random() * 100);
+		secNum = (int) (Math.random() * 100) + 1;
 		do {
 			System.out.print("Intenta adivinar el número secreto: ");
 			userNum = sc.nextInt();

@@ -6,10 +6,11 @@ public class Ejer1 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int pos, len=0, aux, i = 0;
+		int pos = 0, aux, i = 0;
+		double len = 0;
 		
 		do {
-			System.out.print("Introduce un numero: ");
+			System.out.print("Introduce la longitud del arbol, -1 para salir: ");
 			aux = sc.nextInt();
 			i++;
 			if (aux > len) {
@@ -18,6 +19,8 @@ public class Ejer1 {
 			}
 		}while(aux != -1);
 		
+		System.out.println("Árbol "+pos+" - "+(len /100)+" metros.");
+
 		sc.close();
 	}
 
