@@ -15,7 +15,7 @@ public class Ejer0 {
 		
 		for (int k = 0; k < num1; k++) {
 			for (int i = 0; i <= 10; i++){
-				for (int j = 1; j <= num2; j++)
+				for (int j = 0; j <= num2; j++)
 					System.out.print(i+" x "+j+" = "+(i*j) +" \t");
 				System.out.print("\n");
 			}
