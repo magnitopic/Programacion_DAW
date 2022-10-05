@@ -14,7 +14,7 @@ public class Ejer0 {
 		num2 = sc.nextInt();
 		
 		for (int k = 0; k < num1; k++) {
-			for (int i = 1; i <= 10; i++){
+			for (int i = 0; i <= 10; i++){
 				for (int j = 1; j <= num2; j++)
 					System.out.print(i+" x "+j+" = "+(i*j) +" \t");
 				System.out.print("\n");
