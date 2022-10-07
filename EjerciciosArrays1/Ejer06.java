@@ -1,4 +1,4 @@
-package EjerciciosArrays;
+package EjerciciosArrays1;
 
 import java.util.Scanner;
 

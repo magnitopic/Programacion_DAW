@@ -1,8 +1,8 @@
-package EjerciciosArrays;
+package EjerciciosArrays1;
 
 import java.util.Scanner;
 
-public class Ejer03 {
+public class Ejer04 {
 
 	public static void main(String[] args) {
 		Scanner sn = new Scanner(System.in);
@@ -20,6 +20,9 @@ public class Ejer03 {
 			if (regalos[i].equalsIgnoreCase("coche"))
 				regalos[i] = "carbón";
 		}
+		
+		for (int i = regalos.length-1; i >= 0; i--)
+			System.out.println(regalos[i]);
 		
 		sn.close();
 	}
