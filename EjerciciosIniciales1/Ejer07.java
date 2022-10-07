@@ -2,7 +2,7 @@ package EjerciciosIniciales1;
 
 import java.util.Scanner;
 
-public class Ejer7 {
+public class Ejer07 {
 
 	public static void main(String[] args) {
 		Scanner sn = new Scanner(System.in);

@@ -2,7 +2,7 @@ package EjerciciosCondicionales5;
 
 import java.util.Scanner;
 
-public class Ejer2 {
+public class Ejer02 {
 	public static void main(String[] args) {
 		Scanner si = new Scanner(System.in);
 		String name1, name2, name3, name4;

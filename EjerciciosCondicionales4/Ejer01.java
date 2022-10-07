@@ -1,7 +1,7 @@
 package EjerciciosCondicionales4;
 import java.util.Scanner;
 
-public class Ejer1 {
+public class Ejer01 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);

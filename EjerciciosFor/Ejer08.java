@@ -1,6 +1,6 @@
 package EjerciciosFor;
 
-public class Ejer8 {
+public class Ejer08 {
 
 	public static void main(String[] args) {
 		 for (int i = 100; i <= 800; i++ ){

@@ -1,6 +1,6 @@
 package EjerciciosBucles3;
 
-public class Ejer3 {
+public class Ejer03 {
 
 	public static void main(String[] args) {
 		int par = 0, impar = 0, primo = 0;

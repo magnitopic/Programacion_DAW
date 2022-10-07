@@ -1,6 +1,6 @@
 package EjerciciosWhile;
 
-public class Ejer4 {
+public class Ejer04 {
 
 	public static void main(String[] args) {
 		int i = 0;

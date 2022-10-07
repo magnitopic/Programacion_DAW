@@ -2,7 +2,7 @@ package EjerciciosBucles1;
 
 import java.util.Scanner;
 
-public class Ejer7 {
+public class Ejer07 {
 
 	public static void main(String[] args) {
 		int ages = 0, newAge, adults = 0;

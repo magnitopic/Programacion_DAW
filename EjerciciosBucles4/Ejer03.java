@@ -1,6 +1,6 @@
 package EjerciciosBucles4;
 
-public class Ejer3 {
+public class Ejer03 {
 
 	public static void main(String[] args) {
 		for (int i = 1; i <= 5; i++) {

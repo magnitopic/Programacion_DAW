@@ -2,7 +2,7 @@ package EjerciciosSwitch1;
 
 import java.util.Scanner;
 
-public class Ejer3 {
+public class Ejer03 {
 	public static void main(String[] args) {
 		Scanner sn = new Scanner(System.in);
 		Scanner si = new Scanner(System.in);

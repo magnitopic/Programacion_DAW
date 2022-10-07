@@ -2,7 +2,7 @@ package EjerciciosWhile;
 
 import java.util.Scanner;
 
-public class Ejer6 {
+public class Ejer06 {
 	public static void main(String[] args) {
 		Scanner si = new Scanner(System.in);
 		int ten = 0, zero = 0, num, i = 0;

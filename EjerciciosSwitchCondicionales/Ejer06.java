@@ -2,7 +2,7 @@ package EjerciciosSwitchCondicionales;
 
 import java.util.Scanner;
 
-public class Ejer6 {
+public class Ejer06 {
 	public static void main(String[] args) {
 		Scanner sn = new Scanner(System.in);
 		int num1, num2, num3, num4, temp;
