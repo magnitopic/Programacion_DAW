@@ -2,7 +2,7 @@ package EjerciciosArrays;
 
 import java.util.Scanner;
 
-public class Ejer05 {
+public class Ejer06 {
 
 	public static void main(String[] args) {
 		Scanner sn = new Scanner(System.in);
@@ -28,6 +28,9 @@ public class Ejer05 {
 			if (regalos[i].equalsIgnoreCase("dinero") || regalos[i].equalsIgnoreCase("avión"))
 				regalos[i] = null;
 		}
+
+		for (int i = 0; i < regalos.length; i++)
+			regalos[i] = "Nada por feo";
 
 		sn.close();
 	}
