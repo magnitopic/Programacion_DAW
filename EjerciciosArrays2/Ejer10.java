@@ -11,9 +11,12 @@ public class Ejer10 {
 
 		boolean flag = true;
 		for (int i = 0; i < 10; i++) {
-			if (nums1[i] != nums2[i])
+			if (nums1[i] != nums2[i]) {
 				flag = false;
+				break;
+			}
 		}
+
 		if (flag)
 			System.out.println("Los arrays son iguales");
 		else

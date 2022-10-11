@@ -19,6 +19,7 @@ public class Ejer11 {
 			System.out.println("5.	Encontrar el elemento mínimo del array");
 			System.out.println("6.	Encontrar el rango");
 			System.out.println("7.	Obtener la media de los elementos del array");
+			System.out.println("8.	Salir");
 			System.out.print("--> ");
 			opt = sc.nextInt();
 

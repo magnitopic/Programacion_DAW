@@ -30,6 +30,7 @@ public class Ejer06 {
 				less++;
 		}
 
+		System.out.println("La altura media es " + (med));
 		System.out.println(more + " personas tienen mayor altura que la media");
 		System.out.println(less + " personas tienen menor altura que la media");
 

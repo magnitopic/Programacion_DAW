@@ -11,7 +11,7 @@ public class Ejer02 {
 		String[] marks = new String[10];
 		double num;
 
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < names.length; i++) {
 			System.out.print("Introduce el nombre del alumno: ");
 			names[i] = si.nextLine();
 			do {
@@ -30,7 +30,7 @@ public class Ejer02 {
 				marks[i] = "Sobresaliente";
 		}
 
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < names.length; i++) {
 			System.out.println("Alumno nº" + (i + 1) + ": " + names[i] + " - Nota: " + nums[i] + " - " + marks[i]);
 		}
 
