@@ -7,7 +7,7 @@ public class Ejer07 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		Scanner sn = new Scanner(System.in);
-		int students = 50;
+		int students = 2;
 		double sum = 0, best = Double.MIN_VALUE;
 		String pos = "";
 		String[] names = new String[students];
@@ -47,19 +47,18 @@ public class Ejer07 {
 			}
 		}
 		System.out.println("El alumno con mejor nota en "+asigments[3]+" es " + pos + " con una nota media de " + best);
-
+		// Mejor media total
 		for (int i = 0; i < students; i++) {
 			sum = 0;
 			best = Double.MIN_VALUE;
 			for (int j = 0; j < marks.length; j++)
-				sum = +marks[j][i];
-			sum /= marks.length;
+				sum += marks[j][i];
 			if (sum > best) {
 				pos = names[i];
 				best = sum;
 			}
 		}
-		System.out.println("El alumno con mejor nota es " + pos + " con una nota media de " + best);
+		System.out.println("El alumno con mejor nota es " + pos + " con una nota media de " + best/4);
 
 		sc.close();
 		sn.close();

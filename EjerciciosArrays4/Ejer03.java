@@ -42,7 +42,7 @@ public class Ejer03 {
 			System.out.println("Nums1: " + Arrays.toString(nums1));
 			System.out.println("Nums2: " + Arrays.toString(nums2));
 			System.out.println("Nums3: " + Arrays.toString(nums3));
-			System.out.println("Nums3: " + Arrays.toString(nums4));
+			System.out.println("Nums4: " + Arrays.toString(nums4));
 		}
 
 	}
