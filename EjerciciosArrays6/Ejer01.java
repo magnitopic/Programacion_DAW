@@ -1,7 +1,5 @@
 package EjerciciosArrays6;
 
-import java.util.Arrays;
-
 public class Ejer01 {
 	public static void main(String[] args) {
 		String[] partidos = { "PP", "PSOE", "CIUDADANOS", "PODEMOS", "VOX", "ERC", "JXCAT", "PNV", "EH", "CUP",
@@ -36,19 +34,27 @@ public class Ejer01 {
 
 		// imprimir los votos
 		for (int i = 0; i < votos.length; i++){
-			if (i < 3)
+			if (i < (votos.length - 2))
 				System.out.print(comunidades[i]+": \n\n");
 			else
 				System.out.println("\nNivel nacional: ");
 			for (int j = 0; j < partidos.length; j++)
 				System.out.print(partidos[j]+": "+votos[i][j]+" ");
+			System.out.print("\nPartido ganador: "+partidos[findWiner(votos[i])]);
 			System.out.print("\n\n");
 		}
 	}
 
-	/* public static int findWiner(int[] ){
-
-	} */
+	public static int findWiner(int[] votos){
+		int winerPos = -1, winer = Integer.MIN_VALUE;
+		for (int i = 0; i < votos.length; i++){
+			if (votos[i] > winer) {
+				winer = votos[i];
+				winerPos = i;
+			}
+		}
+		return winerPos;
+	}
 
 	public static int findParty(String[] partidos, String partido) {
 		for (int i = 0; i < partidos.length; i++) {
