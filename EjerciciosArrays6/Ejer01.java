@@ -4,7 +4,7 @@ public class Ejer01 {
 	public static void main(String[] args) {
 		String[] partidos = { "PP", "PSOE", "CIUDADANOS", "PODEMOS", "VOX", "ERC", "JXCAT", "PNV", "EH", "CUP",
 				"MASPAIS", "BNG", "PRC", "PACMA", "TERUELEXISTE" };
-		int votantes = 20;
+		int votantes = 1000;
 		String[] comunidades={"Madrid","Castilla Y León", "Galicia", "Cataluña"};
 		String[][] votosComunidades=new String[comunidades.length][votantes];
 
@@ -34,13 +34,13 @@ public class Ejer01 {
 
 		// imprimir los votos
 		for (int i = 0; i < votos.length; i++) {
-			if (i < (votos.length - 2))
-				System.out.print(comunidades[i]+": \n\n");
+			if (i < (votos.length - 1))
+				System.out.println("\n"+comunidades[i]+":");
 			else
 				System.out.println("\nNivel nacional: ");
 			for (int j = 0; j < partidos.length; j++)
 				System.out.print(partidos[j]+": "+votos[i][j]+" ");
-			System.out.print("\nPartido ganador: "+partidos[findWiner(votos[i])]+"\n\n");
+			System.out.println("\nPartido ganador: "+partidos[findWiner(votos[i])]);
 		}
 	}
 
