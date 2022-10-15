@@ -8,8 +8,8 @@ public class Ejer04 {
 
 		for (int i = 0; i < nums.length; i++) {
 			/*
-			 * System.out.print("Introduce un numero: ");
-			 * nums[i] = sc.nextInt();
+			 System.out.print("Introduce un numero: ");
+			 nums[i] = sc.nextInt();
 			 */
 			nums[i] = ((int) (Math.random() * 9)) + 1;
 		}

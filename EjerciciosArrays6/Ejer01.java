@@ -1,5 +1,7 @@
 package EjerciciosArrays6;
 
+import java.util.Arrays;
+
 public class Ejer01 {
 	public static void main(String[] args) {
 		String[] partidos = { "PP", "PSOE", "CIUDADANOS", "PODEMOS", "VOX", "ERC", "JXCAT", "PNV", "EH", "CUP",
