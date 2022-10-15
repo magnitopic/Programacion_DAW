@@ -33,21 +33,20 @@ public class Ejer01 {
 		//System.out.println(Arrays.deepToString(votos));
 
 		// imprimir los votos
-		for (int i = 0; i < votos.length; i++){
+		for (int i = 0; i < votos.length; i++) {
 			if (i < (votos.length - 2))
 				System.out.print(comunidades[i]+": \n\n");
 			else
 				System.out.println("\nNivel nacional: ");
 			for (int j = 0; j < partidos.length; j++)
 				System.out.print(partidos[j]+": "+votos[i][j]+" ");
-			System.out.print("\nPartido ganador: "+partidos[findWiner(votos[i])]);
-			System.out.print("\n\n");
+			System.out.print("\nPartido ganador: "+partidos[findWiner(votos[i])]+"\n\n");
 		}
 	}
 
-	public static int findWiner(int[] votos){
+	public static int findWiner(int[] votos) {
 		int winerPos = -1, winer = Integer.MIN_VALUE;
-		for (int i = 0; i < votos.length; i++){
+		for (int i = 0; i < votos.length; i++) {
 			if (votos[i] > winer) {
 				winer = votos[i];
 				winerPos = i;
