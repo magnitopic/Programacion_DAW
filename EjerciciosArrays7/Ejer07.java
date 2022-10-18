@@ -12,11 +12,11 @@ public class Ejer07 {
 		for (int i = 0; i < nums.length; i++) {
 			System.out.print("Introduce un numero: ");
 			nums[i] = sc.nextInt();
-			//nums[i] = ((int) (Math.random() * 9)) + 1;
+			// nums[i] = ((int) (Math.random() * 9)) + 1;
 		}
 
-		for (int i = 0; i < nums.length; i++){
-			if (i != 0 && (nums[i - 1] <= nums[i])){
+		for (int i = 0; i < nums.length; i++) {
+			if (i != 0 && (nums[i - 1] <= nums[i])) {
 				flag = false;
 				break;
 			}
@@ -25,18 +25,18 @@ public class Ejer07 {
 			System.out.println("La lista está en orden ascendiente.");
 		else {
 			flag = true;
-			for (int i = 0; i < nums.length; i++){
-				if (i != 0 && (nums[i - 1] >= nums[i])){
+			for (int i = 0; i < nums.length; i++) {
+				if (i != 0 && (nums[i - 1] >= nums[i])) {
 					flag = false;
 					break;
 				}
 			}
 			if (flag)
 				System.out.println("La lista está en orden descendiente.");
-			else 
+			else
 				System.out.println("La lista está desordenada.");
-	
-				System.out.println(Arrays.toString(nums));
+
+			System.out.println(Arrays.toString(nums));
 		}
 
 		sc.close();

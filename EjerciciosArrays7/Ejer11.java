@@ -6,12 +6,14 @@ import java.util.Arrays;
 public class Ejer11 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int[] nums = new int[1000];
+		int[] nums = new int[10];
 		int aux;
-		
+
 		for (int i = 0; i < nums.length; i++) {
-			/*System.out.print("Introduce un numero: ");
-			nnums[i] = sc.nextInt();*/
+			/*
+			 * System.out.print("Introduce un numero: ");
+			 * nnums[i] = sc.nextInt();
+			 */
 			nums[i] = ((int) (Math.random() * 9)) + 1;
 		}
 
@@ -28,7 +30,7 @@ public class Ejer11 {
 		}
 
 		System.out.println("Después: " + Arrays.toString(nums));
-		
+
 		sc.close();
 	}
 }
