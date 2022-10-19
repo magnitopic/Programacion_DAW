@@ -1,4 +1,5 @@
 package EjerciciosCondicionales3;
+
 import java.util.Scanner;
 
 public class Ejer02 {
@@ -8,7 +9,7 @@ public class Ejer02 {
 		Scanner si = new Scanner(System.in);
 		String name;
 		int age;
-		
+
 		System.out.print("Introduzca su nombre: ");
 		name = si.nextLine();
 		System.out.print("Introduzca su edad: ");
