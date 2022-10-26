@@ -99,20 +99,20 @@ public class HundirElImperio {
 				y = sc.nextInt();
 			} while (!(x <= 9 && x >= 0 && y <= 9 && y >= 0));
 
-			if (board[x][y] != null) {
-				if (board[x][y].equalsIgnoreCase("h")) {
+			if (board[y][x] != null) {
+				if (board[y][x].equalsIgnoreCase("h")) {
 					System.out.println("Nave destruida!!");
-					board[x][y] = "X";
-				} else if (board[x][y].equalsIgnoreCase("a")) {
+					board[y][x] = "X";
+				} else if (board[y][x].equalsIgnoreCase("a")) {
 					flag = true;
 					System.out.println("Esta posición ya ha sido atacada.");
-				} else if (board[x][y].equalsIgnoreCase("x")) {
+				} else if (board[y][x].equalsIgnoreCase("x")) {
 					flag = true;
 					System.out.println("Esta nave ya ha sido destruida.");
 				}
 			} else {
 				System.out.println("No hay nada en esta posición");
-				board[x][y] = "A";
+				board[y][x] = "A";
 			}
 
 		} while (flag);
