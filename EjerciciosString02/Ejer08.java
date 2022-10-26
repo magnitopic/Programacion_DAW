@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class Ejer08 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String phrase;
+		for (int i = 0; i < 50; i++) {
+			String letters = "";
+			System.out.print("Introduce una frase: ");
+			phrase = sc.nextLine();
+
+			letters = letters.concat(Character.toString(phrase.charAt(3)));
+		}
+		sc.close();
+	}
+}

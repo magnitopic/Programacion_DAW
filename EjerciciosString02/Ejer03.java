@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
-public class Ejer01 {
+public class Ejer03 {
 	public static void main(String[] args) {
-		String[] vocales = { "a", "e", "i", "o", "u", "A", "E", "I", "O", "U" };
+		String[] vocales = { "a", "e", "i", "o", "u" };
 		Scanner sc = new Scanner(System.in);
 		String phrase;
 
@@ -10,7 +10,7 @@ public class Ejer01 {
 		phrase = sc.nextLine();
 
 		for (int j = 0; j < vocales.length; j++) {
-			phrase = phrase.replaceAll(vocales[j], "X");
+			phrase = phrase.replaceAll(vocales[j], vocales[j].toUpperCase());
 		}
 
 		System.out.println(phrase);
