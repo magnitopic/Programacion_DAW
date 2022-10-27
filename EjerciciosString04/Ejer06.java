@@ -9,8 +9,11 @@ public class Ejer06 {
 		System.out.print("Introduce una frase: ");
 		phrase = sc.nextLine();
 
-		System.out.print("Introduce un texto que buscar en la frase: ");
+		System.out.print("Introduce un texto a buscar en la frase: ");
 		search = sc.nextLine();
+
+		phrase = phrase.toLowerCase();
+		search = search.toLowerCase();
 
 		while (i < phrase.length()){
 			j = 0;
