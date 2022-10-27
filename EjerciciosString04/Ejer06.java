@@ -28,7 +28,7 @@ public class Ejer06 {
 			i++;
 		}
 
-		System.out.println("Se an encotrado "+count);
+		System.out.println("Se han encotrado "+count);
 
 		sc.close();
 	}
