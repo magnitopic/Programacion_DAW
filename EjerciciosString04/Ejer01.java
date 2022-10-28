@@ -1,3 +1,5 @@
+package EjerciciosString04;
+
 import java.util.Scanner;
 
 public class Ejer01 {
