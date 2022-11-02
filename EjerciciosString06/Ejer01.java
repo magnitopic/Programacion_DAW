@@ -13,7 +13,7 @@ public class Ejer01 {
 
 		String[] words = date.split("/");
 		if (words.length == 3) {
-			System.out.println(words[0] + " de " + meses[Integer.parseInt(words[1])] + " de " + words[2]);
+			System.out.println(words[0] + " de " + meses[Integer.parseInt(words[1]) - 1] + " de " + words[2]);
 		}
 
 		sc.close();
