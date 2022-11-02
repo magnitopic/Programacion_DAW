@@ -1,7 +1,5 @@
 package EjerciciosArrays6;
 
-import java.util.Arrays;
-
 public class Ejer01 {
 	public static void main(String[] args) {
 		String[] partidos = { "PP", "PSOE", "CIUDADANOS", "PODEMOS", "VOX", "ERC", "JXCAT", "PNV", "EH", "CUP",
@@ -16,7 +14,6 @@ public class Ejer01 {
 				votosComunidades[i][j] = partidos[(int) (Math.random() * partidos.length)];
 			}
 		}
-		// System.out.println(Arrays.deepToString(votosComunidades));
 
 		// contar votos de cada comunidad
 		int[][] votos = new int[votosComunidades.length + 1][partidos.length];
@@ -26,13 +23,12 @@ public class Ejer01 {
 				votos[i][findParty(partidos, votosComunidades[i][k])]++;
 		}
 
-		// contar votos globales
+		// contar votos nacionales
 		for (int i = 0; i < partidos.length; i++) {
 			for (int j = 0; j < comunidades.length; j++) {
 				votos[votos.length - 1][i] += votos[j][i];
 			}
 		}
-		// System.out.println(Arrays.deepToString(votos));
 
 		// imprimir los votos
 		for (int i = 0; i < votos.length; i++) {
