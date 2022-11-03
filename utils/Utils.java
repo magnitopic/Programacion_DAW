@@ -39,6 +39,7 @@ public class Utils {
 
 		if (phrase.length() == 0)
 			return "";
+
 		// spaces back
 		aux = phrase.length() - 1;
 		while (phrase.charAt(aux) == ' ')
@@ -60,7 +61,21 @@ public class Utils {
 		return new_str;
 	}
 
+	public static int ft_vocal_count(String phrase) {
+		char[] vocales = { 'a', 'e', 'i', 'o', 'u' };
+		int count = 0;
+
+		for (int i = 0; i < phrase.length(); i++) {
+			for (int j = 0; j < vocales.length; j++) {
+				if (phrase.charAt(i) == vocales[j])
+					count++;
+			}
+		}
+
+		return count;
+	}
+
 	public static void main(String[] args) {
-		System.out.println(ft_strtrim("    sdfsf   "));
+		System.out.println(ft_vocal_count("    Hello There   "));
 	}
 }
