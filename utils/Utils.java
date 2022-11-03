@@ -1,5 +1,7 @@
 package utils;
 
+import java.util.Arrays;
+
 public class Utils {
 	public static boolean ft_isprime(int num) {
 		if (num <= 1)
@@ -93,11 +95,11 @@ public class Utils {
 
 		for (int i = 0; i < phrase.length(); i++) {
 			for (int j = 0; j < vocales.length(); j += 4) {
-				if (phrase.charAt(i) == vocales.charAt(i) ||
-						phrase.charAt(i) == vocales.charAt(i + 1) ||
-						phrase.charAt(i) == vocales.charAt(i + 2) ||
-						phrase.charAt(i) == vocales.charAt(i + 3))
-					count[j]++;
+				if (phrase.charAt(i) == vocales.charAt(j) ||
+						phrase.charAt(i) == vocales.charAt(j + 1) ||
+						phrase.charAt(i) == vocales.charAt(j + 2) ||
+						phrase.charAt(i) == vocales.charAt(j + 3))
+					count[j/4]++;
 			}
 		}
 
@@ -105,6 +107,6 @@ public class Utils {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(ft_const_count("    Hello There   "));
+		System.out.println(Arrays.toString(ft_vowels_count("Hello there")));
 	}
 }
