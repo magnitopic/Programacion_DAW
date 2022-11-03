@@ -61,7 +61,7 @@ public class Utils {
 		return new_str;
 	}
 
-	public static int ft_vocal_count(String phrase) {
+	public static int ft_vowel_count(String phrase) {
 		String vocales = "aeiouáéíóúAEIOUÁÉÍÓÚ";
 		int count = 0;
 
@@ -73,7 +73,21 @@ public class Utils {
 		return count;
 	}
 
+	public static int ft_const_count(String phrase) {
+		String vocales = "aeiouAEIOU";
+		int count = 0;
+
+		for (int i = 0; i < phrase.length(); i++) {
+			if (((phrase.charAt(i) >= 65 && phrase.charAt(i) <= 90)
+					|| (phrase.charAt(i) >= 97 && phrase.charAt(i) <= 122))
+					&& !vocales.contains(String.valueOf(phrase.charAt(i))))
+				count++;
+		}
+
+		return count;
+	}
+
 	public static void main(String[] args) {
-		System.out.println(ft_vocal_count("    Hello There   "));
+		System.out.println(ft_const_count("    Hello There   "));
 	}
 }
