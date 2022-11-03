@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class Ejer07 {
 	public static void main(String[] args) {
 		char[] vocales = { 'a', 'e', 'i', 'o', 'u' };
-		int[] flags = { 0, 0, 0, 0, 0 };
 		Scanner sc = new Scanner(System.in);
 		String phrase;
 		int count = 0;
@@ -16,6 +15,7 @@ public class Ejer07 {
 		String[] words = phrase.split(" ");
 
 		for (int i = 0; i < words.length; i++) {
+			int[] flags = { 0, 0, 0, 0, 0 };
 			for (int j = 0; j < words[i].length(); j++) {
 				for (int k = 0; k < vocales.length; k++) {
 					if (words[i].charAt(j) == vocales[k])

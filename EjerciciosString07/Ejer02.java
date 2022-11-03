@@ -9,7 +9,7 @@ public class Ejer02 {
 		System.out.print("Introduce una frase: ");
 		phrase = sc.nextLine();
 
-		for (int i = phrase.length(); i > 0; i--)
+		for (int i = phrase.length() - 1; i >= 0; i--)
 			phrase_rev += phrase.charAt(i);
 
 		if (phrase.equals(phrase_rev))
