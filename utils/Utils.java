@@ -26,4 +26,37 @@ public class Utils {
 
 		return count;
 	}
+
+	public static String ft_strtrim(String phrase) {
+		int aux = 0;
+		String new_str = "";
+		boolean flag = false;
+
+		// spaces front
+		while (phrase.charAt(aux) == ' ')
+			aux++;
+		phrase = phrase.substring(aux);
+
+		aux = phrase.length() - 1;
+		while (phrase.charAt(aux) == ' ')
+			aux--;
+		phrase = phrase.substring(0, aux + 1);
+
+		for (int i = 0; i < phrase.length(); i++) {
+			if (phrase.charAt(i) == ' ' && !flag) {
+				new_str += ' ';
+				flag = true;
+			}
+			if (phrase.charAt(i) != ' ') {
+				new_str += phrase.charAt(i);
+				flag = false;
+			}
+		}
+
+		return new_str;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(ft_strtrim("  la  casita  roja  "));
+	}
 }
