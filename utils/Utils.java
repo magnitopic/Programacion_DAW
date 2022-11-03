@@ -62,14 +62,12 @@ public class Utils {
 	}
 
 	public static int ft_vocal_count(String phrase) {
-		char[] vocales = { 'a', 'e', 'i', 'o', 'u' };
+		String vocales = "aeiouáéíóúAEIOUÁÉÍÓÚ";
 		int count = 0;
 
 		for (int i = 0; i < phrase.length(); i++) {
-			for (int j = 0; j < vocales.length; j++) {
-				if (phrase.charAt(i) == vocales[j])
-					count++;
-			}
+			if (vocales.contains(String.valueOf(phrase.charAt(i))))
+				count++;
 		}
 
 		return count;
