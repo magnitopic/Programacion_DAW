@@ -37,11 +37,15 @@ public class Utils {
 			aux++;
 		phrase = phrase.substring(aux);
 
+		if (phrase.length() == 0)
+			return "";
+		// spaces back
 		aux = phrase.length() - 1;
 		while (phrase.charAt(aux) == ' ')
 			aux--;
 		phrase = phrase.substring(0, aux + 1);
 
+		// duplicated spaces in the middle
 		for (int i = 0; i < phrase.length(); i++) {
 			if (phrase.charAt(i) == ' ' && !flag) {
 				new_str += ' ';
@@ -57,6 +61,6 @@ public class Utils {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(ft_strtrim("  la  casita  roja  "));
+		System.out.println(ft_strtrim("    sdfsf   "));
 	}
 }
