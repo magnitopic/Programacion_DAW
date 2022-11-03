@@ -87,6 +87,23 @@ public class Utils {
 		return count;
 	}
 
+	public static int[] ft_vowels_count(String phrase) {
+		int[] count = { 0, 0, 0, 0, 0 };
+		String vocales = "aáAÁeéEÉiíIÍoóOÓuúUÚ";
+
+		for (int i = 0; i < phrase.length(); i++) {
+			for (int j = 0; j < vocales.length(); j += 4) {
+				if (phrase.charAt(i) == vocales.charAt(i) ||
+						phrase.charAt(i) == vocales.charAt(i + 1) ||
+						phrase.charAt(i) == vocales.charAt(i + 2) ||
+						phrase.charAt(i) == vocales.charAt(i + 3))
+					count[j]++;
+			}
+		}
+
+		return count;
+	}
+
 	public static void main(String[] args) {
 		System.out.println(ft_const_count("    Hello There   "));
 	}
