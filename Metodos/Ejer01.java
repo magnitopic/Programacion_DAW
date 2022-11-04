@@ -67,6 +67,6 @@ public class Ejer01 {
 		System.out.println(ft_const_count("Hello There"));
 		System.out.println(ft_uppercase("Hello There"));
 		System.out.println(ft_lowercase("Hello There"));
-		System.out.println(ft_logststr("Hello There General Kenobi".split(" ")));
+		System.out.println(ft_longststr("Hello There General Kenobi".split(" ")));
 	}
 }
