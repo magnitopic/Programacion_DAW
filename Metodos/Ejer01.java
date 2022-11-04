@@ -51,13 +51,11 @@ public class Ejer01 {
 		return count;
 	}
 
-	public static String ft_logststr(String phrase) {
+	public static String ft_longststr(String[] phrase) {
 		String word = "";
-
-		String[] words = phrase.split(" ");
-		for (int i = 0; i < words.length; i++) {
-			if (word.length() < words[i].length()) {
-				word = words[i];
+		for (int i = 0; i < phrase.length; i++) {
+			if (word.length() < phrase[i].length()) {
+				word = phrase[i];
 			}
 		}
 
@@ -69,6 +67,6 @@ public class Ejer01 {
 		System.out.println(ft_const_count("Hello There"));
 		System.out.println(ft_uppercase("Hello There"));
 		System.out.println(ft_lowercase("Hello There"));
-		System.out.println(ft_logststr("Hello There General Kenobi"));
+		System.out.println(ft_logststr("Hello There General Kenobi".split(" ")));
 	}
 }
