@@ -1,4 +1,4 @@
-package ArraysBidimensionales;
+package ArraysBidimensionales01;
 
 import java.util.Scanner;
 

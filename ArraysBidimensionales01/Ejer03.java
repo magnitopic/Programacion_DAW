@@ -1,11 +1,10 @@
-package ArraysBidimensionales;
+package ArraysBidimensionales01;
 
 import java.util.Scanner;
 
 public class Ejer03 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-
 		String[][] array = new String[4][4];
 
 		for (int i = 0; i < array.length; i++) {

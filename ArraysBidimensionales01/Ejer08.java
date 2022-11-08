@@ -1,4 +1,4 @@
-package ArraysBidimensionales;
+package ArraysBidimensionales01;
 
 import java.util.Scanner;
 
@@ -15,11 +15,11 @@ public class Ejer08 {
 			System.out.print("Introduce el dosal del juagador " + i + ": ");
 			players[i][1] = sc.nextLine();
 			System.out.print("Introduce los puntos del juagador " + i + ": ");
-			players[i][1] = sc.nextLine();
+			players[i][2] = sc.nextLine();
 			System.out.print("Introduce los rebotes del juagador " + i + ": ");
-			players[i][1] = sc.nextLine();
+			players[i][3] = sc.nextLine();
 			System.out.print("Introduce los robos del juagador " + i + ": ");
-			players[i][1] = sc.nextLine();
+			players[i][4] = sc.nextLine();
 		}
 
 		do {
