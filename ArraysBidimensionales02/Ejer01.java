@@ -6,7 +6,8 @@ public class Ejer01 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		Scanner sn = new Scanner(System.in);
-		String[][] datos = new String[10][6];
+		String[][] datos = new String[2][6];
+		String[] subjects = { "redes", "sistemas", "móviles", "programación", "fol" };
 		boolean flag = false;
 		String name;
 
@@ -21,7 +22,7 @@ public class Ejer01 {
 		}
 
 		while (true) {
-			int opt = showMenu(sc);
+			int opt = showMenu();
 			switch (opt) {
 				case 1:
 					System.out.print("Introduce el nombre del alumno del que quieres ver las notas: ");
@@ -43,7 +44,7 @@ public class Ejer01 {
 					}
 					break;
 				case 3:
-					System.out.print("Introduce el nombre del alumno del que quieres ver las notas: ");
+					System.out.print("Introduce el nombre del alumno del que quieres modificar las notas: ");
 					name = sn.nextLine();
 					flag = false;
 					for (int i = 0; i < datos.length; i++) {
@@ -70,6 +71,68 @@ public class Ejer01 {
 					}
 					break;
 				case 6:
+					double sum = 0;
+					System.out.print("Introduce el nombre de la asignatura de la que quieres ver la media: ");
+					name = sn.nextLine();
+					flag = false;
+					for (int i = 0; i < subjects.length; i++) {
+						for (int j = 0; j < datos.length; j++) {
+							if (name.equalsIgnoreCase(subjects[i])) {
+								sum += Double.parseDouble(datos[j][i]);
+								flag = true;
+							}
+						}
+					}
+					if (!flag)
+						System.out.println("No se ha encontrado esa asignatura.");
+					else
+						System.out.println("La media de las notas es de " + (sum / subjects.length));
+					break;
+				case 7:
+					double min = Double.MAX_VALUE;
+					int pos = 0;
+					for (int i = 0; i < datos.length; i++) {
+						sum = 0;
+						for (int j = 1; j < datos[i].length; j++)
+							sum += Double.parseDouble(datos[i][j]);
+						if (sum < min) {
+							min = sum;
+							pos = i;
+						}
+					}
+					System.out.println("El estudiante con la media más baja es " + datos[pos][0]);
+					break;
+				case 8:
+					double max = Double.MIN_VALUE;
+					pos = 0;
+					for (int i = 0; i < datos.length; i++) {
+						sum = 0;
+						for (int j = 1; j < datos[i].length; j++)
+							sum += Double.parseDouble(datos[i][j]);
+						if (sum < max) {
+							max = sum;
+							pos = i;
+						}
+					}
+					System.out.println("El estudiante con la media más alta es " + datos[pos][0]);
+					break;
+				case 9:
+					int counter = 0;
+					max = 0;
+					pos = 0;
+					for (int i = 0; i < datos.length; i++) {
+						for (int j = 1; j < datos[i].length; j++) {
+							if (Double.parseDouble(datos[i][j]) < 5)
+								counter++;
+						}
+						if (counter > max) {
+							max = counter;
+							pos = i;
+						}
+					}
+					System.out.println("El estudiante con la media más alta es " + datos[pos][0]);
+					break;
+				case 10:
 					sc.close();
 					sn.close();
 					return;
@@ -85,11 +148,10 @@ public class Ejer01 {
 		do {
 			showMenu2();
 			opt = sc.nextInt() - 1;
-		} while (opt > 6 || opt < 1);
-		System.out.println("Introduce el nuevo valor: ");
+		} while (opt > 5 || opt < 0);
+		System.out.print("Introduce el nuevo valor: ");
 		datos[num][opt] = sn.nextLine();
-		sc.close();
-		sn.close();
+		System.out.println(datos[num][opt]);
 	}
 
 	public static void showMarks(int num, String[][] datos) {
@@ -97,15 +159,22 @@ public class Ejer01 {
 				+ datos[num][3] + " - Programación: " + datos[num][4] + " - FOL: " + datos[num][5] + "\n");
 	}
 
-	public static int showMenu(Scanner sc) {
+	public static int showMenu() {
+		Scanner sc = new Scanner(System.in);
+		int opt;
 		System.out.println("1.	Mostrar datos de un alumno");
 		System.out.println("2.	Mostrar datos de todos los alumnos");
 		System.out.println("3.	Modificar datos de un alumno");
 		System.out.println("4.	Poner un 0 a todos los alumnos en todos los módulos");
 		System.out.println("5.	Aprobado general a todos los alumnos en todos los módulos");
-		System.out.println("6.	Salir");
+		System.out.println("6.	Mostar en pantalla la media de una asignaura pedida al usuario");
+		System.out.println("7.	Mostrar el nombre del alumno con media más baja");
+		System.out.println("8.	Mostrar el nombre del alumno con media más alta");
+		System.out.println("9.	Mostrar el nombre del alumno con más nº de suspensos");
+		System.out.println("10.	Salir");
 		System.out.print("--> ");
-		return sc.nextInt();
+		opt = sc.nextInt();
+		return opt;
 	}
 
 	public static void showMenu2() {
