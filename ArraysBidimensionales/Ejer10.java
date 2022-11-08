@@ -28,14 +28,14 @@ public class Ejer10 {
 		for (int i = 0; i < names.length; i++) {
 			System.out.print(names[i]);
 			if (!data[i][0])
-				System.out.println(" no");
+				System.out.print(" no");
 			System.out.print(" es mayor de edad, ");
 			if (data[i][1])
 				System.out.print("no ");
-			System.out.println("vegano y ");
+			System.out.print("vegano y ");
 			if (data[i][2])
-				System.out.println("no ");
-			System.out.println("poliamoroso.");
+				System.out.print("no ");
+			System.out.print("poliamoroso.\n");
 		}
 
 		sn.close();
