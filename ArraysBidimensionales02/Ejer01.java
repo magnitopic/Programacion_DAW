@@ -6,7 +6,7 @@ public class Ejer01 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		Scanner sn = new Scanner(System.in);
-		String[][] datos = new String[2][6];
+		String[][] datos = new String[10][6];
 		boolean flag = false;
 		String name;
 
