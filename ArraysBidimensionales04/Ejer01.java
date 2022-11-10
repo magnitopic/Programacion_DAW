@@ -20,6 +20,14 @@ public class Ejer01 {
 		}
 
 		for (int i = 0; i < array3.length; i++) {
+			for (int j = 0; j < array1[i].length; j++) {
+				System.out.print(array1[i][j] + "\t");
+			}
+			System.out.print("\t");
+			for (int j = 0; j < array2[i].length; j++) {
+				System.out.print(array2[i][j] + "\t");
+			}
+			System.out.print("\t");
 			for (int j = 0; j < array3[i].length; j++) {
 				System.out.print(array3[i][j] + "\t");
 			}
