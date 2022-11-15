@@ -28,11 +28,11 @@ public class Ejer01 {
 	}
 
 	public static int ft_uppercase(String phrase) {
-		String vocales = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZÁÉÍÓÚ";
+		String abecedario = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZÁÉÍÓÚ";
 		int count = 0;
 
 		for (int i = 0; i < phrase.length(); i++) {
-			if (vocales.contains(String.valueOf(phrase.charAt(i))))
+			if (abecedario.contains(String.valueOf(phrase.charAt(i))))
 				count++;
 		}
 
@@ -40,11 +40,11 @@ public class Ejer01 {
 	}
 
 	public static int ft_lowercase(String phrase) {
-		String vocales = "abcdefghijkmnñopqrstuvwxyzáéíóú";
+		String abecedario = "abcdefghijkmnñopqrstuvwxyzáéíóú";
 		int count = 0;
 
 		for (int i = 0; i < phrase.length(); i++) {
-			if (vocales.contains(String.valueOf(phrase.charAt(i))))
+			if (abecedario.contains(String.valueOf(phrase.charAt(i))))
 				count++;
 		}
 

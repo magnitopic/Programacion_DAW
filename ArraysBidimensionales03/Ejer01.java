@@ -16,9 +16,8 @@ public class Ejer01 {
 			datos[i][0] = sn.nextLine();
 			System.out.print("Inserte las 5 notas del alumno \"" + datos[i][0] + "\": ");
 			String[] notas = sn.nextLine().split(" ");
-			for (int j = 0; j < notas.length; j++) {
+			for (int j = 0; j < notas.length; j++)
 				datos[i][j + 1] = notas[j];
-			}
 		}
 
 		while (true) {
