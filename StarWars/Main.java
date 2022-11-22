@@ -15,7 +15,7 @@ public class Main {
 		// pedir datos
 		for (int i = 0; i < padawans.length; i++) {
 			String name, planet;
-			int age, strength, potencial;
+			int age, strength;
 			System.out.print("Introduce el nombre del Padawan: ");
 			name = sc.nextLine();
 			System.out.print("Introduce la edad del Padawan: ");
@@ -102,7 +102,6 @@ public class Main {
 					break;
 				case 7:
 					position = 0;
-					potencial = 0;
 					for (int i = 0; i < padawans.length; i++) {
 						if (padawans[i].getPotencial() > padawans[position].getPotencial())
 							position = i;
