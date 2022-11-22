@@ -8,7 +8,9 @@ public class Main {
 		Scanner sn = new Scanner(System.in);
 		Jedi[] jedis = new Jedi[5];
 		Padawan[] padawans = new Padawan[5];
-		int opt, position, j;
+		int opt, position, j, potencial;
+		String nameToSerch;
+		Jedi[] poderosos = new Jedi[2];
 
 		// pedir datos
 		for (int i = 0; i < padawans.length; i++) {
@@ -58,12 +60,67 @@ public class Main {
 					}
 					break;
 				case 3:
-				position=0;
-				i = 0;
-					while(position==0 && i < jedis.length){
-						if ()
+					position = -1;
+					j = 0;
+					System.out.print("Inroduce el nombre del Jedi que quieres buscar: ");
+					nameToSerch = sn.nextLine();
+					while (position == -1 && j + 1 < jedis.length) {
+						if (jedis[j].getNombre().equalsIgnoreCase(nameToSerch))
+							jedis[j].mostrarDatos();
+						j++;
 					}
-				break;
+					break;
+				case 4:
+					position = -1;
+					j = 0;
+					System.out.print("Inroduce el nombre del Padawan que quieres buscar: ");
+					nameToSerch = sn.nextLine();
+					while (position == -1 && j + 1 < padawans.length) {
+						if (padawans[j].getNombre().equalsIgnoreCase(nameToSerch))
+							padawans[j].mostrarDatos();
+						j++;
+					}
+					break;
+				case 5:
+					System.out.print("Intoduce el nivel de potencial con el que quieres filtrar: ");
+					potencial = sc.nextInt();
+					for (int i = 0; i < padawans.length; i++) {
+						if (padawans[i].getPotencial() >= potencial)
+							padawans[i].mostrarDatos();
+					}
+					break;
+				case 6:
+					for (int i = 0; i < jedis.length; i++) {
+						if (poderosos[0] == null || poderosos[0].getFuerza() < jedis[i].getFuerza()) {
+							poderosos[0] = jedis[i];
+						} else if (poderosos[1] == null || poderosos[1].getFuerza() < jedis[i].getFuerza()) {
+							poderosos[1] = jedis[i];
+						}
+					}
+					poderosos[0].mostrarDatos();
+					poderosos[1].mostrarDatos();
+					break;
+				case 7:
+					position = 0;
+					potencial = 0;
+					for (int i = 0; i < padawans.length; i++) {
+						if (padawans[i].getPotencial() > padawans[position].getPotencial())
+							position = i;
+					}
+					padawans[position].mostrarDatos();
+					break;
+				case 8:
+					break;
+				case 9:
+					for (int i = 0; i < jedis.length; i++) {
+						jedis[i].setNombre(jedis[i].getNombre().toUpperCase());
+					}
+					break;
+				case 10:
+					for (int i = 0; i < padawans.length; i++) {
+						padawans[i].setNombre(padawans[i].getNombre().toLowerCase());
+					}
+					break;
 				case 11:
 					sc.close();
 					sn.close();
