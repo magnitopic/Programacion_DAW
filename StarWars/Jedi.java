@@ -7,10 +7,16 @@ public class Jedi {
 	private String planeta;
 	private String color_laser;
 
+	public Jedi() {
+	}
+
 	public Jedi(String nombre, int edad, int fuerza, String planeta, String color_laser) {
 		this.nombre = nombre;
 		this.edad = edad;
-		this.fuerza = fuerza;
+		if (fuerza >= 0 && fuerza <= 10)
+			this.fuerza = fuerza;
+		else
+			this.fuerza = 0;
 		this.planeta = planeta;
 		this.color_laser = color_laser;
 	}

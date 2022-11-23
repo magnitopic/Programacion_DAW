@@ -137,8 +137,7 @@ public class Main {
 		System.out.println("5.	Mostrar un listado con los nombres de los padawans con un mayor potencial a un valor.");
 		System.out.println("6.	Mostrar los datos de los 2 Jedis que tengan más nivel de fuerza.");
 		System.out.println("7.	Mostrar los datos del Padawan con menor potencial.");
-		System.out.println(
-				"8.	Mostrar los datos de todos los Padawans que su nombre empiece o termine por una letra concreta.");
+		System.out.println("8.	Mostrar los datos de todos los Padawans que su nombre empiece o termine por una letra concreta.");
 		System.out.println("9.	Modificar todos los nombres de los Jedis y ponerlos en mayúsculas.");
 		System.out.println("10.	Modificar todos los nombres de los padawans y ponerlos en minúsculas..");
 	}

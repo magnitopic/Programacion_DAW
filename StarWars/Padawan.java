@@ -7,6 +7,9 @@ public class Padawan {
 	private int potencial;
 	private String planeta;
 
+	public Padawan() {
+	}
+
 	public Padawan(String nombre, int edad, int fuerza, int potencial, String planeta) {
 		this.nombre = nombre;
 		this.edad = edad;
