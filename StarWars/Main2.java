@@ -74,6 +74,7 @@ public class Main2 {
 					damePadaminfuerza(padawans).mostrarDatos();
 					break;
 				case 8:
+					damePadasxletra(padawans, sn);
 					break;
 				case 9:
 					ponerJedismayusculas(jedis);
@@ -159,8 +160,14 @@ public class Main2 {
 		return padawans[position];
 	}
 
-	private static Type damePadasxletra() {
-		
+	private static void damePadasxletra(Padawan[] padawans, Scanner sn) {
+		System.out.print("Intoduce la letra que quieres usar: ");
+		char letra = sn.nextLine().charAt(0);
+		for (int i = 0; i < padawans.length; i++) {
+			String nombre = padawans[i].getNombre();
+			if (nombre.charAt(0) == letra || nombre.charAt(nombre.length() - 1) == letra)
+				padawans[i].mostrarDatos();
+		}
 	}
 
 	private static Jedi[] ponerJedismayusculas(Jedi[] jedis) {
