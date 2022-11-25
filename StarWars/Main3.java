@@ -21,11 +21,6 @@ public class Main3 {
 		}
 	}
 
-	private static void incrementoPotencial(int valor, Padawan[] padawans) {
-		Padawan padawan = padawans[(int) ((Math.random() * padawans.length) - 1)];
-		padawan.setFuerza(padawan.getFuerza() + valor);
-	}
-
 	private static String[] esmirriados(Padawan[] padawans) {
 		String[] esmirriados = new String[6];
 		Padawan[] padawnsEsmirriados = new Padawan[6];
@@ -40,7 +35,6 @@ public class Main3 {
 		}
 		return esmirriados;
 	}
-
 	private static String[] variosNombres(Padawan[] padawans, Jedi[] jedis, int fuerza) {
 		int counter = 0;
 		for (int i = 0; i < jedis.length; i++) {
@@ -66,11 +60,6 @@ public class Main3 {
 			}
 		}
 		return nombres;
-	}
-
-	private static void degradacipmFuerza(int valor, Jedi[] jedis) {
-		Jedi jedi = jedis[(int) ((Math.random() * jedis.length) - 1)];
-		jedi.setFuerza(jedi.getFuerza() - valor);
 	}
 
 	private static Padawan[] padawansFuertacos(Padawan[] padawans, int fuerza) {

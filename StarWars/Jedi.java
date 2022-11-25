@@ -72,4 +72,8 @@ public class Jedi {
 		System.out.println("Color de espada laser: " + this.color_laser);
 	}
 
+	public void degradacipmFuerza(int valor) {
+		this.fuerza = this.fuerza - valor;
+	}
+
 }

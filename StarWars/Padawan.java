@@ -71,4 +71,8 @@ public class Padawan {
 		System.out.println("Potencial: " + this.potencial);
 		System.out.println("Planeta: " + this.planeta);
 	}
+
+	public void incrementoPotencial(int valor) {
+		this.potencial = this.potencial + valor;
+	}
 }
