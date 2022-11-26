@@ -1,6 +1,6 @@
 package StarWars;
 
-import java.util.stream.*;
+import java.util.ArrayList;
 
 public class Main4 {
 
@@ -77,7 +77,7 @@ public class Main4 {
 			if (nombre.equalsIgnoreCase(nombre4))
 				flags[3] = 1;
 		}
-		return (4 == IntStream.of(flags).sum());
+		return (flags[0] == 1 && flags[1] == 1 && flags[2] == 1 && flags[3] == 1);
 	}
 
 	public boolean fuerzaIgualPada(int fuerza1, int fuerza2, int fuerza3, Padawan[] padawans) {
@@ -89,9 +89,51 @@ public class Main4 {
 		return false;
 	}
 
-	public Jedi[] jedisPrimosPos(Jedi[] jedis1, Jedi[] jedis2, Jedi[] jedis3) {
+	public ArrayList<Jedi> jedisPrimosPos(Jedi[] jedis1, Jedi[] jedis2, Jedi[] jedis3) {
+		ArrayList<Jedi> jedis = new ArrayList<Jedi>();
 		for (int i = 0; i < jedis1.length; i++) {
-			if 
+			if (isPrime(i))
+				jedis.add(jedis1[i]);
 		}
+		for (int i = 0; i < jedis2.length; i++) {
+			if (isPrime(i))
+				jedis.add(jedis2[i]);
+		}
+		for (int i = 0; i < jedis3.length; i++) {
+			if (isPrime(i))
+				jedis.add(jedis3[i]);
+		}
+		return jedis;
+	}
+
+	public int jedisFuerzaPrima(Jedi[] jedis1, Jedi[] jedis2, Jedi[] jedis3, Jedi[] jedis4) {
+		int count = 0;
+		for (int i = 0; i < jedis1.length; i++) {
+			if (isPrime(jedis1[i].getFuerza()))
+				count++;
+		}
+		for (int i = 0; i < jedis2.length; i++) {
+			if (isPrime(jedis2[i].getFuerza()))
+				count++;
+		}
+		for (int i = 0; i < jedis3.length; i++) {
+			if (isPrime(jedis3[i].getFuerza()))
+				count++;
+		}
+		for (int i = 0; i < jedis4.length; i++) {
+			if (isPrime(jedis4[i].getFuerza()))
+				count++;
+		}
+		return count;
+	}
+
+	public static boolean isPrime(int value) {
+		if (value <= 1)
+			return false;
+		for (int i = 2; i < value; i++) {
+			if (value % i == 0)
+				return false;
+		}
+		return true;
 	}
 }
