@@ -39,6 +39,25 @@ public class Main {
 				case 5:
 					opt5(controladores, aerolineas, aviones, vuelos);
 					break;
+				case 6:
+					opt6(aviones).showData();
+					break;
+				case 7:
+					opt7(aviones).showData();
+					break;
+				case 8:
+					opt8(controladores);
+					break;
+				case 9:
+					Controlador[] respuesta1 = opt9(controladores);
+					for (int i = 0; i < respuesta1.length; i++)
+						respuesta1[i].showData();
+					break;
+				case 10:
+					Vuelo[] respueta2 = opt10(vuelos);
+					for (int i = 0; i < respueta2.length; i++)
+						respueta2[i].showData();
+					break;
 				default:
 					System.out.println("Adiós.");
 					sc.close();
@@ -54,7 +73,12 @@ public class Main {
 		System.out.println("3.	Aumentar capacidad de depósito a Avión");
 		System.out.println("4.	Sumar puntos de experiencia a controlador");
 		System.out.println("5.	Aumentar capacidad de pasajeros de un Avión");
-		System.out.println("6.	Salir");
+		System.out.println("6.	Mostrar datos del Avión con mayor depósito");
+		System.out.println("7.	Mostrar Datos del Avión con menos capacidad de pasajeros");
+		System.out.println("8.	Mostar los datos del controlador con mayor experiencia");
+		System.out.println("9.	Mostar los datos de los 3 controladores con mayor experiencia");
+		System.out.println("10.	Mostrar los datos de los 2 vuelos menos caros");
+		System.out.println("11.	Salir");
 		System.out.print("--> ");
 	}
 
@@ -199,6 +223,80 @@ public class Main {
 		}
 		sn.close();
 		sc.close();
+	}
+
+	public static Avion opt6(ArrayList<Avion> aviones) {
+		double max = 0;
+		int pos = 0;
+		for (int i = 0; i < aviones.size(); i++) {
+			if (aviones.get(i).getCapacidadDepo() > max) {
+				max = aviones.get(i).getCapacidadDepo();
+				pos = i;
+			}
+		}
+		return aviones.get(pos);
+	}
+
+	public static Avion opt7(ArrayList<Avion> aviones) {
+		double min = Double.MAX_VALUE;
+		int pos = 0;
+		for (int i = 0; i < aviones.size(); i++) {
+			if (aviones.get(i).getCatPasajeros() < min) {
+				min = aviones.get(i).getCatPasajeros();
+				pos = i;
+			}
+		}
+		return aviones.get(pos);
+	}
+
+	public static Controlador opt8(ArrayList<Controlador> controladores) {
+		double max = 0;
+		int pos = 0;
+		for (int i = 0; i < controladores.size(); i++) {
+			if (controladores.get(i).getDestreza() > max) {
+				max = controladores.get(i).getDestreza();
+				pos = i;
+			}
+		}
+		return controladores.get(pos);
+	}
+
+	public static Controlador[] opt9(ArrayList<Controlador> controladores) {
+		Controlador[] expretos = new Controlador[3];
+
+		for (int i = 0; i < controladores.size(); i++) {
+			if (expretos[0] == null || expretos[0].getAnosExp() < controladores.get(i).getAnosExp()) {
+				expretos[0] = controladores.get(i);
+				break;
+			}
+			if (expretos[1] == null || expretos[1].getAnosExp() < controladores.get(i).getAnosExp()) {
+				expretos[1] = controladores.get(i);
+				break;
+			}
+			if (expretos[2] == null || expretos[2].getAnosExp() < controladores.get(i).getAnosExp()) {
+				expretos[2] = controladores.get(i);
+				break;
+			}
+		}
+
+		return expretos;
+	}
+
+	public static Vuelo[] opt10(ArrayList<Vuelo> vuelos) {
+		Vuelo[] baratos = new Vuelo[2];
+
+		for (int i = 0; i < vuelos.size(); i++) {
+			if (baratos[0] == null || baratos[0].getPrecio() > vuelos.get(i).getPrecio()) {
+				baratos[0] = vuelos.get(i);
+				break;
+			}
+			if (baratos[1] == null || baratos[1].getPrecio() > vuelos.get(i).getPrecio()) {
+				baratos[1] = vuelos.get(i);
+				break;
+			}
+		}
+
+		return baratos;
 	}
 
 	// Auxiliares
