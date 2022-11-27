@@ -14,7 +14,7 @@ public class Main {
 		ArrayList<Aerolinea> aerolineas = new ArrayList<>();
 		ArrayList<Avion> aviones = new ArrayList<>();
 		ArrayList<Vuelo> vuelos = new ArrayList<>();
-		for (int i = 0; i < args.length; i++) {
+		for (int i = 0; i < 10; i++) {
 			controladores.add(newControlador());
 			aerolineas.add(newAerolinea());
 			aviones.add(newAvion());
@@ -43,7 +43,7 @@ public class Main {
 					System.out.println("Adiós.");
 					sc.close();
 					sn.close();
-					break;
+					return;
 			}
 		}
 	}
