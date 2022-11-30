@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Scanner sn = new Scanner(System.in);
 		// Declaro un array de 10 objetos de tipo cancion.
 		Cancion[] canciones = new Cancion[12];
@@ -24,41 +23,38 @@ public class Main {
 				case 2:
 					mostrarCancionesCortas(canciones);
 				case 3:
-
+					mayorDuracion(canciones);
 					break;
 				case 4:
-
+					showNames(canciones);
 					break;
 				case 5:
-
+					sumDuration(canciones);
 					break;
 				case 6:
-
+					durations(canciones);
 					break;
 				case 7:
-
+					infoDiskName(null);
 					break;
 				case 8:
-
+					findSongName(null);
 					break;
 				case 9:
-
+					allFindSongNames(null);
 					break;
 				case 10:
-
+					maxDurationDisk(null);
 					break;
 				case 11:
-
+					repeatDiscs(null);
 					break;
 				case 12:
 
 					break;
-				default:
-					sn.close();
-					return;
 			}
 		} while (opc != 8);
-
+		sn.close();
 	}
 
 	/**
@@ -105,6 +101,146 @@ public class Main {
 			if (canciones[i].getDuracion() <= 4)
 				System.out.println(i + ".\t" + canciones[i]);
 		}
+	}
+
+	public static void mayorDuracion(Cancion[] canciones) {
+		int max = 0;
+		for (int i = 0; i < canciones.length; i++) {
+			if (canciones[i].getDuracion() > canciones[max].getDuracion())
+				max = i;
+		}
+		System.out.println("Nombre de la canción: " + canciones[max].getTitulo());
+		System.out.println("Duración: " + canciones[max].getDuracion());
+	}
+
+	public static void showNames(Cancion[] canciones) {
+		for (int i = 0; i < canciones.length - 1; i++)
+			System.out.println(canciones[i] + ", ");
+		System.out.println(canciones[canciones.length - 1]);
+	}
+
+	public static void sumDuration(Cancion[] canciones) {
+		int sum = 0;
+		for (int i = 0; i < canciones.length; i++)
+			sum += canciones[i].getDuracion();
+		System.out.println("Suma de suraciones: " + sum);
+	}
+
+	public static Double[] durations(Cancion[] canciones) {
+		Double[] durations = new Double[canciones.length];
+		for (int i = 0; i < canciones.length; i++)
+			durations[i] = canciones[i].getDuracion();
+		return durations;
+	}
+
+	public static void infoDiskName(Disco[] discos) {
+		Scanner sn = new Scanner(System.in);
+		System.out.print("Introduce el nombre del disco del que quieres ver la info: ");
+		String name = sn.nextLine();
+		for (int i = 0; i < discos.length; i++) {
+			if (discos[i].getTitulo().equalsIgnoreCase(name)) {
+				Cancion[] canciones = discos[i].getCanciones();
+				for (int j = 0; j < canciones.length; j++) {
+					System.out.println("Titulo Cancion " + j + ": " + canciones[j].getTitulo() + " - Duración: "
+							+ canciones[j].getDuracion());
+				}
+			}
+		}
+		sn.close();
+	}
+
+	public static void findSongName(Disco[] discos) {
+		Scanner sn = new Scanner(System.in);
+		System.out.print("Introduce la letra por la que tiene que empezar la canción: ");
+		char name = sn.nextLine().charAt(0);
+
+		for (int i = 0; i < discos.length; i++) {
+			Cancion[] canciones = discos[i].getCanciones();
+			for (int j = 0; j < canciones.length; j++) {
+				if (canciones[j].getTitulo().charAt(0) == name) {
+					System.out.println(canciones[j].getTitulo());
+					sn.close();
+					return;
+				}
+			}
+		}
+
+		sn.close();
+	}
+
+	public static String[] allFindSongNames(Disco[] discos) {
+		Scanner sn = new Scanner(System.in);
+		System.out.print("Introduce el nombre del disco del que quieres ver la info: ");
+		char name = sn.nextLine().charAt(0);
+		int count = 0;
+		for (int i = 0; i < discos.length; i++) {
+			Cancion[] canciones = discos[i].getCanciones();
+			for (int j = 0; j < canciones.length; j++) {
+				if (canciones[j].getTitulo().charAt(0) == name) {
+					count++;
+				}
+			}
+		}
+		String[] nombres = new String[count];
+		int x = 0;
+		for (int i = 0; i < discos.length; i++) {
+			Cancion[] canciones = discos[i].getCanciones();
+			for (int j = 0; j < canciones.length; j++) {
+				if (canciones[j].getTitulo().charAt(0) == name) {
+					nombres[x++] = canciones[j].getTitulo();
+				}
+			}
+		}
+
+		sn.close();
+		return nombres;
+	}
+
+	public static Disco maxDurationDisk(Disco[] discos) {
+		double[] duraciones = new double[discos.length];
+		for (int i = 0; i < discos.length; i++) {
+			Cancion[] canciones = discos[i].getCanciones();
+			for (int j = 0; j < canciones.length; j++) {
+				duraciones[j] += canciones[j].getDuracion();
+			}
+		}
+
+		int max = 0;
+		for (int i = 0; i < duraciones.length - 1; i++) {
+			if (duraciones[i] > duraciones[max])
+				max = i;
+		}
+		return discos[max];
+	}
+
+	public static void repeatDiscs(Disco[] discos) {
+		Scanner sn = new Scanner(System.in);
+		System.out.print("Introduce el título de la canción: ");
+		String name = sn.nextLine();
+		int count = 0;
+		for (int i = 0; i < discos.length; i++) {
+			Cancion[] canciones = discos[i].getCanciones();
+			for (int j = 0; j < canciones.length; j++) {
+				if (canciones[j].getTitulo().equalsIgnoreCase(name)) {
+					count++;
+				}
+			}
+		}
+		System.out.println("La canción aparece " + count + " veces");
+		sn.close();
+	}
+
+	public static void name(Disco[] discos) {
+		double duracition = 0;
+		for (int i = 0; i < discos.length; i++) {
+			if (discos[i].getTitulo().charAt(0) == 'o' || discos[i].getTitulo().charAt(0) == 'e') {
+				Cancion[] canciones = discos[i].getCanciones();
+				for (int j = 0; j < canciones.length; j++) {
+					duracition += canciones[j].getDuracion();
+				}
+			}
+		}
+		System.out.println("Duración de las canciones: " + duracition);
 	}
 
 }
