@@ -6,6 +6,7 @@ public class Avion {
 	private String matricula;
 	private double capacidadDepo;
 	private int yearFabrication;
+	private Comandante comandante;
 
 	public Avion() {
 	}
@@ -14,12 +15,14 @@ public class Avion {
 		this.matricula = matricula;
 	}
 
-	public Avion(String modelo, int capacidad, String matricula, double capacidadDepo, int yearFabrication) {
+	public Avion(String modelo, int capacidad, String matricula, double capacidadDepo, int yearFabrication,
+			Comandante comandante) {
 		this.modelo = modelo;
 		this.capacidad = capacidad;
 		this.matricula = matricula;
 		this.capacidadDepo = capacidadDepo;
 		this.yearFabrication = yearFabrication;
+		this.comandante = comandante;
 	}
 
 	public String getModelo() {
@@ -62,6 +65,14 @@ public class Avion {
 		this.yearFabrication = yearFabrication;
 	}
 
+	public Comandante getComandante() {
+		return this.comandante;
+	}
+
+	public void setComandante(Comandante comandante) {
+		this.comandante = comandante;
+	}
+
 	public void mostrarDatosAvion() {
 		for (int i = 0; i < 40; i++)
 			System.out.print("*");
@@ -69,6 +80,8 @@ public class Avion {
 		System.out.println("*	Capacidad: " + this.capacidad + " pasajeros.");
 		System.out.println("*	Matrícula: " + this.matricula);
 		System.out.println("*	Capacidad depósito: " + this.capacidadDepo + " litros.");
+		System.out.println("*	Comandante: ");
+		this.comandante.mostrarDatosComandante();
 		System.out.println("*	Año de fabricación: " + this.yearFabrication);
 		for (int i = 0; i < 40; i++)
 			System.out.print("*");
