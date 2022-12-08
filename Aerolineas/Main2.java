@@ -127,4 +127,56 @@ public class Main2 {
 		}
 		return pasajeros;
 	}
+
+	public static void removePassangers(ArrayList<Vuelo> vuelos, ArrayList<String> telefonos) {
+		for (int i = 0; i < vuelos.size(); i++) {
+			for (int j = 0; j < vuelos.get(i).getPasajeros().length; j++) {
+				Pasajero pasajero = vuelos.get(i).getPasajeros()[j];
+				for (int j2 = 0; j2 < telefonos.size(); j2++) {
+					if (pasajero.getTelefono().equals(telefonos.get(j2)))
+						vuelos.get(i).getPasajeros()[j] = null;
+				}
+			}
+		}
+	}
+
+	public static ArrayList<Comandante> getPilots(ArrayList<Aeropuerto> aeropuertos, String[] rango) {
+		ArrayList<Comandante> comandantes = new ArrayList<>();
+		for (int i = 0; i < aeropuertos.size(); i++) {
+			for (int j = 0; j < aeropuertos.get(i).getAviones().length; j++) {
+				for (int j2 = 0; j2 < rango.length; j2++) {
+					if (aeropuertos.get(i).getAviones()[j].getComandante().getRango().equalsIgnoreCase(rango[j2]))
+						comandantes.add(aeropuertos.get(i).getAviones()[j].getComandante());
+				}
+			}
+		}
+		return comandantes;
+	}
+
+	public static ArrayList<Aeropuerto> findPlanes(ArrayList<Aeropuerto> aeropuertos, String[] matriculas) {
+		ArrayList<Aeropuerto> aeropuertosConAviones = new ArrayList<>();
+		for (int i = 0; i < aeropuertos.size(); i++) {
+			boolean flag = false;
+			for (int j = 0; j < aeropuertos.get(i).getAviones().length; j++) {
+				for (int k = 0; k < matriculas.length; k++) {
+					if (aeropuertos.get(i).getAviones()[j].getMatricula().equals(matriculas[k]))
+						flag = true;
+				}
+			}
+			if (flag)
+				aeropuertosConAviones.add(aeropuertos.get(i));
+		}
+		return aeropuertosConAviones;
+	}
+
+	public static ArrayList<Pasajero> findPassangers(ArrayList<Vuelo> vuelos) {
+		ArrayList<Pasajero> pasajeros = new ArrayList<>();
+		for (int i = 0; i < vuelos.size(); i++) {
+			for (int j = 0; j < vuelos.get(i).getPasajeros().length; j++) {
+				if (vuelos.get(i).getPasajeros()[j].getEdad() >= 18)
+					pasajeros.add(vuelos.get(i).getPasajeros()[j]);
+			}
+		}
+		return pasajeros;
+	}
 }
