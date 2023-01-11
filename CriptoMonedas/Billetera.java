@@ -53,7 +53,7 @@ public class Billetera {
 	public double totalValEu() {
 		double total = 0;
 
-		for (L_billetera l : lineas_b) {
+		for (L_billetera l : this.lineas_b) {
 			total += l.getUnidades() * l.getCriptomoneda().getValor_e();
 		}
 

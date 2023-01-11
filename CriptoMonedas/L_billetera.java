@@ -29,7 +29,6 @@ public class L_billetera {
 	}
 
 	public double valDol() {
-		double total = this.unidades * this.criptomoneda.getValor_d();
-		return total;
+		return this.unidades * this.criptomoneda.getValor_d();
 	}
 }

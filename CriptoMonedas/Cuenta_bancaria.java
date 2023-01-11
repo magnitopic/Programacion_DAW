@@ -52,7 +52,7 @@ public class Cuenta_bancaria {
 
 	public double valOperaEu() {
 		double total = 0;
-		for (Operacion_cuenta l : historial) {
+		for (Operacion_cuenta l : this.historial) {
 			total += l.getValor();
 		}
 		return total;
