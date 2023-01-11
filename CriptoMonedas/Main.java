@@ -1,6 +1,7 @@
 package CriptoMonedas;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -75,17 +76,80 @@ public class Main {
 		return maxB;
 	}
 
-	public static ArrayList<String> name(ArrayList<Cliente> clientes) {
-		ArrayList<String> nombres = new ArrayList<String>();
+	public static ArrayList<String> mostCriptoValue(ArrayList<Cliente> clientes) {
+		String nameClient = "";
+		String nameCripto = "";
+		double maxValue = 0;
 
 		for (Cliente c : clientes) {
-			for (L_billetera l:  c.getBilletera().getLineas_b()){
-				if (c.getBilletera().getLineas_b().getCriptomoneda())
-				
+			for (L_billetera l : c.getBilletera().getLineas_b()) {
+				if (l.getCriptomoneda().getValor_e() > maxValue) {
+					maxValue = l.getCriptomoneda().getValor_e();
+					nameClient = c.getNombre();
+					nameCripto = l.getCriptomoneda().getNombre();
+				}
 			}
-				nombres.add(c.getNombre());
 		}
 
-		return nombres;
+		return new ArrayList<String>(List.of(nameClient, nameCripto));
+	}
+
+	public static ArrayList<Cliente> maxWalletLines(ArrayList<Cliente> clientes) {
+		ArrayList<Cliente> maxLines = new ArrayList<Cliente>();
+		maxLines.add(clientes.get(0));
+		for (Cliente c : clientes) {
+			if (c.getBilletera().getLineas_b().size() > maxLines.get(0).getBilletera().getLineas_b().size()) {
+				maxLines.clear();
+				maxLines.add(c);
+			}
+			if (c.getBilletera().getLineas_b().size() == maxLines.get(0).getBilletera().getLineas_b().size())
+				maxLines.add(c);
+		}
+		return maxLines;
+	}
+
+	public static ArrayList<Cliente> maxTransactionsClient(ArrayList<Cliente> clientes) {
+		ArrayList<Cliente> maxTransactions = new ArrayList<Cliente>();
+		maxTransactions.add(clientes.get(0));
+		double maxValue = 0;
+		for (Cliente c : clientes) {
+			// Recorremos las cuentas del cliente
+			for (Cuenta_bancaria b : c.getCuentas()) {
+				// La variable que almacenará el dinero que ha movido el cliente se resetea en
+				// cada cuenta ya que solo se considera la cuenta más alta del cliente y no la
+				// suma de sus cuentas
+				double clienteMoved = 0;
+				// Contamos el dinero que ha movido el cliente
+				for (Operacion_cuenta o : b.getHistorial())
+					clienteMoved += o.getValor();
+				// Si el cliente ha movido más dinero que el máximo, lo actualizamos
+				if (clienteMoved > maxValue) {
+					maxTransactions.clear();
+					maxTransactions.add(c);
+					maxValue = clienteMoved;
+				}
+				if (clienteMoved == maxValue)
+					maxTransactions.add(c);
+			}
+		}
+		return maxTransactions;
+	}
+
+	public static void buyCripto(Cliente cliente, String nombreCripto, int numUnidades,
+			ArrayList<Criptomoneda> criptomonedas, ArrayList<Cliente> clientes) {
+		// Comprobamos que el cliente y la criptomoneda existen
+		if (!checkClient(cliente, clientes) || !checkCripto(nombreCripto, criptomonedas))
+			return;
+		// Buscamos la criptomoneda
+		Criptomoneda cripto = null;
+		for (Criptomoneda c : criptomonedas) {
+			if (c.getNombre().equalsIgnoreCase(nombreCripto)) {
+				cripto = c;
+				break;
+			}
+		}
+		// Comprobamos que el cliente tiene suficiente saldo
+		if (cliente.getBilletera().getLineas_b().size() >= numUnidades * cripto.getValor_e())
+			cliente.getBilletera().getLineas_b().add(new L_billetera(cripto, numUnidades));
 	}
 }
