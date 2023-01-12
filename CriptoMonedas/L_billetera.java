@@ -28,6 +28,11 @@ public class L_billetera {
 		this.unidades = unidades;
 	}
 
+	/**
+	 * Método 3
+	 * 
+	 * @return El valor de todas las criptomonedas en euros
+	 */
 	public double valDol() {
 		return this.unidades * this.criptomoneda.getValor_d();
 	}

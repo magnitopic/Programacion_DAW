@@ -50,6 +50,11 @@ public class Cuenta_bancaria {
 		this.historial = historial;
 	}
 
+	/**
+	 * Método 2
+	 * 
+	 * @return el total de euros de la cuenta
+	 */
 	public double valOperaEu() {
 		double total = 0;
 		for (Operacion_cuenta l : this.historial) {

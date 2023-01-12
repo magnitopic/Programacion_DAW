@@ -1,10 +1,16 @@
 package CriptoMonedas;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
+	/**
+	 * Método 4
+	 * 
+	 * @param cliente
+	 * @param clientes
+	 * @return booleano que depende si se encuentra el cliente en la lista o no
+	 */
 	public static boolean checkClient(Cliente cliente, ArrayList<Cliente> clientes) {
 		for (Cliente c : clientes) {
 			if (c.getDni().equalsIgnoreCase(cliente.getDni()))
@@ -13,6 +19,13 @@ public class Main {
 		return false;
 	}
 
+	/**
+	 * Método 5
+	 * 
+	 * @param criptomoneda
+	 * @param criptomonedas
+	 * @return booleano que depende si se encuentra la criptomoneda en la lista o no
+	 */
 	public static boolean checkCripto(String criptomoneda, ArrayList<Criptomoneda> criptomonedas) {
 		for (Criptomoneda c : criptomonedas) {
 			if (c.getNombre().equalsIgnoreCase(criptomoneda))
@@ -21,6 +34,13 @@ public class Main {
 		return false;
 	}
 
+	/**
+	 * Método 6
+	 * 
+	 * @param cliente
+	 * @return una lista de todas las operaciones de tipo "ingreso" y superiores a
+	 *         500€
+	 */
 	public static ArrayList<Operacion_cuenta> operationsIngreso(Cliente cliente) {
 		ArrayList<Operacion_cuenta> operaciones = new ArrayList<Operacion_cuenta>();
 		for (Cuenta_bancaria c : cliente.getCuentas()) {
@@ -32,6 +52,12 @@ public class Main {
 		return operaciones;
 	}
 
+	/**
+	 * Método 7
+	 * 
+	 * @param clientes
+	 * @return una lista de DNIs de clientes que tengan más de 35000€ en Bitcoin
+	 */
 	public static ArrayList<String> clientsBitcoin(ArrayList<Cliente> clientes) {
 		ArrayList<String> clientesBitcoin = new ArrayList<String>();
 		for (Cliente c : clientes) {
@@ -46,6 +72,13 @@ public class Main {
 		return clientesBitcoin;
 	}
 
+	/**
+	 * Método 8
+	 * 
+	 * @param cliente
+	 * @return una lista de las unidades de cada criptomoneda de la billetera de un
+	 *         cliente
+	 */
 	public static ArrayList<Double> unidadesdeMonedas(Cliente cliente) {
 		ArrayList<Double> unidades = new ArrayList<Double>();
 		for (L_billetera b : cliente.getBilletera().getLineas_b())
@@ -53,6 +86,13 @@ public class Main {
 		return unidades;
 	}
 
+	/**
+	 * Método 9
+	 * 
+	 * @param billeteras
+	 * @param criptomonedas
+	 * @return la billetera con más unidades de la criptomoneda con más valor
+	 */
 	public static Billetera maxUnitOfMaxCripto(ArrayList<Billetera> billeteras, ArrayList<Criptomoneda> criptomonedas) {
 		// Se necesita saber la criptomenda con mayor valor
 		Criptomoneda max = criptomonedas.get(0);
@@ -76,7 +116,13 @@ public class Main {
 		return maxB;
 	}
 
-	public static ArrayList<String> mostCriptoValue(ArrayList<Cliente> clientes) {
+	/**
+	 * Método 10
+	 * 
+	 * @param clientes
+	 * @return el nombre nombre del cliente y la criptomoneda con mayor valor
+	 */
+	public static String mostCriptoValue(ArrayList<Cliente> clientes) {
 		String nameClient = "";
 		String nameCripto = "";
 		double maxValue = 0;
@@ -91,50 +137,68 @@ public class Main {
 			}
 		}
 
-		return new ArrayList<String>(List.of(nameClient, nameCripto));
+		return nameClient + " " + nameCripto;
 	}
 
+	/**
+	 * Método 11
+	 * 
+	 * @param clientes
+	 * @return una lista con los clientes que tengan más lineas de billetera
+	 */
 	public static ArrayList<Cliente> maxWalletLines(ArrayList<Cliente> clientes) {
 		ArrayList<Cliente> maxLines = new ArrayList<Cliente>();
-		maxLines.add(clientes.get(0));
 		for (Cliente c : clientes) {
+			if (maxLines.size() == 0
+					|| c.getBilletera().getLineas_b().size() == maxLines.get(0).getBilletera().getLineas_b().size())
+				maxLines.add(c);
 			if (c.getBilletera().getLineas_b().size() > maxLines.get(0).getBilletera().getLineas_b().size()) {
 				maxLines.clear();
 				maxLines.add(c);
 			}
-			if (c.getBilletera().getLineas_b().size() == maxLines.get(0).getBilletera().getLineas_b().size())
-				maxLines.add(c);
 		}
 		return maxLines;
 	}
 
+	/**
+	 * Método 12
+	 * 
+	 * @param clientes
+	 * @return una lista con los clientes que hayan movido más dinero en
+	 *         transacciones
+	 */
 	public static ArrayList<Cliente> maxTransactionsClient(ArrayList<Cliente> clientes) {
 		ArrayList<Cliente> maxTransactions = new ArrayList<Cliente>();
-		maxTransactions.add(clientes.get(0));
 		double maxValue = 0;
 		for (Cliente c : clientes) {
 			// Recorremos las cuentas del cliente
+			double clienteMoved = 0;
 			for (Cuenta_bancaria b : c.getCuentas()) {
-				// La variable que almacenará el dinero que ha movido el cliente se resetea en
-				// cada cuenta ya que solo se considera la cuenta más alta del cliente y no la
-				// suma de sus cuentas
-				double clienteMoved = 0;
 				// Contamos el dinero que ha movido el cliente
 				for (Operacion_cuenta o : b.getHistorial())
 					clienteMoved += o.getValor();
-				// Si el cliente ha movido más dinero que el máximo, lo actualizamos
-				if (clienteMoved > maxValue) {
-					maxTransactions.clear();
-					maxTransactions.add(c);
-					maxValue = clienteMoved;
-				}
-				if (clienteMoved == maxValue)
-					maxTransactions.add(c);
+			}
+			// Si el cliente ha movido más dinero que el máximo, lo actualizamos
+			if (maxTransactions.size() == 0 || clienteMoved == maxValue)
+				maxTransactions.add(c);
+			if (clienteMoved > maxValue) {
+				maxTransactions.clear();
+				maxTransactions.add(c);
+				maxValue = clienteMoved;
 			}
 		}
 		return maxTransactions;
 	}
 
+	/**
+	 * Método 13 - Realiza una acción de compara de una criptomoneda
+	 * 
+	 * @param cliente
+	 * @param nombreCripto
+	 * @param numUnidades
+	 * @param criptomonedas
+	 * @param clientes
+	 */
 	public static void buyCripto(Cliente cliente, String nombreCripto, int numUnidades,
 			ArrayList<Criptomoneda> criptomonedas, ArrayList<Cliente> clientes) {
 		// Comprobamos que el cliente y la criptomoneda existen
@@ -149,7 +213,10 @@ public class Main {
 			}
 		}
 		// Comprobamos que el cliente tiene suficiente saldo
-		if (cliente.getBilletera().getLineas_b().size() >= numUnidades * cripto.getValor_e())
+		if (cliente.getBilletera().getLineas_b().size() >= numUnidades * cripto.getValor_e()) {
+			double saldo = cliente.getBilletera().getSaldo();
+			cliente.getBilletera().setSaldo(saldo - numUnidades * cripto.getValor_e());
 			cliente.getBilletera().getLineas_b().add(new L_billetera(cripto, numUnidades));
+		}
 	}
 }

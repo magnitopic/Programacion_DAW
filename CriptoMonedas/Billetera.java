@@ -50,6 +50,11 @@ public class Billetera {
 		this.lineas_b = lineas_b;
 	}
 
+	/**
+	 * Método 1
+	 * 
+	 * @return el total de euros de la billetera
+	 */
 	public double totalValEu() {
 		double total = 0;
 
