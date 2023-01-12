@@ -10,14 +10,14 @@ public class Cliente {
 	private String fecha_nac;
 	private String provincia;
 	private String nacionalidad;
-	private ArrayList<Cuenta_bancaria> Cuentas;
+	private ArrayList<Cuenta_bancaria> cuentas;
 	private Billetera billetera;
 
 	public Cliente() {
 	}
 
 	public Cliente(String nombre, String apellidos, String dni, String direccion, String fecha_nac, String provincia,
-			String nacionalidad, ArrayList<Cuenta_bancaria> Cuentas, Billetera billetera) {
+			String nacionalidad, ArrayList<Cuenta_bancaria> cuentas, Billetera billetera) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.dni = dni;
@@ -25,7 +25,7 @@ public class Cliente {
 		this.fecha_nac = fecha_nac;
 		this.provincia = provincia;
 		this.nacionalidad = nacionalidad;
-		this.Cuentas = Cuentas;
+		this.cuentas = cuentas;
 		this.billetera = billetera;
 	}
 
@@ -86,11 +86,11 @@ public class Cliente {
 	}
 
 	public ArrayList<Cuenta_bancaria> getCuentas() {
-		return this.Cuentas;
+		return this.cuentas;
 	}
 
-	public void setCuentas(ArrayList<Cuenta_bancaria> Cuentas) {
-		this.Cuentas = Cuentas;
+	public void setCuentas(ArrayList<Cuenta_bancaria> cuentas) {
+		this.cuentas = cuentas;
 	}
 
 	public Billetera getBilletera() {
@@ -100,5 +100,69 @@ public class Cliente {
 	public void setBilletera(Billetera billetera) {
 		this.billetera = billetera;
 	}
+
+	/**
+	 * Método 15
+	 * 
+	 * @return el numero de cuenta con más saldo
+	 */
+	public String nCuentaMaxSaldo() {
+		Cuenta_bancaria cuentaMax = this.cuentas.get(0);
+
+		for (Cuenta_bancaria o : this.cuentas) {
+			if (o.getSaldo() > cuentaMax.getSaldo())
+				cuentaMax = o;
+		}
+
+		return cuentaMax.getN_cuenta();
+	}
+
+	/**
+	 * Método 16
+	 * 
+	 * @return el numero de cuenta con más operaciones
+	 */
+	public String nCuentaMaxOperations() {
+		Cuenta_bancaria cuentaMax = this.cuentas.get(0);
+
+		for (Cuenta_bancaria o : this.cuentas) {
+			if (o.getHistorial().size() > cuentaMax.getHistorial().size())
+				cuentaMax = o;
+		}
+
+		return cuentaMax.getN_cuenta();
+	}
+
+	// Auxiliar
+	public int maxOperations() {
+		int transactionMax = this.cuentas.get(0).getHistorial().size();
+
+		for (Cuenta_bancaria o : this.cuentas) {
+			if (o.getHistorial().size() > transactionMax)
+				transactionMax = o.getHistorial().size();
+		}
+
+		return transactionMax;
+	}
+
+	/**
+	 * Método 18
+	 * @return
+	 */
+	public String menosUdCriptomoneda() {
+		String menosUd = null;
+		double min = 0;
+		for (L_billetera l : this.billetera.getLineas_b()) {
+			if (menosUd == null || l.getUnidades() < min) {
+				menosUd = l.getCriptomoneda().getNombre();
+				min = l.getUnidades();
+			}
+		}
+
+		return menosUd;
+	}
+
+
+		
 
 }

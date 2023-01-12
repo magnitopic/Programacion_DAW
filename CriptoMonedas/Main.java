@@ -219,4 +219,75 @@ public class Main {
 			cliente.getBilletera().getLineas_b().add(new L_billetera(cripto, numUnidades));
 		}
 	}
+
+	/**
+	 * Método 17
+	 * 
+	 * @param clientes
+	 * @return el nombre del cliente con más operaciones
+	 */
+	public static String nCuentaMaxOperations(ArrayList<Cliente> clientes) {
+		Cliente clientMax = clientes.get(0);
+
+		for (Cliente c : clientes) {
+			if (c.maxOperations() > clientMax.maxOperations())
+				clientMax = c;
+		}
+
+		return clientMax.nCuentaMaxOperations();
+	}
+
+	/**
+	 * Método 19
+	 * 
+	 * @param clientes
+	 * @return el nombre de cuenta del cliente con más operaciones
+	 */
+	public static String nCuentaMayorTransacciones(ArrayList<Cliente> clientes) {
+		int maxTransacciones = 0;
+		Cliente clientMax = null;
+		for (Cliente c : clientes) {
+			if (c.maxOperations() > maxTransacciones) {
+				maxTransacciones = c.maxOperations();
+				clientMax = c;
+			}
+		}
+		return clientMax.nCuentaMaxOperations();
+	}
+
+	/**
+	 * Método 20 - Imprime las criptomonedas de los clientes
+	 * 
+	 * @param clientes
+	 */
+	public static void listClientCriptos(ArrayList<Cliente> clientes) {
+		ArrayList<String> printerdCriptos = new ArrayList<String>();
+		for (Cliente c : clientes) {
+			System.out.println(c.getNombre());
+			for (L_billetera l : c.getBilletera().getLineas_b()) {
+				if (!printerdCriptos.contains(l.getCriptomoneda().getNombre())) {
+					System.out.println(l.getCriptomoneda().getNombre());
+					printerdCriptos.add(l.getCriptomoneda().getNombre());
+				}
+			}
+		}
+	}
+
+	/**
+	 * Método 21 - Imprime la criptomoneda con mayor valor
+	 * @param clientes
+	 */
+	public static void maxClientCripto(ArrayList<Cliente> clientes) {
+		String maxCripto = "";
+		double maxPrice = 0;
+		for (Cliente c : clientes) {
+			for (L_billetera b : c.getBilletera().getLineas_b()) {
+				if (b.getCriptomoneda().getValor_e() > maxPrice) {
+					maxCripto = b.getCriptomoneda().getNombre();
+					maxPrice = b.getCriptomoneda().getValor_e();
+				}
+			}
+		}
+		System.out.println(maxCripto);
+	}
 }
