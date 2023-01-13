@@ -238,7 +238,7 @@ public class Main {
 	}
 
 	/**
-	 * Método 19
+	 * Método 19/16
 	 * 
 	 * @param clientes
 	 * @return el nombre de cuenta del cliente con más operaciones
@@ -263,7 +263,6 @@ public class Main {
 	public static void listClientCriptos(ArrayList<Cliente> clientes) {
 		ArrayList<String> printerdCriptos = new ArrayList<String>();
 		for (Cliente c : clientes) {
-			System.out.println(c.getNombre());
 			for (L_billetera l : c.getBilletera().getLineas_b()) {
 				if (!printerdCriptos.contains(l.getCriptomoneda().getNombre())) {
 					System.out.println(l.getCriptomoneda().getNombre());

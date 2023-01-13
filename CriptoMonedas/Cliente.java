@@ -1,6 +1,5 @@
 package CriptoMonedas;
 
-import java.util.ArrayList;
 
 public class Cliente {
 	private String nombre;
@@ -102,7 +101,7 @@ public class Cliente {
 	}
 
 	/**
-	 * Método 15
+	 * Método 14
 	 * 
 	 * @return el numero de cuenta con más saldo
 	 */
@@ -118,7 +117,7 @@ public class Cliente {
 	}
 
 	/**
-	 * Método 16
+	 * Método 15
 	 * 
 	 * @return el numero de cuenta con más operaciones
 	 */
@@ -161,8 +160,4 @@ public class Cliente {
 
 		return menosUd;
 	}
-
-
-		
-
 }
