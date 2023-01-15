@@ -71,6 +71,11 @@ public class Venta {
 		this.lineas_venta = lineas_venta;
 	}
 
+
+	/**
+	 * Ejercicio 5
+	 * @return importe total de la venta
+	 */
 	public double importeTotal() {
 		double importe = 0;
 		for (Linea_venta l : this.lineas_venta) {

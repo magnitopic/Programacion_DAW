@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Main {
 
 	// Ejercicio 2
-
 	/**
 	 * 
 	 * @param videojuego
@@ -69,7 +68,7 @@ public class Main {
 	 * 
 	 * @param ventas
 	 * @param tienda
-	 * @return
+	 * @return el nombre de los videojuegos vendidios superiores a 70€
 	 */
 	public static ArrayList<String> gameNameOver70(ArrayList<Venta> ventas, Tienda tienda) {
 		ArrayList<String> videojuegos = new ArrayList<String>();
@@ -82,5 +81,85 @@ public class Main {
 			}
 		}
 		return videojuegos;
+	}
+
+	// Ejercicio 7
+	/**
+	 * 
+	 * @param clientes
+	 * @param dniCliente
+	 * @return el cliente o null si no se encuentra
+	 */
+	public static Cliente dameCliente(ArrayList<Cliente> clientes, String dniCliente) {
+		for (Cliente c : clientes) {
+			if (c.getDni().equalsIgnoreCase(dniCliente))
+				return c;
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param empleados
+	 * @param dniEmpleado
+	 * @return el empleado o null si no se encuentra
+	 */
+	public static Empleado dameEmpleado(ArrayList<Empleado> empleados, String dniEmpleado) {
+		for (Empleado e : empleados) {
+			if (e.getDni().equalsIgnoreCase(dniEmpleado))
+				return e;
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param tiendas
+	 * @param nombreTienda
+	 * @return la tienda o null si no se encuentra
+	 */
+	public static Tienda dameTienda(ArrayList<Tienda> tiendas, String nombreTienda) {
+		for (Tienda t : tiendas) {
+			if (t.getNombre().equalsIgnoreCase(nombreTienda))
+				return t;
+		}
+		return null;
+	}
+
+	/**
+	 * Ejercicio 8
+	 * 
+	 * @param ventas
+	 * @return nombre de los videojuegos que se han vendido en meses pares
+	 */
+	public static ArrayList<String> nombresJuegosMesesPares(ArrayList<Venta> ventas) {
+		ArrayList<String> videojuegos = new ArrayList<String>();
+		for (Venta v : ventas) {
+			if (Integer.parseInt(v.getFecha_venta().substring(4, 6)) % 2 == 0) {
+				for (Linea_venta l : v.getLineas_venta()) {
+					if (!videojuegos.contains(l.getVideojuego().getNombre()))
+						videojuegos.add(l.getVideojuego().getNombre());
+				}
+			}
+		}
+		return videojuegos;
+	}
+
+	public static void darAltaVenta(ArrayList<Venta> ventas, String dniCliente, String dniEmpleado, String fechaVenta,
+			String nombreTienda, ArrayList<Linea_venta> lineas_venta, ArrayList<Cliente> clientes,
+			ArrayList<Empleado> empleados, ArrayList<Tienda> tiendas) {
+		Cliente cliente = dameCliente(clientes, dniCliente);
+		Empleado empleado = dameEmpleado(empleados, dniEmpleado);
+		Tienda tienda = dameTienda(tiendas, nombreTienda);
+		if (cliente == null || empleado == null || tienda == null) {
+			System.out.println("Error al dar de alta la venta");
+			return;
+		}
+		double totalImporte = 0;
+		for (Linea_venta l : lineas_venta) {
+			totalImporte += l.getImporte() * l.getUnidades();
+		}
+		Venta venta = new Venta(empleado, fechaVenta, totalImporte, tienda, cliente, lineas_venta);
+		ventas.add(venta);
 	}
 }

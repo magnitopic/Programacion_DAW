@@ -40,4 +40,21 @@ public class Videojuego {
 		this.personajes = personajes;
 	}
 
+	/**
+	 * Ejercicio 6
+	 * 
+	 * @param letra
+	 * @return los personajes que empiezan y terminan con la letra dada
+	 */
+	public ArrayList<Personaje> personajeNombreLetra(char letra) {
+		ArrayList<Personaje> personajesLetra = new ArrayList<Personaje>();
+		for (Personaje personaje : personajes) {
+			if (personaje.getNombre().charAt(0) == letra
+					&& personaje.getNombre().charAt(personaje.getNombre().length() - 1) == letra) {
+				personajesLetra.add(personaje);
+			}
+		}
+		return personajesLetra;
+	}
+
 }
