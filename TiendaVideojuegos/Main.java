@@ -145,6 +145,19 @@ public class Main {
 		return videojuegos;
 	}
 
+	/**
+	 * Ejercicio 9 - añadir un objeto venta al arrayList con los datos recividos
+	 * 
+	 * @param ventas
+	 * @param dniCliente
+	 * @param dniEmpleado
+	 * @param fechaVenta
+	 * @param nombreTienda
+	 * @param lineas_venta
+	 * @param clientes
+	 * @param empleados
+	 * @param tiendas
+	 */
 	public static void darAltaVenta(ArrayList<Venta> ventas, String dniCliente, String dniEmpleado, String fechaVenta,
 			String nombreTienda, ArrayList<Linea_venta> lineas_venta, ArrayList<Cliente> clientes,
 			ArrayList<Empleado> empleados, ArrayList<Tienda> tiendas) {
