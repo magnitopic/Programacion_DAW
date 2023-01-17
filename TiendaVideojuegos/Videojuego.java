@@ -6,14 +6,16 @@ public class Videojuego {
 	private String nombre;
 	private String categoria;
 	private ArrayList<Personaje> personajes;
+	private Compannia compannia;
 
 	public Videojuego() {
 	}
 
-	public Videojuego(String nombre, String categoria, ArrayList<Personaje> personajes) {
+	public Videojuego(String nombre, String categoria, ArrayList<Personaje> personajes, Compannia compannia) {
 		this.nombre = nombre;
 		this.categoria = categoria;
 		this.personajes = personajes;
+		this.compannia = compannia;
 	}
 
 	public String getNombre() {
@@ -38,6 +40,14 @@ public class Videojuego {
 
 	public void setPersonajes(ArrayList<Personaje> personajes) {
 		this.personajes = personajes;
+	}
+
+	public Compannia getCompannia() {
+		return this.compannia;
+	}
+
+	public void setCompannia(Compannia compannia) {
+		this.compannia = compannia;
 	}
 
 	/**

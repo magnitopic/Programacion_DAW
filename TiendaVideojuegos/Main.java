@@ -1,6 +1,5 @@
 package TiendaVideojuegos;
 
-import java.sql.Array;
 import java.util.ArrayList;
 
 public class Main {
@@ -177,18 +176,41 @@ public class Main {
 		ventas.add(venta);
 	}
 
-	public static void printPopularGames(ArrayList<Venta> ventas) {
-		ArrayList<String> videojuegos = new ArrayList<String>();
+	/**
+	 * Ejercicio 10
+	 * 
+	 * @param ventas
+	 * @return listado de los 5 videojuegos más vendidos y sus ventas
+	 */
+	public static ArrayList<String> printPopularGames(ArrayList<Venta> ventas) {
+		ArrayList<Integer> topVentas = new ArrayList<Integer>();
+		ArrayList<String> nombresJuegos = new ArrayList<String>();
 		for (Venta v : ventas) {
 			for (Linea_venta l : v.getLineas_venta()) {
-				
+				if (topVentas.size() < 5) {
+					topVentas.add(l.getUnidades());
+					nombresJuegos.add(l.getVideojuego().getNombre());
+				} else {
+					for (int i = 0; i < topVentas.size(); i++) {
+						if (l.getUnidades() > topVentas.get(i)) {
+							topVentas.add(i, l.getUnidades());
+							nombresJuegos.add(i, l.getVideojuego().getNombre());
+							break;
+						}
+					}
+				}
 			}
 		}
-		for ()
+		ArrayList<String> top5 = new ArrayList<String>();
+		for (int i = 0; i < 5; i++) {
+			top5.add(nombresJuegos.get(i) + " - " + topVentas.get(i));
+		}
+		return top5;
 	}
 
 	/**
 	 * Ejercicio 11
+	 * 
 	 * @param ventas
 	 * @return nombre del cliente con la compra con mayor importe
 	 */
@@ -204,7 +226,51 @@ public class Main {
 		return name;
 	}
 
-	public static void name() {
-		
+	/**
+	 * Ejercicio 12
+	 * 
+	 * @param ventas
+	 * @return nombre del juego más vendido en las ventas
+	 */
+	public static String nombreMasVendido(ArrayList<Venta> ventas) {
+		String gameName = "";
+		int undVendidas = 0;
+		for (Venta v : ventas) {
+			for (Linea_venta l : v.getLineas_venta()) {
+				if (l.getUnidades() > undVendidas) {
+					gameName = l.getVideojuego().getNombre();
+					undVendidas = l.getUnidades();
+				}
+			}
+		}
+		return gameName;
+	}
+
+	/**
+	 * Ejercicio 14
+	 * 
+	 * @param ventas
+	 * @return
+	 */
+	public static ArrayList<String> empresasTop5Juegos(ArrayList<Venta> ventas) {
+		ArrayList<Integer> topVentas = new ArrayList<Integer>();
+		ArrayList<String> nombresEmpresas = new ArrayList<String>();
+		for (Venta v : ventas) {
+			for (Linea_venta l : v.getLineas_venta()) {
+				if (topVentas.size() < 5) {
+					topVentas.add(l.getUnidades());
+					nombresEmpresas.add(l.getVideojuego().getCompannia().getNombre());
+				} else {
+					for (int i = 0; i < topVentas.size(); i++) {
+						if (l.getUnidades() > topVentas.get(i)) {
+							topVentas.add(i, l.getUnidades());
+							nombresEmpresas.add(i, l.getVideojuego().getCompannia().getNombre());
+							break;
+						}
+					}
+				}
+			}
+		}
+		return nombresEmpresas;
 	}
 }
