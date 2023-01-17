@@ -1,5 +1,6 @@
 package TiendaVideojuegos;
 
+import java.sql.Array;
 import java.util.ArrayList;
 
 public class Main {
@@ -21,13 +22,13 @@ public class Main {
 
 	/**
 	 * 
-	 * @param clietes
+	 * @param cliente
 	 * @param clientes
 	 * @return booleano dependiendo si está el cliente en la lista
 	 */
-	public static boolean existeCliente(Cliente clietes, ArrayList<Cliente> clientes) {
+	public static boolean existeCliente(Cliente cliente, ArrayList<Cliente> clientes) {
 		for (Cliente c : clientes) {
-			if (c.getNombre().equals(clietes.getNombre()))
+			if (c.getNombre().equals(cliente.getNombre()))
 				return true;
 		}
 		return false;
@@ -68,7 +69,7 @@ public class Main {
 	 * 
 	 * @param ventas
 	 * @param tienda
-	 * @return el nombre de los videojuegos vendidios superiores a 70€
+	 * @return el nombre de los videojuegos vendidos superiores a 70€
 	 */
 	public static ArrayList<String> gameNameOver70(ArrayList<Venta> ventas, Tienda tienda) {
 		ArrayList<String> videojuegos = new ArrayList<String>();
@@ -146,7 +147,7 @@ public class Main {
 	}
 
 	/**
-	 * Ejercicio 9 - añadir un objeto venta al arrayList con los datos recividos
+	 * Ejercicio 9 - añadir un objeto venta al arrayList con los datos recibidos
 	 * 
 	 * @param ventas
 	 * @param dniCliente
@@ -174,5 +175,29 @@ public class Main {
 		}
 		Venta venta = new Venta(empleado, fechaVenta, totalImporte, tienda, cliente, lineas_venta);
 		ventas.add(venta);
+	}
+
+	public static void printPopularGames(ArrayList<Venta> ventas) {
+		ArrayList<String> videojuegos = new ArrayList<String>();
+		for (Venta v : ventas) {
+			for (Linea_venta l : v.getLineas_venta()) {
+				
+			}
+		}
+		for ()
+	}
+
+	public static String clienteCompraMasImporte(ArrayList<Venta> ventas) {
+		String name = ventas.get(0).getCliente().getNombre();
+		double importeMax = 0;
+
+		for (Venta v : ventas) {
+			if (v.getImporte_tot_venta() > importeMax) {
+				importeMax = v.getImporte_tot_venta();
+				name = v.getCliente().getNombre();
+			}
+		}
+
+		return name;
 	}
 }
