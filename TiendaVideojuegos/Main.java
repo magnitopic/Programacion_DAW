@@ -187,17 +187,24 @@ public class Main {
 		for ()
 	}
 
+	/**
+	 * Ejercicio 11
+	 * @param ventas
+	 * @return nombre del cliente con la compra con mayor importe
+	 */
 	public static String clienteCompraMasImporte(ArrayList<Venta> ventas) {
 		String name = ventas.get(0).getCliente().getNombre();
 		double importeMax = 0;
-
 		for (Venta v : ventas) {
 			if (v.getImporte_tot_venta() > importeMax) {
 				importeMax = v.getImporte_tot_venta();
 				name = v.getCliente().getNombre();
 			}
 		}
-
 		return name;
+	}
+
+	public static void name() {
+		
 	}
 }
