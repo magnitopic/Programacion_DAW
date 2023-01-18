@@ -43,6 +43,11 @@ public class Main {
 		return counter;
 	}
 
+	/**
+	 * Método 6
+	 * @param clubs
+	 * @return
+	 */
 	public static String nombreCompletoJugadoresTitularidades(ArrayList<Club> clubs) {
 		String nombreCompleto = "";
 		int maxTitularidades = 0;

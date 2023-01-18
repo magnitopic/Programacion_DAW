@@ -84,6 +84,7 @@ public class Liga {
 
 	/**
 	 * Método 3
+	 * 
 	 * @param arbitro
 	 * @return
 	 */
@@ -94,6 +95,72 @@ public class Liga {
 				partidosArbitrados++;
 		}
 		return partidosArbitrados;
+	}
+
+	/**
+	 * Método 7
+	 * 
+	 * @param nombreEquipo
+	 * @return goles que ha metido el equipo
+	 */
+	public int golesHaMetido(String nombreEquipo) {
+		int goles = 0;
+		for (Equipo e : this.equipos) {
+			if (e.getNombre().equals(nombreEquipo)) {
+				for (Encuentro en : this.partidos) {
+					if (en.getEquipo_local().equals(nombreEquipo))
+						goles += en.getGoles_eq_local();
+					else if (en.getEquipo_visit().equals(nombreEquipo))
+						goles += en.getGoles_eq_visit();
+				}
+			}
+		}
+		return goles;
+	}
+
+	/**
+	 * Método 8
+	 * 
+	 * @param nombreEquipo
+	 * @return goles que le han metido al equipo
+	 */
+	public int golesLeHanMetido(String nombreEquipo) {
+		int goles = 0;
+		for (Equipo e : this.equipos) {
+			if (e.getNombre().equals(nombreEquipo)) {
+				for (Encuentro en : this.partidos) {
+					if (en.getEquipo_local().equals(nombreEquipo))
+						goles += en.getGoles_eq_visit();
+					else if (en.getEquipo_visit().equals(nombreEquipo))
+						goles += en.getGoles_eq_local();
+				}
+			}
+		}
+		return goles;
+	}
+
+	/**
+	 * Método 9
+	 * 
+	 * @return el equipo que ha marcado más goles
+	 */
+	public ArrayList<Jugador> jugadorMenosMinutos() {
+		ArrayList<Jugador> jugadoresMenosMinutos = new ArrayList<Jugador>();
+		for (Equipo e : equipos) {
+			for (Jugador j : e.getJugadores()) {
+				if (jugadoresMenosMinutos.isEmpty()) {
+					jugadoresMenosMinutos.add(j);
+				} else if (j.getDatos().getMinutos_jugados() < jugadoresMenosMinutos.get(0).getDatos()
+						.getMinutos_jugados()) {
+					jugadoresMenosMinutos.clear();
+					jugadoresMenosMinutos.add(j);
+				} else if (j.getDatos().getMinutos_jugados() == jugadoresMenosMinutos.get(0).getDatos()
+						.getMinutos_jugados()) {
+					jugadoresMenosMinutos.add(j);
+				}
+			}
+		}
+		return jugadoresMenosMinutos;
 	}
 
 }
