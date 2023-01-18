@@ -1,10 +1,6 @@
 package StarWars;
 
 public class Main3 {
-	public static void main(String[] args) {
-
-	}
-
 	private static int[] fuerzasJedis(Jedi[] jedis) {
 		int[] fuerzas = new int[jedis.length];
 
@@ -35,6 +31,7 @@ public class Main3 {
 		}
 		return esmirriados;
 	}
+
 	private static String[] variosNombres(Padawan[] padawans, Jedi[] jedis, int fuerza) {
 		int counter = 0;
 		for (int i = 0; i < jedis.length; i++) {

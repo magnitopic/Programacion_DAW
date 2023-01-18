@@ -250,7 +250,7 @@ public class Main {
 	 * Ejercicio 14
 	 * 
 	 * @param ventas
-	 * @return
+	 * @return listado de las 5 empresas con más ventas
 	 */
 	public static ArrayList<String> empresasTop5Juegos(ArrayList<Venta> ventas) {
 		ArrayList<Integer> topVentas = new ArrayList<Integer>();

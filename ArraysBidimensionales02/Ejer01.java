@@ -89,6 +89,8 @@ public class Ejer01 {
 		System.out.print("Introduce el nuevo valor: ");
 		datos[num][opt] = sn.nextLine();
 		System.out.println(datos[num][opt]);
+		sc.close();
+		sn.close();
 	}
 
 	public static void showMarks(int num, String[][] datos) {
@@ -107,6 +109,7 @@ public class Ejer01 {
 		System.out.println("6.	Salir");
 		System.out.print("--> ");
 		opt = sc.nextInt();
+		sc.close();
 		return opt;
 	}
 

@@ -11,4 +11,28 @@ public class Arcoiris {
 		this.valoracion = valoracion;
 	}
 
+	public double getDuracion() {
+		return this.duracion;
+	}
+
+	public void setDuracion(double duracion) {
+		this.duracion = duracion;
+	}
+
+	public String getLugar() {
+		return this.lugar;
+	}
+
+	public void setLugar(String lugar) {
+		this.lugar = lugar;
+	}
+
+	public String getValoracion() {
+		return this.valoracion;
+	}
+
+	public void setValoracion(String valoracion) {
+		this.valoracion = valoracion;
+	}
+
 }

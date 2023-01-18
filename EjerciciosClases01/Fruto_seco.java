@@ -17,4 +17,56 @@ public class Fruto_seco {
 		this.dulce = dulce;
 	}
 
+	public String getNombre() {
+		return this.nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public double getCalorias() {
+		return this.calorias;
+	}
+
+	public void setCalorias(double calorias) {
+		this.calorias = calorias;
+	}
+
+	public int getGrasas() {
+		return this.grasas;
+	}
+
+	public void setGrasas(int grasas) {
+		this.grasas = grasas;
+	}
+
+	public double getPrecioKG() {
+		return this.precioKG;
+	}
+
+	public void setPrecioKG(double precioKG) {
+		this.precioKG = precioKG;
+	}
+
+	public String getColor() {
+		return this.color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public boolean isDulce() {
+		return this.dulce;
+	}
+
+	public boolean getDulce() {
+		return this.dulce;
+	}
+
+	public void setDulce(boolean dulce) {
+		this.dulce = dulce;
+	}
+
 }
