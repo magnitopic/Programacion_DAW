@@ -86,7 +86,7 @@ public class Liga {
 	 * Método 3
 	 * 
 	 * @param arbitro
-	 * @return
+	 * @return partidos que ha arbitrado el arbitro pasado por parámetro
 	 */
 	public int partidosArbitrados(Arbitro arbitro) {
 		int partidosArbitrados = 0;
@@ -163,4 +163,32 @@ public class Liga {
 		return jugadoresMenosMinutos;
 	}
 
+	/**
+	 * Imprime en tabla la clasificación de la liga
+	 */
+	public void printLigaClasificacion() {
+		ArrayList<Clasificacion> clasificaciones = new ArrayList<Clasificacion>();
+		for (Equipo e : equipos)
+			clasificaciones.add(new Clasificacion(e, this.partidos));
+
+		for (int i = 0; i < clasificaciones.size(); i++) {
+			for (int j = 0; j < clasificaciones.size() - 1; j++) {
+				Clasificacion equipoActual = clasificaciones.get(j), equipoSiguiente = clasificaciones.get(j);
+				if (equipoActual.getPuntos() < equipoSiguiente.getPuntos()) {
+					clasificaciones.set(j, equipoSiguiente);
+					clasificaciones.set(j + 1, equipoActual);
+				}
+			}
+		}
+
+		System.out.println("Clasificación de la liga " + this.nombre + "\n");
+		System.out.println("Pos | Equipo | PJ | PG | PE | PP | GF | GC | Puntos");
+		for (int i = 0; i < clasificaciones.size(); i++) {
+			Clasificacion valorActual = clasificaciones.get(i);
+			System.out.println(i + "|" + valorActual.getNombre() + " | " + valorActual.getpJugados() + " | "
+					+ valorActual.getPGanados() + " | " + valorActual.getPEmpatados() + " | "
+					+ valorActual.getPPerdidos() + " | " + valorActual.getGFavor() + " | " + valorActual.getGContra()
+					+ " | " + valorActual.getPuntos());
+		}
+	}
 }

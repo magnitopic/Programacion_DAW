@@ -11,7 +11,6 @@ public class Encuentro {
 
 	public Encuentro() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Encuentro(Equipo equipo_local, Equipo equipo_visit, String fecha, Liga liga, int goles_eq_local,
