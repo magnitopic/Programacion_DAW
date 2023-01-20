@@ -9,7 +9,6 @@ public class Club {
 
 	public Club() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Club(String nombre, String ciudad, ArrayList<Equipo> equipos) {
@@ -48,4 +47,24 @@ public class Club {
 		return "Club [nombre=" + nombre + ", ciudad=" + ciudad + ", equipos=" + equipos + "]";
 	}
 
+	/**
+	 * Ejer3 - Método 2
+	 * Devuelve el número de jugadores que han sido titulares en más de
+	 * nPartidos
+	 * 
+	 * @param nPartidos
+	 * @return
+	 */
+	public int numJugadoresPartidos(int nPartidos) {
+		int numJugadores = 0;
+
+		for (Equipo e : equipos) {
+			for (Jugador j : e.getJugadores()) {
+				if (j.getDatos().getTitularidades() > nPartidos)
+					numJugadores++;
+			}
+		}
+
+		return numJugadores;
+	}
 }

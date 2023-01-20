@@ -10,7 +10,6 @@ public class Jugador {
 
 	public Jugador() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Jugador(String nombre, String apellidos, String fecha_n, Estadistica datos, String posicion) {

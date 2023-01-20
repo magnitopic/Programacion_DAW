@@ -11,7 +11,6 @@ public class Estadistica {
 
 	public Estadistica() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Estadistica(int goles, int asistencias, int tarjetas_a, int tarjetas_r, int partidos_j, int titularidades,

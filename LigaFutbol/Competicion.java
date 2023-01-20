@@ -8,7 +8,6 @@ public class Competicion {
 
 	public Competicion() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Competicion(String nombre, ArrayList<Equipo> equipos) {

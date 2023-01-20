@@ -45,6 +45,7 @@ public class Main {
 
 	/**
 	 * Método 6
+	 * 
 	 * @param clubs
 	 * @return
 	 */
@@ -63,5 +64,24 @@ public class Main {
 			}
 		}
 		return nombreCompleto;
+	}
+
+	/**
+	 * Ejer3 - Método 4
+	 */
+	public static Pais paisConEquipoMasGoleado(ArrayList<Pais> paises) {
+		Pais pais = null;
+		int maxGoles = 0;
+		for (Pais p : paises) {
+			for (Liga l : p.getLigas()) {
+				for (Equipo e : l.getEquipos()) {
+					if (l.golesLeHanMetido(e.getNombre()) > maxGoles) {
+						maxGoles = l.golesHaMetido(e.getNombre());
+						pais = p;
+					}
+				}
+			}
+		}
+		return pais;
 	}
 }

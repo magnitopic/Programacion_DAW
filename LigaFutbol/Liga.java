@@ -173,7 +173,7 @@ public class Liga {
 
 		for (int i = 0; i < clasificaciones.size(); i++) {
 			for (int j = 0; j < clasificaciones.size() - 1; j++) {
-				Clasificacion equipoActual = clasificaciones.get(j), equipoSiguiente = clasificaciones.get(j);
+				Clasificacion equipoActual = clasificaciones.get(j), equipoSiguiente = clasificaciones.get(j + 1);
 				if (equipoActual.getPuntos() < equipoSiguiente.getPuntos()) {
 					clasificaciones.set(j, equipoSiguiente);
 					clasificaciones.set(j + 1, equipoActual);
@@ -190,5 +190,48 @@ public class Liga {
 					+ valorActual.getPPerdidos() + " | " + valorActual.getGFavor() + " | " + valorActual.getGContra()
 					+ " | " + valorActual.getPuntos());
 		}
+	}
+
+	/**
+	 * Ejer3 - Método 1
+	 * Imprime el numero de goles de cada pertido si los goles son mayores que el
+	 * numero pasado
+	 * 
+	 * @param minGoles
+	 */
+	public void printGolesPartidos(int minGoles) {
+		for (Encuentro e : this.partidos) {
+			if (e.getGoles_eq_local() + e.getGoles_eq_visit() >= minGoles)
+				System.out.println(e.getEquipo_local() + "\t" + e.getGoles_eq_local() + ":" +
+						e.getGoles_eq_visit() + "\t" + e.getEquipo_visit());
+		}
+	}
+
+	/**
+	 * Ejer3 - Método 3
+	 * 
+	 * @return
+	 */
+	public ArrayList<String> listaPichichi() {
+		ArrayList<Jugador> pichichis = new ArrayList<Jugador>();
+		for (Equipo e : equipos) {
+			for (Jugador j : e.getJugadores())
+				pichichis.add(j);
+		}
+		for (int i = 0; i < pichichis.size(); i++) {
+			for (int j = 0; j < pichichis.size() - 1; j++) {
+				Jugador jugadorActual = pichichis.get(j), jugadorSiguiente = pichichis.get(j + 1);
+				if (jugadorActual.getDatos().getGoles() < jugadorSiguiente.getDatos().getGoles()) {
+					pichichis.set(j, jugadorSiguiente);
+					pichichis.set(j + 1, jugadorActual);
+				}
+			}
+		}
+		ArrayList<String> listaPichichi = new ArrayList<String>();
+		for (int i = 0; i < 10; i++) {
+			listaPichichi.add(pichichis.get(i).getNombre() + " " + pichichis.get(i).getApellidos() + " "
+					+ pichichis.get(i).getDatos().getGoles() + "goles");
+		}
+		return listaPichichi;
 	}
 }
