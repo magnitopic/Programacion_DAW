@@ -84,4 +84,86 @@ public class Main {
 		}
 		return pais;
 	}
+
+	/**
+	 * Ejer4 - Método 3
+	 * 
+	 * @param ligas
+	 */
+	public void jugadoresEquipos4Rojas(ArrayList<Liga> ligas) {
+		for (Liga l : ligas) {
+			for (Equipo e : l.getEquipos()) {
+				for (Jugador j : e.getJugadores()) {
+					if (j.getDatos().getTarjetas_r() == 4) {
+						System.out.println("Goles: " + j.getDatos().getGoles() + " Asistencias"
+								+ j.getDatos().getAsistencias() + " Tarjetas Amarillas: " + j.getDatos().getTarjetas_a()
+								+ " Tarjetas Rojas: " + j.getDatos().getTarjetas_r() + " Partidos Jugados: "
+								+ j.getDatos().getPartidos_j() + " Titularidades: " + j.getDatos().getTitularidades()
+								+ " Minutos jugados: " + j.getDatos().getMinutos_jugados());
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Ejer4 - Método 4
+	 * Muestra los paises que tienen equipos con más de 20 jugadores
+	 * 
+	 * @param paises
+	 */
+	public void equiposMas20Jugadores(ArrayList<Pais> paises) {
+		ArrayList<Pais> paisesMas20Jugadores = new ArrayList<Pais>();
+		for (Pais p : paises) {
+			for (Liga l : p.getLigas()) {
+				for (Equipo e : l.getEquipos()) {
+					if (e.getJugadores().size() > 20 && !paisesMas20Jugadores.contains(p)) {
+						System.out.println(p.getNombre());
+						paisesMas20Jugadores.add(p);
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Ejer4 - Método 5
+	 * 
+	 * @param ligas
+	 * @return
+	 */
+	public ArrayList<String> nombresEquipos5GolesPartido(ArrayList<Liga> ligas) {
+		ArrayList<String> nombresEquipos = new ArrayList<String>();
+		for (Liga l : ligas) {
+			for (Equipo e : l.getEquipos()) {
+				if ((l.golesHaMetido(e.getNombre()) + l.golesLeHanMetido(e.getNombre())) > 5 &&
+						!nombresEquipos.contains(e.getNombre())) {
+					nombresEquipos.add(e.getNombre());
+				}
+			}
+		}
+		return nombresEquipos;
+	}
+
+	/**
+	 * Ejer4 - Método 6
+	 * 
+	 * @param ligas
+	 * @return
+	 */
+	public String nombreJugadorMediaPartidosEmpatados(ArrayList<Liga> ligas) {
+		String nombreJugador = "";
+		double mediaMinutos = 0;
+		for (Liga l : ligas) {
+			for (Equipo e : l.getEquipos()) {
+				for (Jugador j : e.getJugadores()) {
+					if (j.getDatos().getPartidos_j() > mediaMinutos) {
+						mediaMinutos = j.getDatos().getPartidos_j();
+						nombreJugador = j.getNombre() + " " + j.getApellidos();
+					}
+				}
+			}
+		}
+		return nombreJugador;
+	}
 }

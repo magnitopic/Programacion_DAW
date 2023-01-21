@@ -71,4 +71,38 @@ public class Equipo {
 		}
 		return jugadoresTitularidades;
 	}
+
+	/**
+	 * Ejer4 - Método 1
+	 * Añade el jugador con más goles de un país a la lista de jugadores del equipo
+	 * 
+	 * @param pais
+	 */
+	public void addJugadorPichichi(Pais pais) {
+		Jugador pichichi = null;
+		for (Liga l : pais.getLigas()) {
+			for (Equipo e : l.getEquipos()) {
+				for (Jugador j : e.getJugadores()) {
+					if (pichichi == null)
+						pichichi = j;
+					else if (j.getDatos().getGoles() > pichichi.getDatos().getGoles())
+						pichichi = j;
+				}
+			}
+		}
+		this.jugadores.add(pichichi);
+	}
+
+	/**
+	 * Ejer4 - Método 2
+	 * @return el numero de jugadores que no tienen tarjetas rojas ni amarillas
+	 */
+	public int jugadoresNoRojaMarilla() {
+		int count = 0;
+		for (Jugador j : this.jugadores) {
+			if (j.getDatos().getTarjetas_r() == 0 && j.getDatos().getTarjetas_a() == 0)
+				count++;
+		}
+		return count;
+	}
 }
