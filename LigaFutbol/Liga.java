@@ -194,7 +194,7 @@ public class Liga {
 
 	/**
 	 * Ejer3 - Método 1
-	 * Imprime el numero de goles de cada pertido si los goles son mayores que el
+	 * Imprime el numero de goles de cada partido si los goles son mayores que el
 	 * numero pasado
 	 * 
 	 * @param minGoles
@@ -210,7 +210,7 @@ public class Liga {
 	/**
 	 * Ejer3 - Método 3
 	 * 
-	 * @return
+	 * @return lista de los 10 primeros pichichis
 	 */
 	public ArrayList<String> listaPichichi() {
 		ArrayList<Jugador> pichichis = new ArrayList<Jugador>();
@@ -233,5 +233,55 @@ public class Liga {
 					+ pichichis.get(i).getDatos().getGoles() + "goles");
 		}
 		return listaPichichi;
+	}
+
+	/**
+	 * Ejer5 - Método 1
+	 * 
+	 * @param dni
+	 * @return numero de partidos perdidos por un jugador
+	 */
+	public int partidosPerdidosJugador(String dni) {
+		for (Equipo e : equipos) {
+			for (Jugador j : e.getJugadores()) {
+				if (j.getDNI().equalsIgnoreCase(dni))
+					return new Clasificacion(e, this.partidos).getPPerdidos();
+			}
+		}
+		return -1;
+	}
+
+	/**
+	 * Ejer5 - Método 2
+	 * @return numero de partidos en los que entre los dos equipos se han marcado 10 o más goles
+	 */
+	public int partidosMas10GolesEquipos() {
+		int counter = 0;
+		for (Equipo e : equipos) {
+			for (Encuentro p : this.partidos) {
+				if (p.getEquipo_local().getNombre().equalsIgnoreCase(e.getNombre())
+						|| p.getEquipo_visit().getNombre().equalsIgnoreCase(e.getNombre())) {
+					if (p.getGoles_eq_local() + p.getGoles_eq_visit() >= 10)
+						counter++;
+				}
+			}
+		}
+		return counter;
+	}
+
+	/**
+	 * Ejer5 - Método 3
+	 * @return nombre del equipo más goleador en partidos ganados de la liga
+	 */
+	public String EquipoMasGoleador() {
+		Equipo goleador = null;
+		for (Equipo e : this.equipos) {
+			Clasificacion datos = new Clasificacion(e, this.partidos);
+			if (goleador == null)
+				goleador = e;
+			else if (datos.getGFavor() > new Clasificacion(goleador, this.partidos).getGFavor())
+				goleador = e;
+		}
+		return goleador.getNombre();
 	}
 }

@@ -90,7 +90,7 @@ public class Main {
 	 * 
 	 * @param ligas
 	 */
-	public void jugadoresEquipos4Rojas(ArrayList<Liga> ligas) {
+	public static void jugadoresEquipos4Rojas(ArrayList<Liga> ligas) {
 		for (Liga l : ligas) {
 			for (Equipo e : l.getEquipos()) {
 				for (Jugador j : e.getJugadores()) {
@@ -112,7 +112,7 @@ public class Main {
 	 * 
 	 * @param paises
 	 */
-	public void equiposMas20Jugadores(ArrayList<Pais> paises) {
+	public static void equiposMas20Jugadores(ArrayList<Pais> paises) {
 		ArrayList<Pais> paisesMas20Jugadores = new ArrayList<Pais>();
 		for (Pais p : paises) {
 			for (Liga l : p.getLigas()) {
@@ -132,7 +132,7 @@ public class Main {
 	 * @param ligas
 	 * @return
 	 */
-	public ArrayList<String> nombresEquipos5GolesPartido(ArrayList<Liga> ligas) {
+	public static ArrayList<String> nombresEquipos5GolesPartido(ArrayList<Liga> ligas) {
 		ArrayList<String> nombresEquipos = new ArrayList<String>();
 		for (Liga l : ligas) {
 			for (Equipo e : l.getEquipos()) {
@@ -151,7 +151,7 @@ public class Main {
 	 * @param ligas
 	 * @return
 	 */
-	public String nombreJugadorMediaPartidosEmpatados(ArrayList<Liga> ligas) {
+	public static String nombreJugadorMediaPartidosEmpatados(ArrayList<Liga> ligas) {
 		String nombreJugador = "";
 		double mediaMinutos = 0;
 		for (Liga l : ligas) {
@@ -165,5 +165,17 @@ public class Main {
 			}
 		}
 		return nombreJugador;
+	}
+
+	public static void jugadorMasGoleadorLiga(ArrayList<Liga> ligas) {
+		Jugador pichichi = null;
+		for (Liga l : ligas) {
+			for (Equipo e : l.getEquipos()) {
+				for (Jugador j : e.getJugadores()) {
+					if (pichichi == null || j.getDatos().getGoles() > pichichi.getDatos().getGoles())
+						pichichi = j;
+				}
+			}
+		}
 	}
 }

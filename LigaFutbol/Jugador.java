@@ -7,18 +7,20 @@ public class Jugador {
 	private String fecha_n;
 	private Estadistica datos;
 	private String posicion;
+	private String DNI;
 
 	public Jugador() {
 		super();
 	}
 
-	public Jugador(String nombre, String apellidos, String fecha_n, Estadistica datos, String posicion) {
+	public Jugador(String nombre, String apellidos, String fecha_n, Estadistica datos, String posicion, String DNI) {
 		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.fecha_n = fecha_n;
 		this.datos = datos;
 		this.posicion = posicion;
+		this.DNI = DNI;
 	}
 
 	public String getNombre() {
@@ -59,6 +61,14 @@ public class Jugador {
 
 	public void setPosicion(String posicion) {
 		this.posicion = posicion;
+	}
+
+	public String getDNI() {
+		return this.DNI;
+	}
+
+	public void setDNI(String DNI) {
+		this.DNI = DNI;
 	}
 
 	@Override
