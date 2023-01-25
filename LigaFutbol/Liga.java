@@ -142,7 +142,7 @@ public class Liga {
 	/**
 	 * Método 9
 	 * 
-	 * @return el equipo que ha marcado más goles
+	 * @return
 	 */
 	public ArrayList<Jugador> jugadorMenosMinutos() {
 		ArrayList<Jugador> jugadoresMenosMinutos = new ArrayList<Jugador>();
@@ -253,7 +253,9 @@ public class Liga {
 
 	/**
 	 * Ejer5 - Método 2
-	 * @return numero de partidos en los que entre los dos equipos se han marcado 10 o más goles
+	 * 
+	 * @return numero de partidos en los que entre los dos equipos se han marcado 10
+	 *         o más goles
 	 */
 	public int partidosMas10GolesEquipos() {
 		int counter = 0;
@@ -271,6 +273,7 @@ public class Liga {
 
 	/**
 	 * Ejer5 - Método 3
+	 * 
 	 * @return nombre del equipo más goleador en partidos ganados de la liga
 	 */
 	public String EquipoMasGoleador() {
@@ -283,5 +286,100 @@ public class Liga {
 				goleador = e;
 		}
 		return goleador.getNombre();
+	}
+
+	/**
+	 * Ejer6 - Método 1
+	 */
+	public void mediaGolesEncuentro() {
+		int goles = 0;
+		for (Encuentro e : this.partidos) {
+			goles += e.getGoles_eq_local() + e.getGoles_eq_visit();
+		}
+		System.out.println("Media de goles por encuentro: " + goles / this.partidos.size());
+	}
+
+	/**
+	 * Ejer6 - Método 2
+	 * 
+	 * @return nombre del equipo con mayor media de goles de la liga
+	 */
+	public String equipoMasMediaGoles() {
+		Equipo equipo = null;
+		double media = 0;
+		for (Equipo e : this.equipos) {
+			int goles = 0;
+			int partidos = 0;
+			for (Encuentro en : this.partidos) {
+				if (en.getEquipo_local().getNombre().equalsIgnoreCase(e.getNombre())) {
+					goles += en.getGoles_eq_local();
+					partidos++;
+				}
+				if (en.getEquipo_visit().getNombre().equalsIgnoreCase(e.getNombre())) {
+					goles += en.getGoles_eq_visit();
+					partidos++;
+				}
+			}
+			if (equipo == null) {
+				equipo = e;
+				media = goles / partidos;
+			} else if (goles / partidos > media) {
+				media = goles / partidos;
+				equipo = e;
+			}
+		}
+		return equipo.getNombre();
+	}
+
+	/**
+	 * Ejer6 - Método 3
+	 * 
+	 * @return el nombre del equipo más goleado de la liga
+	 */
+	public String equipoMasGoleado() {
+		Equipo masGoleado = null;
+		int golesLesHanMetido = 0;
+		for (Equipo e : equipos) {
+			if (masGoleado == null || golesLeHanMetido(e.getNombre()) > golesLesHanMetido) {
+				masGoleado = e;
+				golesLesHanMetido = golesLeHanMetido(e.getNombre());
+			}
+		}
+		return masGoleado.getNombre();
+	}
+
+	/**
+	 * Ejer6 - Método 4
+	 * 
+	 * @return el nombre del equipo más goleador de la liga
+	 */
+	public String equipoMasGoleador() {
+		Equipo masGoleador = null;
+		int golesHanMetido = 0;
+		for (Equipo e : equipos) {
+			if (masGoleador == null || golesHaMetido(e.getNombre()) > golesHanMetido) {
+				masGoleador = e;
+				golesHanMetido = golesHaMetido(e.getNombre());
+			}
+		}
+		return masGoleador.getNombre();
+	}
+
+	/**
+	 * Ejer6 - Método 7
+	 * @return
+	 */
+	public String juagadorMasLenero() {
+		String jugador = null;
+		int tarjetas = 0;
+		for (Equipo e : this.equipos) {
+			for (Jugador j : e.getJugadores()) {
+				if (jugador == null || j.getDatos().getTarjetas_a() + j.getDatos().getTarjetas_r() > tarjetas) {
+					jugador = j.getNombre();
+					tarjetas = j.getDatos().getTarjetas_a() + j.getDatos().getTarjetas_r();
+				}
+			}
+		}
+		return jugador;
 	}
 }

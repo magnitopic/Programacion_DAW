@@ -167,6 +167,9 @@ public class Main {
 		return nombreJugador;
 	}
 
+	/**
+	 * Ejer5 - Método 4
+	 */
 	public static void jugadorMasGoleadorLiga(ArrayList<Liga> ligas) {
 		Jugador pichichi = null;
 		for (Liga l : ligas) {
@@ -177,5 +180,43 @@ public class Main {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Ejer6 - Método 5
+	 * @param ligas
+	 * @return nombre del equipo más goleado
+	 */
+	public static String equipoMasGoleado(ArrayList<Liga> ligas) {
+		String equipo = "";
+		int maxGoles = 0;
+		for (Liga l : ligas) {
+			for (Equipo e : l.getEquipos()) {
+				if (l.golesLeHanMetido(e.getNombre()) > maxGoles) {
+					maxGoles = l.golesHaMetido(e.getNombre());
+					equipo = e.getNombre();
+				}
+			}
+		}
+		return equipo;
+	}
+
+	/**
+	 * Ejer6 - Método 6
+	 * @param ligas
+	 * @return nombre del equipo más goleador
+	 */
+	public static String equipoMasGoleador(ArrayList<Liga> ligas) {
+		String equipo = "";
+		int maxGoles = 0;
+		for (Liga l : ligas) {
+			for (Equipo e : l.getEquipos()) {
+				if (l.golesHaMetido(e.getNombre()) > maxGoles) {
+					maxGoles = l.golesHaMetido(e.getNombre());
+					equipo = e.getNombre();
+				}
+			}
+		}
+		return equipo;
 	}
 }
