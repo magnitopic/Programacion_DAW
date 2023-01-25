@@ -3,6 +3,7 @@ package LigaFutbol;
 import java.util.ArrayList;
 
 public class Clasificacion {
+	private Equipo equipo;
 	private String nombre;
 	private int pJugados;
 	private int pGanados;
@@ -28,6 +29,7 @@ public class Clasificacion {
 	}
 
 	public Clasificacion(Equipo equipo, ArrayList<Encuentro> encuentros) {
+		this.equipo = equipo;
 		this.nombre = equipo.getNombre();
 		for (Encuentro e : encuentros) {
 			if (e.getEquipo_local().getNombre().equalsIgnoreCase(equipo.getNombre())) {
@@ -58,6 +60,15 @@ public class Clasificacion {
 		}
 	}
 
+
+	public Equipo getEquipo() {
+		return this.equipo;
+	}
+
+	public void setEquipo(Equipo equipo) {
+		this.equipo = equipo;
+	}
+
 	public String getNombre() {
 		return this.nombre;
 	}
@@ -66,11 +77,11 @@ public class Clasificacion {
 		this.nombre = nombre;
 	}
 
-	public int getpJugados() {
+	public int getPJugados() {
 		return this.pJugados;
 	}
 
-	public void setpJugados(int pJugados) {
+	public void setPJugados(int pJugados) {
 		this.pJugados = pJugados;
 	}
 
@@ -120,5 +131,5 @@ public class Clasificacion {
 
 	public void setPuntos(int puntos) {
 		this.puntos = puntos;
-	}
+	}	
 }

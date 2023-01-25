@@ -185,7 +185,7 @@ public class Liga {
 		System.out.println("Pos | Equipo | PJ | PG | PE | PP | GF | GC | Puntos");
 		for (int i = 0; i < clasificaciones.size(); i++) {
 			Clasificacion valorActual = clasificaciones.get(i);
-			System.out.println(i + "|" + valorActual.getNombre() + " | " + valorActual.getpJugados() + " | "
+			System.out.println(i + "|" + valorActual.getNombre() + " | " + valorActual.getPJugados() + " | "
 					+ valorActual.getPGanados() + " | " + valorActual.getPEmpatados() + " | "
 					+ valorActual.getPPerdidos() + " | " + valorActual.getGFavor() + " | " + valorActual.getGContra()
 					+ " | " + valorActual.getPuntos());
@@ -367,6 +367,7 @@ public class Liga {
 
 	/**
 	 * Ejer6 - Método 7
+	 * 
 	 * @return
 	 */
 	public String juagadorMasLenero() {
@@ -382,4 +383,76 @@ public class Liga {
 		}
 		return jugador;
 	}
+
+	/**
+	 * Ejer7 - Método 1
+	 * 
+	 * @return string con el nombre del jugador con más goles y el arbitro con más
+	 *         partidos
+	 */
+	public String masJuagadorArbitro() {
+		ArrayList<Arbitro> arbitros = new ArrayList<Arbitro>();
+		ArrayList<Integer> partidos = new ArrayList<Integer>();
+		String jugador = null;
+		int nGoles = 0;
+		// Jugador com más goles
+		for (Equipo e : equipos) {
+			for (Jugador j : e.getJugadores()) {
+				if (jugador == null || j.getDatos().getGoles() > nGoles) {
+					jugador = j.getNombre();
+					nGoles = j.getDatos().getGoles();
+				}
+			}
+		}
+		// Lista de arbitros y lista de sus partidos
+		for (Encuentro e : this.partidos) {
+			if (!arbitros.contains(e.getArbitro())) {
+				arbitros.add(e.getArbitro());
+				partidos.add(1);
+			} else {
+				int index = arbitros.indexOf(e.getArbitro());
+				partidos.set(index, partidos.get(index) + 1);
+			}
+		}
+		// Escoger el arbitro con más partidos
+		String arbitro = null;
+		for (Arbitro ar : arbitros) {
+			int index = arbitros.indexOf(ar);
+			if (arbitro == null || partidos.get(index) > partidos.get(index)) {
+				arbitro = ar.getNombre();
+			}
+		}
+		// Retornar el string con el jugador y el arbitro
+		return "Jugador más goleador: " + jugador + " Arbitro con más partidos: " + arbitro;
+	}
+
+	// Ejer7 - Método 2
+	public String jugadoresYequiposMasGoleadores() {
+
+		return "Jugador 1: " + listaPichichi().get(1) + " Jugador 2: " + listaPichichi().get(1) +
+				"Equipo 1: " + partidosPichichi().get(1) + " Equipo 2: " + partidosPichichi().get(2);
+	}
+
+	// Auxiliar
+	public ArrayList<String> partidosPichichi() {
+		ArrayList<Clasificacion> pichichis = new ArrayList<Clasificacion>();
+		for (Equipo e : equipos) {
+			pichichis.add(new Clasificacion(e, this.partidos));
+		}
+		for (int i = 0; i < pichichis.size(); i++) {
+			for (int j = 0; j < pichichis.size() - 1; j++) {
+				Clasificacion equipoActual = pichichis.get(j), jugadorSiguiente = pichichis.get(j + 1);
+				if (equipoActual.getGFavor() < jugadorSiguiente.getGFavor()) {
+					pichichis.set(j, jugadorSiguiente);
+					pichichis.set(j + 1, equipoActual);
+				}
+			}
+		}
+		ArrayList<String> listaPichichi = new ArrayList<String>();
+		for (int i = 0; i < 10; i++)
+			listaPichichi.add(pichichis.get(i).getEquipo().getNombre());
+		return listaPichichi;
+	}
+
+
 }
