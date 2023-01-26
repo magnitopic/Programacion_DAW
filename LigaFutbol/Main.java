@@ -184,6 +184,7 @@ public class Main {
 
 	/**
 	 * Ejer6 - Método 5
+	 * 
 	 * @param ligas
 	 * @return nombre del equipo más goleado
 	 */
@@ -203,6 +204,7 @@ public class Main {
 
 	/**
 	 * Ejer6 - Método 6
+	 * 
 	 * @param ligas
 	 * @return nombre del equipo más goleador
 	 */
@@ -218,5 +220,74 @@ public class Main {
 			}
 		}
 		return equipo;
+	}
+
+	/**
+	 * Ejer8 - Método 3
+	 * 
+	 * @param equipo
+	 * @param ligas
+	 * @return
+	 */
+	public static int arbitrosAunEquipo(Equipo equipo, ArrayList<Liga> ligas) {
+		ArrayList<Arbitro> arbitros = new ArrayList<Arbitro>();
+		for (Liga l : ligas) {
+			for (Encuentro e : l.getPartidos()) {
+				if (e.getEquipo_local().equals(equipo) || e.getEquipo_visit().equals(equipo)) {
+					if (!arbitros.contains(e.getArbitro()))
+						arbitros.add(e.getArbitro());
+				}
+			}
+		}
+		return arbitros.size();
+	}
+
+	/**
+	 * Ejer8 - Método 5
+	 * 
+	 * @param ligas
+	 * @return los equipos que han ganado más de 10 partidos con al menos 3 goles de
+	 *         diferencia y el arbitro tuviera más de 50 años
+	 */
+	public static ArrayList<Equipo> equiposGanadosDiezPartidosMasDeTresGolesDif(ArrayList<Liga> ligas) {
+		ArrayList<Equipo> equipos = new ArrayList<Equipo>();
+		ArrayList<Integer> goles = new ArrayList<Integer>();
+		// Recogemos los equipos y el numero de goles que han metido
+		for (Liga l : ligas) {
+			for (Equipo e : l.getEquipos()) {
+				for (Encuentro en : l.getPartidos()) {
+					if (en.getEquipo_local().equals(e)) {
+						if (en.getGoles_eq_local() - en.getGoles_eq_visit() > 3 && en.getArbitro().getEdad() > 50) {
+							if (!equipos.contains(e)) {
+								equipos.add(e);
+								goles.add(1);
+							} else {
+								int index = equipos.indexOf(e);
+								goles.set(index, goles.get(index) + 1);
+							}
+						}
+					}
+					if (en.getEquipo_visit().equals(e)) {
+						if (en.getGoles_eq_visit() - en.getGoles_eq_local() > 3 && en.getArbitro().getEdad() > 50) {
+							if (!equipos.contains(e)) {
+								equipos.add(e);
+								goles.add(1);
+							} else {
+								int index = equipos.indexOf(e);
+								goles.set(index, goles.get(index) + 1);
+							}
+						}
+					}
+				}
+			}
+		}
+		// Eliminamos los equipos que no han ganado más de 10 partidos
+		for (Equipo e : equipos) {
+			if (goles.get(equipos.indexOf(e)) < 10) {
+				goles.remove(equipos.indexOf(e));
+				equipos.remove(e);
+			}
+		}
+		return equipos;
 	}
 }

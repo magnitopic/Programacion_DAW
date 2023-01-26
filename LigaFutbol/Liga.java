@@ -582,4 +582,64 @@ public class Liga {
 		}
 		return menosGoleado;
 	}
+
+	/**
+	 * Ejer8 - Método 1
+	 * 
+	 * @param letra
+	 * @return el número de jugadores que tienen como letra de su DNI la letra pasada por parámetro
+	 */
+	public int numeroJugadoresDniLetra(char letra) {
+		int count = 0;
+		for (Equipo e : equipos) {
+			for (Jugador j : e.getJugadores()) {
+				if (j.getDNI().charAt(8) == letra)
+					count++;
+			}
+		}
+		return count;
+	}
+
+	/**
+	 * Ejer8 - Método 2
+	 * @param min
+	 * @return el número de jugadores que tienen más goles que el número pasado por parámetro
+	 */
+	public ArrayList<Jugador> jugadoresNumeroDeGoles(int min) {
+		ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+		for (Equipo e : equipos) {
+			for (Jugador j : e.getJugadores()) {
+				if (j.getDatos().getGoles() > min)
+					jugadores.add(j);
+			}
+		}
+		return jugadores;
+	}
+
+	/**
+	 * Ejer8 - Método 4
+	 * @return los arbitros que han arbitrado partidos más de una vez al equipo más goleador
+	 */
+	public ArrayList<Arbitro> arbitrosEquipoMasGoleador() {
+		ArrayList<Arbitro> arbitros = new ArrayList<Arbitro>();
+		ArrayList<Integer> arbitrajes = new ArrayList<Integer>();
+		String masGoleador = equipoMasGoleador();
+		for (Encuentro e: this.partidos) {
+			if (e.getEquipo_local().getNombre().equalsIgnoreCase(masGoleador) || e.getEquipo_visit().getNombre().equalsIgnoreCase(masGoleador)) {
+				if (!arbitros.contains(e.getArbitro())) {
+					arbitros.add(e.getArbitro());
+					arbitrajes.add(1);
+				} else {
+					int index = arbitros.indexOf(e.getArbitro());
+					arbitrajes.set(index, arbitrajes.get(index) + 1);
+				}
+			}
+		}
+		ArrayList<Arbitro> arbitrosMasDeUnaVez = new ArrayList<Arbitro>();
+		for (int i = 0; i < arbitros.size(); i++) {
+			if (arbitrajes.get(i) > 1)
+				arbitrosMasDeUnaVez.add(arbitros.get(i));
+		}
+		return arbitrosMasDeUnaVez;
+	}
 }
