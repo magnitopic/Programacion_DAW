@@ -4,18 +4,20 @@ public class Arbitro {
 	private String nombre;
 	private String apellidos;
 	private String fecha_n;
+	private String DNI;
 	private int edad;
 	private int antiguedad;
 
 	public Arbitro() {
 	}
 
-	public Arbitro(String nombre, String apellidos, String fecha_n, int edad, int antiguedad) {
+	public Arbitro(String nombre, String apellidos, String fecha_n, int edad, int antiguedad, String DNI) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.fecha_n = fecha_n;
 		this.edad = edad;
 		this.antiguedad = antiguedad;
+		this.DNI = DNI;
 	}
 
 	public String getNombre() {
@@ -56,6 +58,14 @@ public class Arbitro {
 
 	public void setAntiguedad(int antiguedad) {
 		this.antiguedad = antiguedad;
+	}
+
+	public String getDNI() {
+		return this.DNI;
+	}
+
+	public void setDNI(String DNI) {
+		this.DNI = DNI;
 	}
 
 }

@@ -426,7 +426,11 @@ public class Liga {
 		return "Jugador más goleador: " + jugador + " Arbitro con más partidos: " + arbitro;
 	}
 
-	// Ejer7 - Método 2
+	/**
+	 * Ejer7 - Método 2
+	 * 
+	 * @return string de los dos jugadores y equipos más goleadores
+	 */
 	public String jugadoresYequiposMasGoleadores() {
 
 		return "Jugador 1: " + listaPichichi().get(1) + " Jugador 2: " + listaPichichi().get(1) +
@@ -454,5 +458,128 @@ public class Liga {
 		return listaPichichi;
 	}
 
+	/**
+	 * Ejer7 - Método 3
+	 * 
+	 * @return string del marcador más repetido
+	 */
+	public String marcadorMasRepetido() {
+		ArrayList<String> marcadores = new ArrayList<String>();
+		ArrayList<Integer> repeticiones = new ArrayList<Integer>();
+		for (Encuentro e : this.partidos) {
+			String marcadorPartido = e.getGoles_eq_local() + "-" + e.getGoles_eq_visit();
+			if (!marcadores.contains(marcadorPartido)) {
+				marcadores.add(marcadorPartido);
+				repeticiones.add(1);
+			} else {
+				int index = marcadores.indexOf(marcadorPartido);
+				repeticiones.set(index, repeticiones.get(index) + 1);
+			}
+		}
+		String marcador = null;
+		int marcadorPosition = -1;
+		for (String m : marcadores) {
+			int index = marcadores.indexOf(m);
+			if (marcador == null || repeticiones.get(index) > repeticiones.get(marcadorPosition)) {
+				marcador = m;
+				marcadorPosition = index;
+			}
+		}
+		return marcador;
+	}
 
+	/**
+	 * Ejer7 - Método 4
+	 * 
+	 * @param arbitro
+	 * @return
+	 */
+	public Equipo equipoMasArbitrado(Arbitro arbitro) {
+		ArrayList<Equipo> equipos = new ArrayList<Equipo>();
+		ArrayList<Integer> repeticiones = new ArrayList<Integer>();
+		for (Encuentro e : this.partidos) {
+			if (e.getArbitro().getDNI().equalsIgnoreCase(arbitro.getDNI())) {
+				if (!equipos.contains(e.getEquipo_local())) {
+					equipos.add(e.getEquipo_local());
+					repeticiones.add(1);
+				} else {
+					int index = equipos.indexOf(e.getEquipo_local());
+					repeticiones.set(index, repeticiones.get(index) + 1);
+				}
+				if (!equipos.contains(e.getEquipo_visit())) {
+					equipos.add(e.getEquipo_visit());
+					repeticiones.add(1);
+				} else {
+					int index = equipos.indexOf(e.getEquipo_visit());
+					repeticiones.set(index, repeticiones.get(index) + 1);
+				}
+			}
+		}
+		Equipo equipo = null;
+		int equipoPosition = -1;
+		for (Equipo eq : equipos) {
+			int index = equipos.indexOf(eq);
+			if (equipo == null || repeticiones.get(index) > repeticiones.get(equipoPosition)) {
+				equipo = eq;
+				equipoPosition = index;
+			}
+		}
+		return equipo;
+	}
+
+	/**
+	 * Ejer7 - Método 5
+	 * 
+	 * @return la fecha del partido con más goles del equipo menos goleado
+	 */
+	public String fechaPartidosEquipoMenosGoleado() {
+		Equipo menosGoleado = equipoMenosGoleado();
+		Encuentro partidos = null;
+		int goles = 0;
+		for (Encuentro e : this.partidos) {
+			if (e.getEquipo_local().getNombre().equalsIgnoreCase(menosGoleado.getNombre())
+					|| e.getEquipo_visit().getNombre().equalsIgnoreCase(menosGoleado.getNombre())) {
+				if (partidos == null || e.getGoles_eq_local() + e.getGoles_eq_visit() > goles) {
+					partidos = e;
+					goles = e.getGoles_eq_local() + e.getGoles_eq_visit();
+				}
+			}
+		}
+		return partidos.getFecha();
+	}
+
+	/**
+	 * Ejer7 - Método 6
+	 * 
+	 * @return el nombre del árbitro que ha arbitrado el partido con más goles del
+	 *         equipo local pero solo si el el equipo visitante el el más goleador
+	 *         de la liga
+	 */
+	public String nombreArbitroPartidoMasGolesEquipoLocal() {
+		Encuentro partido = null;
+		int goles = 0;
+		for (Encuentro e : this.partidos) {
+			if (e.getGoles_eq_local() > goles) {
+				partido = e;
+				goles = e.getGoles_eq_local();
+			}
+		}
+		if (partido.getEquipo_visit().getNombre().equalsIgnoreCase(equipoMasGoleador()))
+			return partido.getArbitro().getNombre();
+		else
+			return null;
+	}
+
+	// Auxiliar - Equipo menos Goleado
+	public Equipo equipoMenosGoleado() {
+		Equipo menosGoleado = null;
+		int golesLesHanMetido = 0;
+		for (Equipo e : equipos) {
+			if (menosGoleado == null || golesLeHanMetido(e.getNombre()) < golesLesHanMetido) {
+				menosGoleado = e;
+				golesLesHanMetido = golesLeHanMetido(e.getNombre());
+			}
+		}
+		return menosGoleado;
+	}
 }
