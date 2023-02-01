@@ -18,7 +18,7 @@ public class Ejer01 {
 				if (Integer.parseInt(st) == 10)
 					peopleTen++;
 			}
-
+			br.close();
 		} catch (Exception e) {
 			System.out.println("Error al leer el fichero");
 		}
