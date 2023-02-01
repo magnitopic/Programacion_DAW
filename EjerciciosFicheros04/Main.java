@@ -3,6 +3,7 @@ package EjerciciosFicheros04;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -30,11 +31,11 @@ public class Main {
 	}
 
 	public static void updateData(ArrayList<Pelicula> peliculas) {
-		File file = new File("./EjerciciosFicheros04/peliculas.txt");
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(file));
+			FileWriter br = new FileWriter("filename.txt");
 			for (Pelicula p : peliculas) {
-				
+				br.write(p.getId() + " || " + p.getTitulo() + " || " + p.getyear() +
+						" || " + p.getActor() + " || " + p.getPresupuesto());
 			}
 			br.close();
 		} catch (Exception e) {
@@ -59,11 +60,23 @@ public class Main {
 
 		sc.close();
 		sn.close();
+		updateData(peliculas);
 		return peliculas;
 	}
 
-	public static void darBaja() {
-
+	public static ArrayList<Pelicula> darBaja(ArrayList<Pelicula> peliculas) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Introduce el Id de la película a eliminar: ");
+		int id = sc.nextInt();
+		for (Pelicula p : peliculas) {
+			if (p.getId() == id) {
+				peliculas.remove(p);
+				break;
+			}
+		}
+		sc.close();
+		updateData(peliculas);
+		return peliculas;
 	}
 
 	public static void main(String[] args) {
@@ -85,14 +98,7 @@ public class Main {
 					peliculas = darAlta(peliculas);
 					break;
 				case 2:
-					System.out.print("Introduce el Id de la película a eliminar: ");
-					id = sc.nextInt();
-					for (Pelicula p : peliculas) {
-						if (p.getId() == id) {
-							peliculas.remove(p);
-							break;
-						}
-					}
+					darBaja(peliculas);
 					break;
 				case 3:
 					for (Pelicula p : peliculas)
