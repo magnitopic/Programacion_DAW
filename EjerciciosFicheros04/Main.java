@@ -15,7 +15,7 @@ public class Main {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			while ((st = br.readLine()) != null) {
-				String[] data = st.split(" || ");
+				String[] data = st.split(" \\|\\| ");
 				peliculas.add(new Pelicula(
 						Integer.parseInt(data[0]),
 						data[1],
