@@ -354,4 +354,37 @@ public class Empleado {
 		this.disponible = disponible;
 	}
 
+	public void printData() {
+		System.out.println("Alias: " + alias);
+		System.out.println("Nombre: " + nombre);
+		System.out.println("Apellidos: " + apellidos);
+		System.out.println("Email: " + email);
+		System.out.println("Observaciones: " + observaciones);
+		System.out.println("Sexo: " + sexo);
+		System.out.println("Fecha de nacimiento: " + fechaNac);
+		System.out.println("Estado civil: " + estadoCivil);
+		System.out.println("Numero de hijos: " + nHijos);
+		System.out.println("Desempleado: " + desempleado);
+		System.out.println("Profesión: " + profesion);
+		System.out.println("Nivel académico: " + nivAcademico);
+		System.out.println("Lengua usual: " + lenguaUsual);
+		System.out.println("Ingresos mensuales: " + ingresosMensuales);
+		System.out.println("Ahorros: " + ahorros);
+		System.out.println("Peso: " + pesoKg);
+		System.out.println("Altura: " + altura);
+		System.out.println("Cabello: " + cabello);
+		System.out.println("Ojos: " + ojos);
+		System.out.println("Fumador: " + fumador);
+		System.out.println("Salud: " + salud);
+		System.out.println("Afición 1: " + aficion1);
+		System.out.println("Afición 2: " + aficion2);
+		System.out.println("Característica 1: " + caracteristica1);
+		System.out.println("Característica 2: " + caracteristica2);
+		System.out.println("Valora 1: " + valora1);
+		System.out.println("Valora 2: " + valora2);
+		System.out.println("Fobias: " + fobias);
+		System.out.println("Sexualidad: " + sexualidad);
+		System.out.println("Disponible: " + disponible);
+		System.out.println("--------------------------------");
+	}
 }

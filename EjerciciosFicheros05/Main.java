@@ -140,7 +140,7 @@ public class Main {
 					}
 					break;
 			}
-		} while (opt < 1 || opt > 5);
+		} while (opt < 1 || opt > 9);
 
 		sc.close();
 		sn.close();
