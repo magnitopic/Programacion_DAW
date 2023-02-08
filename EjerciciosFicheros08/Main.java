@@ -52,9 +52,8 @@ public class Main {
 				File fichero = new File("./EjerciciosFicheros08/" + dataValues[1] + ".txt");
 				if (!fichero.exists())
 					fichero.createNewFile();
-				BufferedWriter br = new BufferedWriter(new FileWriter(fichero));
-				br.write(d);
-				br.newLine();
+				BufferedWriter br = new BufferedWriter(new FileWriter(fichero, true));
+				br.write(d+"\n");
 				br.close();
 			}
 		} catch (IOException e) {
