@@ -9,7 +9,11 @@ public class Main {
 		for (Opositor o : opositores) {
 			o.mostrarDatos();
 		}
-
+		
 		conexionBD.dnisOpositoresArchivo();
+		
+		conexionBD.insertarOpositor(new Opositor("Juan", "12345678A", "666666666", "Madrid"));
+
+		
 	}
 }

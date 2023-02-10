@@ -124,4 +124,86 @@ public class BDController {
 			System.out.println("Error al crear archivo: " + e);
 		}
 	}
+
+	public ArrayList<Opositor> opositoresCiudad(String ciudad) {
+		ArrayList<Opositor> opositores = new ArrayList<Opositor>();
+		String sql = "SELECT * FROM opositor WHERE ciudad LIKE '" + ciudad + "'";
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			// System.out.println(sql);
+			ResultSet rs = myStatement.executeQuery(sql);
+			while (rs.next()) {
+				Opositor opo = new Opositor(rs.getString("nombre"), rs.getString("dni"), rs.getString("telefono"),
+						rs.getString("ciudad"));
+				opositores.add(opo);
+			}
+			rs.close();
+		} catch (Exception e) {
+			System.out.println("Error en opositoresCiudad(): " + e);
+		}
+
+		return opositores;
+	}
+
+	public Opositor dameOpositor(String dni) {
+		Opositor opo = null;
+		String sql = "SELECT * FROM opositor WHERE dni LIKE '" + dni + "'";
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			// System.out.println(sql);
+			ResultSet rs = myStatement.executeQuery(sql);
+			if (rs.next()) {
+				opo = new Opositor(rs.getString("nombre"), rs.getString("dni"), rs.getString("telefono"),
+						rs.getString("ciudad"));
+			}
+			rs.close();
+		} catch (Exception e) {
+			System.out.println("Error en dameOpositor(): " + e);
+		}
+
+		return opo;
+	}
+
+	public void insertarOpositor(Opositor opo) {
+		String sql = "INSERT INTO opositor (nombre, dni, telefono, ciudad) VALUES ('" + opo.getNombre() + "', '"
+				+ opo.getDni() + "', '" + opo.getTelefono() + "', '" + opo.getCiudad() + "')";
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			// System.out.println(sql);
+			myStatement.executeUpdate(sql);
+		} catch (Exception e) {
+			System.out.println("Error en insertarOpositor(): " + e);
+		}
+	}
+
+	public void borrarOpositor(String dni) {
+		String sql = "DELETE FROM opositor WHERE dni LIKE '" + dni + "'";
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			// System.out.println(sql);
+			myStatement.executeUpdate(sql);
+		} catch (Exception e) {
+			System.out.println("Error en borrarOpositor(): " + e);
+		}
+	}
+
+	public ArrayList<Opositor> opositoresLetraDNI(String letra){
+		ArrayList<Opositor> opositores = new ArrayList<Opositor>();
+		String sql = "SELECT * FROM opositor WHERE dni LIKE '" + letra + "%'";
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			// System.out.println(sql);
+			ResultSet rs = myStatement.executeQuery(sql);
+			while (rs.next()) {
+				Opositor opo = new Opositor(rs.getString("nombre"), rs.getString("dni"), rs.getString("telefono"),
+						rs.getString("ciudad"));
+				opositores.add(opo);
+			}
+			rs.close();
+		} catch (Exception e) {
+			System.out.println("Error en opositoresLetraDNI(): " + e);
+		}
+
+		return opositores;
+	}
 }
