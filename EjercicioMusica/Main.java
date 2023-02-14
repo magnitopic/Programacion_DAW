@@ -7,6 +7,7 @@ public class Main {
 		// Controlador BBDD
 		BDController conexionBD = new BDController();
 		Scanner sc = new Scanner(System.in);
+		Scanner sn = new Scanner(System.in);
 		while (true) {
 			System.out.println("1.\tListado artistas");
 			System.out.println("2.\tListado de canciones");
@@ -16,9 +17,13 @@ public class Main {
 			System.out.println("6.\tElimina un artista");
 			System.out.println("7.\tInsertar Artista");
 			System.out.println("8.\tInsertar Canción");
-			System.out.println("9.\tSalir");
+			System.out.println("9.\tInsertar Grupo");
+			System.out.println("10.\tInsertar artista en grupo");
+			System.out.println("11.\tInsertar canción en disco");
+			System.out.println("12.\tEliminar artista de grupo");
+			System.out.println("13.\tSalir");
 			System.out.print("--> ");
-			int opt = sc.nextInt();
+			int opt = sn.nextInt();
 			switch (opt) {
 				case 1:
 					for (Artista a : conexionBD.getArtistas()) {
@@ -78,11 +83,61 @@ public class Main {
 					else
 						System.out.println("La canción ya existe");
 					break;
+				case 9:
+					System.out.print("Introduce el código del grupo: ");
+					String codGrupo = sc.next();
+					System.out.print("Introduce el nombre del grupo: ");
+					String nombreGrupo = sc.next();
+					System.out.print("Introduce la fecha de creación del grupo: ");
+					String fechaGrupo = sc.next();
+					System.out.print("Introduce el país de origen del grupo: ");
+					String paisGrupo = sc.next();
+					if (!conexionBD.existeGrupo(codGrupo))
+						conexionBD.insertGrupo(codGrupo, nombreGrupo, fechaGrupo, paisGrupo);
+					else
+						System.out.println("El grupo ya existe");
+					break;
+				case 10:
+					insertarArtistaGrupo(conexionBD);
+					break;
+				case 11:
+
+					break;
 				default:
 					System.out.println("Bye!");
 					sc.close();
+					sn.close();
 					return;
 			}
 		}
+	}
+
+	public static void insertarArtistaGrupo(BDController conexionBD) {
+		Scanner sc = new Scanner(System.in);
+
+		for (Artista a : conexionBD.getArtistas())
+			a.showData();
+		for (Grupo g : conexionBD.getGrupos())
+			g.showData();
+		System.out.print("Introduce el DNI del artista: ");
+		String dniArtistaGrupo = sc.next();
+		System.out.print("Introduce el código del grupo: ");
+		String codGrupoArtista = sc.next();
+		if (conexionBD.existeArtista(dniArtistaGrupo) && conexionBD.existeGrupo(codGrupoArtista))
+			conexionBD.insertArtistaGrupo(dniArtistaGrupo, codGrupoArtista);
+		else
+			System.out.println("El artista o el grupo no existe");
+		sc.close();
+	}
+
+	public static void insertarCancionDisco(BDController conexionBD) {
+		System.out.print("Introduce el código del disco: ");
+		String codDisco = sc.next();
+		System.out.print("Introduce el código de la canción: ");
+		String codCancionDisco = sc.next();
+		if (conexionBD.existeDisco(codDisco) && conexionBD.existeCancion(codCancionDisco))
+			conexionBD.insertCancionDisco(codDisco, codCancionDisco);
+		else
+			System.out.println("El disco o la canción no existe");
 	}
 }

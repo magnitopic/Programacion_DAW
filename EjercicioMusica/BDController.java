@@ -144,6 +144,30 @@ public class BDController {
 		}
 	}
 
+	public void insertGrupo(String codGrupo, String nombreGrupo, String fechaGrupo, String paisGrupo) {
+		String sql = "INSERT INTO grupo (cod, nombre, fecha, pais) VALUES ('" + codGrupo + "', '" + nombreGrupo
+				+ "', '" + fechaGrupo + "', '" + paisGrupo + "')";
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			// System.out.println(sql);
+			myStatement.executeUpdate(sql);
+		} catch (Exception e) {
+			System.out.println("Error en insertGrupo(): " + e);
+		}
+	}
+
+	// insert artista grupo
+	public void insertArtistaGrupo(String dniArtista, String codGrupo) {
+		String sql = "INSERT INTO artista_grupo (dni, cod) VALUES ('" + dniArtista + "', '" + codGrupo + "')";
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			// System.out.println(sql);
+			myStatement.executeUpdate(sql);
+		} catch (Exception e) {
+			System.out.println("Error en insertArtistaGrupo(): " + e);
+		}
+	}
+
 	// comprueba si existe en la BBDD
 	// el artista
 	public boolean existeArtista(String dni) {
@@ -179,5 +203,36 @@ public class BDController {
 			System.out.println("Error en existeCancion(): " + e);
 		}
 		return existe;
+	}
+
+	// el grupo
+	public boolean existeGrupo(String cod) {
+		boolean existe = false;
+		String sql = "SELECT * FROM grupo WHERE cod = " + cod;
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			// System.out.println(sql);
+			ResultSet rs = myStatement.executeQuery(sql);
+			if (rs.next()) {
+				existe = true;
+			}
+			rs.close();
+		} catch (Exception e) {
+			System.out.println("Error en existeGrupo(): " + e);
+		}
+		return existe;
+	}
+
+	// insert disco
+	public void insertDisco(String codDisco, String tituloDisco, String fechaDisco, String codGrupo) {
+		String sql = "INSERT INTO disco (cod, titulo, fecha, cod_grupo) VALUES ('" + codDisco + "', '" + tituloDisco
+				+ "', '" + fechaDisco + "', '" + codGrupo + "')";
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			// System.out.println(sql);
+			myStatement.executeUpdate(sql);
+		} catch (Exception e) {
+			System.out.println("Error en insertDisco(): " + e);
+		}
 	}
 }
