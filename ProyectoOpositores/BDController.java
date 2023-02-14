@@ -12,16 +12,10 @@ import java.util.ArrayList;
 public class BDController {
 	private Connection conexion;
 
-	/**
-	 * @return the conexion
-	 */
 	public Connection getConexion() {
 		return conexion;
 	}
-
-	/**
-	 * @param conexion the conexion to set
-	 */
+	
 	public void setConexion(Connection conexion) {
 		this.conexion = conexion;
 	}
