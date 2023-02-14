@@ -101,6 +101,9 @@ public class Main {
 					insertarArtistaGrupo(conexionBD);
 					break;
 				case 11:
+					insertarCancionDisco(conexionBD);
+					break;
+				case 12:
 
 					break;
 				default:
@@ -114,7 +117,6 @@ public class Main {
 
 	public static void insertarArtistaGrupo(BDController conexionBD) {
 		Scanner sc = new Scanner(System.in);
-
 		for (Artista a : conexionBD.getArtistas())
 			a.showData();
 		for (Grupo g : conexionBD.getGrupos())
@@ -131,6 +133,7 @@ public class Main {
 	}
 
 	public static void insertarCancionDisco(BDController conexionBD) {
+		Scanner sc = new Scanner(System.in);
 		System.out.print("Introduce el código del disco: ");
 		String codDisco = sc.next();
 		System.out.print("Introduce el código de la canción: ");
@@ -139,5 +142,19 @@ public class Main {
 			conexionBD.insertCancionDisco(codDisco, codCancionDisco);
 		else
 			System.out.println("El disco o la canción no existe");
+		sc.close();
+	}
+
+	public static void eliminarArtistaGrupo(BDController conexionBD) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Introduce el DNI del artista: ");
+		String dniArtistaGrupo = sc.next();
+		System.out.print("Introduce el código del grupo: ");
+		String codGrupoArtista = sc.next();
+		if (conexionBD.existeArtista(dniArtistaGrupo) && conexionBD.existeGrupo(codGrupoArtista))
+			conexionBD.deleteArtistaGrupo(dniArtistaGrupo, codGrupoArtista);
+		else
+			System.out.println("El artista o el grupo no existe");
+		sc.close();
 	}
 }

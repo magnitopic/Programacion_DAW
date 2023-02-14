@@ -168,6 +168,31 @@ public class BDController {
 		}
 	}
 
+	// insert cancion disco
+	public void insertCancionDisco(String codCancion, String codDisco) {
+		String sql = "INSERT INTO cancion_disco (cod_cancion, cod_disco) VALUES ('" + codCancion + "', '" + codDisco
+				+ "')";
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			// System.out.println(sql);
+			myStatement.executeUpdate(sql);
+		} catch (Exception e) {
+			System.out.println("Error en insertCancionDisco(): " + e);
+		}
+	}
+
+	// delete artista grupo
+	public void deleteArtistaGrupo(String dniArtista, String codGrupo) {
+		String sql = "DELETE FROM artista_grupo WHERE dni = " + dniArtista + " AND cod = " + codGrupo;
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			// System.out.println(sql);
+			myStatement.executeUpdate(sql);
+		} catch (Exception e) {
+			System.out.println("Error en deleteArtistaGrupo(): " + e);
+		}
+	}
+
 	// comprueba si existe en la BBDD
 	// el artista
 	public boolean existeArtista(String dni) {
@@ -223,16 +248,21 @@ public class BDController {
 		return existe;
 	}
 
-	// insert disco
-	public void insertDisco(String codDisco, String tituloDisco, String fechaDisco, String codGrupo) {
-		String sql = "INSERT INTO disco (cod, titulo, fecha, cod_grupo) VALUES ('" + codDisco + "', '" + tituloDisco
-				+ "', '" + fechaDisco + "', '" + codGrupo + "')";
+	// el disco
+	public boolean existeDisco(String cod) {
+		boolean existe = false;
+		String sql = "SELECT * FROM disco WHERE cod = " + cod;
 		try {
 			Statement myStatement = this.conexion.createStatement();
 			// System.out.println(sql);
-			myStatement.executeUpdate(sql);
+			ResultSet rs = myStatement.executeQuery(sql);
+			if (rs.next()) {
+				existe = true;
+			}
+			rs.close();
 		} catch (Exception e) {
-			System.out.println("Error en insertDisco(): " + e);
+			System.out.println("Error en existeDisco(): " + e);
 		}
+		return existe;
 	}
 }
