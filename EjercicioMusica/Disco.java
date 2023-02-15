@@ -1,17 +1,21 @@
 package EjercicioMusica;
 
+import java.util.ArrayList;
+
 public class Disco {
 	private String cod;
 	private String nombre;
 	private String fecha;
+	private ArrayList<Cancion> discos;
 
 	public Disco() {
 	}
 
-	public Disco(String cod, String nombre, String fecha) {
+	public Disco(String cod, String nombre, String fecha, ArrayList<Cancion> discos) {
 		this.cod = cod;
 		this.nombre = nombre;
 		this.fecha = fecha;
+		this.discos = discos;
 	}
 
 	public String getCod() {
@@ -36,6 +40,14 @@ public class Disco {
 
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
+	}
+
+	public ArrayList<Cancion> getDiscos() {
+		return this.discos;
+	}
+
+	public void setDiscos(ArrayList<Cancion> discos) {
+		this.discos = discos;
 	}
 
 	public void showData() {

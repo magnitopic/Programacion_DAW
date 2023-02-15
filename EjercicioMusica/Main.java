@@ -1,5 +1,6 @@
 package EjercicioMusica;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -21,7 +22,11 @@ public class Main {
 			System.out.println("10.\tInsertar artista en grupo");
 			System.out.println("11.\tInsertar canción en disco");
 			System.out.println("12.\tEliminar artista de grupo");
-			System.out.println("13.\tSalir");
+			System.out.println("13.\tMostrar el titulo de la canción más larga");
+			System.out.println("14.\tListado de canciones con duración menor a la indicada");
+			System.out.println("15.\tListado de canciones de un disco");
+			System.out.println("16.\tArchivo de texto con las canciones de un grupo indicado");
+			System.out.println("17.\tSalir");
 			System.out.print("--> ");
 			int opt = sn.nextInt();
 			switch (opt) {
@@ -47,7 +52,7 @@ public class Main {
 					break;
 				case 5:
 					System.out.print("Introduce el código de la canción a eliminar: ");
-					String cod = sc.next();
+					String cod = sc.nextLine();
 					if (conexionBD.existeCancion(cod))
 						conexionBD.deleteCancion(cod);
 					else
@@ -55,7 +60,7 @@ public class Main {
 					break;
 				case 6:
 					System.out.print("Introduce el DNI del artista a eliminar: ");
-					String dni = sc.next();
+					String dni = sc.nextLine();
 					if (conexionBD.existeArtista(dni))
 						conexionBD.deleteArtista(dni);
 					else
@@ -63,9 +68,9 @@ public class Main {
 					break;
 				case 7:
 					System.out.print("Introduce el DNI del artista: ");
-					String dniArtista = sc.next();
+					String dniArtista = sc.nextLine();
 					System.out.print("Introduce el nombre del artista: ");
-					String nombreArtista = sc.next();
+					String nombreArtista = sc.nextLine();
 					if (!conexionBD.existeArtista(dniArtista))
 						conexionBD.insertArtista(dniArtista, nombreArtista);
 					else
@@ -73,11 +78,11 @@ public class Main {
 					break;
 				case 8:
 					System.out.print("Introduce el código de la canción: ");
-					String codCancion = sc.next();
+					String codCancion = sc.nextLine();
 					System.out.print("Introduce el título de la canción: ");
-					String tituloCancion = sc.next();
+					String tituloCancion = sc.nextLine();
 					System.out.print("Introduce la duración de la canción: ");
-					String duracionCancion = sc.next();
+					String duracionCancion = sc.nextLine();
 					if (!conexionBD.existeCancion(codCancion))
 						conexionBD.insertCancion(codCancion, tituloCancion, duracionCancion);
 					else
@@ -85,13 +90,13 @@ public class Main {
 					break;
 				case 9:
 					System.out.print("Introduce el código del grupo: ");
-					String codGrupo = sc.next();
+					String codGrupo = sc.nextLine();
 					System.out.print("Introduce el nombre del grupo: ");
-					String nombreGrupo = sc.next();
+					String nombreGrupo = sc.nextLine();
 					System.out.print("Introduce la fecha de creación del grupo: ");
-					String fechaGrupo = sc.next();
+					String fechaGrupo = sc.nextLine();
 					System.out.print("Introduce el país de origen del grupo: ");
-					String paisGrupo = sc.next();
+					String paisGrupo = sc.nextLine();
 					if (!conexionBD.existeGrupo(codGrupo))
 						conexionBD.insertGrupo(codGrupo, nombreGrupo, fechaGrupo, paisGrupo);
 					else
@@ -104,7 +109,30 @@ public class Main {
 					insertarCancionDisco(conexionBD);
 					break;
 				case 12:
-
+					eliminarArtistaGrupo(conexionBD);
+					break;
+				case 13:
+					System.out.println("La canción más larga es: " + longestSongName(conexionBD));
+					break;
+				case 14:
+					System.out.println("Introduce la duración máxima: ");
+					double duracionMaxima = sn.nextDouble();
+					for (Cancion c : conexionBD.getCanciones()) {
+						if (Double.parseDouble(c.getDuracion()) < duracionMaxima)
+							System.out.println(c.getTitulo());
+					}
+					break;
+				case 15:
+					System.out.println("Introduce el nombre del disco: ");
+					String nomDisco = sc.nextLine();
+					for (Disco d: conexionBD.getDiscos()) {
+						if (d.getNombre().equalsIgnoreCase(nomDisco)){
+							for (Cancion c: d.getCanciones()) {
+								System.out.println();
+							}
+						}
+					}
+					System.out.println("Ese disco no existe.");
 					break;
 				default:
 					System.out.println("Bye!");
@@ -122,9 +150,9 @@ public class Main {
 		for (Grupo g : conexionBD.getGrupos())
 			g.showData();
 		System.out.print("Introduce el DNI del artista: ");
-		String dniArtistaGrupo = sc.next();
+		String dniArtistaGrupo = sc.nextLine();
 		System.out.print("Introduce el código del grupo: ");
-		String codGrupoArtista = sc.next();
+		String codGrupoArtista = sc.nextLine();
 		if (conexionBD.existeArtista(dniArtistaGrupo) && conexionBD.existeGrupo(codGrupoArtista))
 			conexionBD.insertArtistaGrupo(dniArtistaGrupo, codGrupoArtista);
 		else
@@ -135,9 +163,9 @@ public class Main {
 	public static void insertarCancionDisco(BDController conexionBD) {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Introduce el código del disco: ");
-		String codDisco = sc.next();
+		String codDisco = sc.nextLine();
 		System.out.print("Introduce el código de la canción: ");
-		String codCancionDisco = sc.next();
+		String codCancionDisco = sc.nextLine();
 		if (conexionBD.existeDisco(codDisco) && conexionBD.existeCancion(codCancionDisco))
 			conexionBD.insertCancionDisco(codDisco, codCancionDisco);
 		else
@@ -148,13 +176,25 @@ public class Main {
 	public static void eliminarArtistaGrupo(BDController conexionBD) {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Introduce el DNI del artista: ");
-		String dniArtistaGrupo = sc.next();
+		String dniArtistaGrupo = sc.nextLine();
 		System.out.print("Introduce el código del grupo: ");
-		String codGrupoArtista = sc.next();
+		String codGrupoArtista = sc.nextLine();
 		if (conexionBD.existeArtista(dniArtistaGrupo) && conexionBD.existeGrupo(codGrupoArtista))
 			conexionBD.deleteArtistaGrupo(dniArtistaGrupo, codGrupoArtista);
 		else
 			System.out.println("El artista o el grupo no existe");
 		sc.close();
+	}
+
+	public static String longestSongName(BDController conexionBD) {
+		String longestName = "";
+		double longestTime = 0;
+		for (Cancion c : conexionBD.getCanciones()) {
+			if (Double.parseDouble(c.getDuracion()) > longestTime) {
+				longestName = c.getTitulo();
+				longestTime = Double.parseDouble(c.getDuracion());
+			}
+		}
+		return longestName;
 	}
 }

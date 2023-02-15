@@ -70,7 +70,8 @@ public class BDController {
 			// System.out.println(sql);
 			ResultSet rs = myStatement.executeQuery(sql);
 			while (rs.next()) {
-				Disco dis = new Disco(rs.getString("cod"), rs.getString("titulo"), rs.getString("fecha"));
+				Disco dis = new Disco(rs.getString("cod"), rs.getString("titulo"), rs.getString("fecha"),
+						getCancionesInDisco(rs.getString("cod")));
 				discos.add(dis);
 			}
 			rs.close();
@@ -78,6 +79,17 @@ public class BDController {
 			System.out.println("Error en getDiscos(): " + e);
 		}
 		return discos;
+	}
+
+	public ArrayList<Cancion> getCancionesInDisco(String cod) {
+		ArrayList<Cancion> canciones = getCanciones();
+		String sql = "SELECT * FORM esta";
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			ResultSet 
+		} catch (Exception e) {
+			System.out.println("Error en getCancionesInDisco: " + e);
+		}
 	}
 
 	public ArrayList<Grupo> getGrupos() {
