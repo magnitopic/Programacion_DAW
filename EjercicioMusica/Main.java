@@ -1,6 +1,8 @@
 package EjercicioMusica;
 
-import java.util.ArrayList;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Main {
@@ -115,7 +117,7 @@ public class Main {
 					System.out.println("La canción más larga es: " + longestSongName(conexionBD));
 					break;
 				case 14:
-					System.out.println("Introduce la duración máxima: ");
+					System.out.print("Introduce la duración máxima: ");
 					double duracionMaxima = sn.nextDouble();
 					for (Cancion c : conexionBD.getCanciones()) {
 						if (Double.parseDouble(c.getDuracion()) < duracionMaxima)
@@ -123,16 +125,19 @@ public class Main {
 					}
 					break;
 				case 15:
-					System.out.println("Introduce el nombre del disco: ");
+					System.out.print("Introduce el nombre del disco: ");
 					String nomDisco = sc.nextLine();
-					for (Disco d: conexionBD.getDiscos()) {
-						if (d.getNombre().equalsIgnoreCase(nomDisco)){
-							for (Cancion c: d.getCanciones()) {
-								System.out.println();
+					for (Disco d : conexionBD.getDiscos()) {
+						if (d.getNombre().equalsIgnoreCase(nomDisco)) {
+							for (Cancion c : d.getDiscos()) {
+								System.out.println(c.getTitulo());
 							}
 						}
 					}
 					System.out.println("Ese disco no existe.");
+					break;
+				case 16:
+					grupoCancionesInFile(conexionBD);
 					break;
 				default:
 					System.out.println("Bye!");
@@ -196,5 +201,29 @@ public class Main {
 			}
 		}
 		return longestName;
+	}
+
+	public static void grupoCancionesInFile(BDController conexionBD) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Introduce el nombre del grupo: ");
+		String nomGrupo = sc.nextLine();
+		sc.close();
+		if (!conexionBD.existeGrupoName(nomGrupo)) {
+			System.out.println("Ese grupo no existe.");
+			return;
+		}
+		File file = new File("./EjercicioMusica/" + nomGrupo + ".txt");
+		try {
+			BufferedWriter br = new BufferedWriter(new FileWriter(file, true));
+			System.out.println(nomGrupo + "\nCanciones: ");
+			for (Cancion c : conexionBD.getCancionesFromGrupo(conexionBD.getSongCod(nomGrupo))) {
+				br.write(c.getTitulo());
+				br.newLine();
+			}
+			br.close();
+		} catch (Exception e) {
+			System.out.println("Error creando fichero en  grupoCancionesInFile: " + e);
+		}
+		sc.close();
 	}
 }

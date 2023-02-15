@@ -20,7 +20,7 @@ public class BDController {
 	public BDController() {
 		super();
 		try {
-			this.conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/musica20", "root", "");
+			this.conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/MUSICA20", "root", "");
 		} catch (Exception e) {
 			System.out.println("Error en Costructor DBControler: " + e);
 		}
@@ -70,7 +70,7 @@ public class BDController {
 			// System.out.println(sql);
 			ResultSet rs = myStatement.executeQuery(sql);
 			while (rs.next()) {
-				Disco dis = new Disco(rs.getString("cod"), rs.getString("titulo"), rs.getString("fecha"),
+				Disco dis = new Disco(rs.getString("cod"), rs.getString("nombre"), rs.getString("fecha"),
 						getCancionesInDisco(rs.getString("cod")));
 				discos.add(dis);
 			}
@@ -86,10 +86,20 @@ public class BDController {
 		String sql = "SELECT * FORM esta";
 		try {
 			Statement myStatement = this.conexion.createStatement();
-			ResultSet 
+			ResultSet rs = myStatement.executeQuery(sql);
+			while (rs.next()) {
+				if (rs.getString("codDisco").equals(cod)) {
+					for (Cancion can : canciones) {
+						if (can.getCod().equals(rs.getString("codCancion"))) {
+							canciones.add(can);
+						}
+					}
+				}
+			}
 		} catch (Exception e) {
 			System.out.println("Error en getCancionesInDisco: " + e);
 		}
+		return canciones;
 	}
 
 	public ArrayList<Grupo> getGrupos() {
@@ -158,7 +168,7 @@ public class BDController {
 
 	public void insertGrupo(String codGrupo, String nombreGrupo, String fechaGrupo, String paisGrupo) {
 		String sql = "INSERT INTO grupo (cod, nombre, fecha, pais) VALUES ('" + codGrupo + "', '" + nombreGrupo
-				+ "', '" + fechaGrupo + "', '" + paisGrupo + "')";
+				+ "', '" + fechaGrupo + "-01-01" + "', '" + paisGrupo + "')";
 		try {
 			Statement myStatement = this.conexion.createStatement();
 			// System.out.println(sql);
@@ -205,6 +215,39 @@ public class BDController {
 		}
 	}
 
+	// get canciones from grupo
+	public ArrayList<Cancion> getCancionesFromGrupo(String codGrupo) {
+		ArrayList<Cancion> canciones = new ArrayList<Cancion>();
+		String sql = "SELECT  cancion.titulo FROM CANCION, ESTA WHERE cancion.cod = esta.cod_cancion AND esta.cod_grupo = "
+				+ codGrupo;
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			ResultSet rs = myStatement.executeQuery(sql);
+			while (rs.next()) {
+				Cancion son = new Cancion(rs.getString("cod"), rs.getString("titulo"), rs.getString("duracion"));
+				canciones.add(son);
+			}
+		} catch (Exception e) {
+			System.out.println("Error en getCancionesFromGrupo: " + e);
+		}
+		return canciones;
+	}
+
+	public String getSongCod(String nombre) {
+		String cod = "";
+		String sql = "SELECT cod FROM cancion WHERE titulo = '" + nombre + "'";
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			ResultSet rs = myStatement.executeQuery(sql);
+			if (rs.next()) {
+				cod = rs.getString("cod");
+			}
+		} catch (Exception e) {
+			System.out.println("Error en getSongCod: " + e);
+		}
+		return cod;
+	}
+
 	// comprueba si existe en la BBDD
 	// el artista
 	public boolean existeArtista(String dni) {
@@ -246,6 +289,23 @@ public class BDController {
 	public boolean existeGrupo(String cod) {
 		boolean existe = false;
 		String sql = "SELECT * FROM grupo WHERE cod = " + cod;
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			// System.out.println(sql);
+			ResultSet rs = myStatement.executeQuery(sql);
+			if (rs.next()) {
+				existe = true;
+			}
+			rs.close();
+		} catch (Exception e) {
+			System.out.println("Error en existeGrupo(): " + e);
+		}
+		return existe;
+	}
+
+	public boolean existeGrupoName(String nombre) {
+		boolean existe = false;
+		String sql = "SELECT * FROM grupo WHERE nombre = '" + nombre+"'";
 		try {
 			Statement myStatement = this.conexion.createStatement();
 			// System.out.println(sql);
