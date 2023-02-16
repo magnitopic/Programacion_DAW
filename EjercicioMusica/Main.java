@@ -127,14 +127,18 @@ public class Main {
 				case 15:
 					System.out.print("Introduce el nombre del disco: ");
 					String nomDisco = sc.nextLine();
+					if (!conexionBD.existeDiscoNombre(nomDisco)){
+						System.out.println("Ese disco no existe.");
+						break;
+					}
 					for (Disco d : conexionBD.getDiscos()) {
+						System.out.println("Disco: "+ d.getNombre());
 						if (d.getNombre().equalsIgnoreCase(nomDisco)) {
 							for (Cancion c : d.getDiscos()) {
 								System.out.println(c.getTitulo());
 							}
 						}
 					}
-					System.out.println("Ese disco no existe.");
 					break;
 				case 16:
 					grupoCancionesInFile(conexionBD);
@@ -207,16 +211,16 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Introduce el nombre del grupo: ");
 		String nomGrupo = sc.nextLine();
-		sc.close();
 		if (!conexionBD.existeGrupoName(nomGrupo)) {
+			sc.close();
 			System.out.println("Ese grupo no existe.");
 			return;
 		}
 		File file = new File("./EjercicioMusica/" + nomGrupo + ".txt");
 		try {
 			BufferedWriter br = new BufferedWriter(new FileWriter(file, true));
-			System.out.println(nomGrupo + "\nCanciones: ");
-			for (Cancion c : conexionBD.getCancionesFromGrupo(conexionBD.getSongCod(nomGrupo))) {
+			br.write(nomGrupo + "\nCanciones: \n");
+			for (Cancion c : conexionBD.getCancionesFromGrupo(conexionBD.getGrupoCod(nomGrupo))) {
 				br.write(c.getTitulo());
 				br.newLine();
 			}

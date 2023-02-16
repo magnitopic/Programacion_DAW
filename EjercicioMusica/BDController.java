@@ -88,9 +88,9 @@ public class BDController {
 			Statement myStatement = this.conexion.createStatement();
 			ResultSet rs = myStatement.executeQuery(sql);
 			while (rs.next()) {
-				if (rs.getString("codDisco").equals(cod)) {
+				if (rs.getString("cod").equalsIgnoreCase(cod)) {
 					for (Cancion can : canciones) {
-						if (can.getCod().equals(rs.getString("codCancion"))) {
+						if (can.getCod().equalsIgnoreCase(rs.getString("codCancion"))) {
 							canciones.add(can);
 						}
 					}
@@ -218,8 +218,8 @@ public class BDController {
 	// get canciones from grupo
 	public ArrayList<Cancion> getCancionesFromGrupo(String codGrupo) {
 		ArrayList<Cancion> canciones = new ArrayList<Cancion>();
-		String sql = "SELECT  cancion.titulo FROM CANCION, ESTA WHERE cancion.cod = esta.cod_cancion AND esta.cod_grupo = "
-				+ codGrupo;
+		String sql = "SELECT * FROM cancion, ESTA WHERE cancion.cod=esta.can AND esta.cod='"
+				+ codGrupo + "'";
 		try {
 			Statement myStatement = this.conexion.createStatement();
 			ResultSet rs = myStatement.executeQuery(sql);
@@ -233,9 +233,9 @@ public class BDController {
 		return canciones;
 	}
 
-	public String getSongCod(String nombre) {
+	public String getGrupoCod(String nombre) {
 		String cod = "";
-		String sql = "SELECT cod FROM cancion WHERE titulo = '" + nombre + "'";
+		String sql = "SELECT cod FROM grupo WHERE nombre = '" + nombre + "'";
 		try {
 			Statement myStatement = this.conexion.createStatement();
 			ResultSet rs = myStatement.executeQuery(sql);
@@ -305,7 +305,7 @@ public class BDController {
 
 	public boolean existeGrupoName(String nombre) {
 		boolean existe = false;
-		String sql = "SELECT * FROM grupo WHERE nombre = '" + nombre+"'";
+		String sql = "SELECT * FROM grupo WHERE nombre = '" + nombre + "'";
 		try {
 			Statement myStatement = this.conexion.createStatement();
 			// System.out.println(sql);
@@ -327,6 +327,22 @@ public class BDController {
 		try {
 			Statement myStatement = this.conexion.createStatement();
 			// System.out.println(sql);
+			ResultSet rs = myStatement.executeQuery(sql);
+			if (rs.next()) {
+				existe = true;
+			}
+			rs.close();
+		} catch (Exception e) {
+			System.out.println("Error en existeDisco(): " + e);
+		}
+		return existe;
+	}
+
+	public boolean existeDiscoNombre(String nombre) {
+		boolean existe = false;
+		String sql = "SELECT * FROM disco WHERE nombre = '" + nombre+"'";
+		try {
+			Statement myStatement = this.conexion.createStatement();
 			ResultSet rs = myStatement.executeQuery(sql);
 			if (rs.next()) {
 				existe = true;
