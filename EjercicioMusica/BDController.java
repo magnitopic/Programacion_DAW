@@ -180,7 +180,7 @@ public class BDController {
 
 	// insert artista grupo
 	public void insertArtistaGrupo(String dniArtista, String codGrupo) {
-		String sql = "INSERT INTO artista_grupo (dni, cod) VALUES ('" + dniArtista + "', '" + codGrupo + "')";
+		String sql = "INSERT INTO pertenece (dni, cod) VALUES ('" + dniArtista + "', '" + codGrupo + "')";
 		try {
 			Statement myStatement = this.conexion.createStatement();
 			// System.out.println(sql);
@@ -340,7 +340,7 @@ public class BDController {
 
 	public boolean existeDiscoNombre(String nombre) {
 		boolean existe = false;
-		String sql = "SELECT * FROM disco WHERE nombre = '" + nombre+"'";
+		String sql = "SELECT * FROM disco WHERE nombre = '" + nombre + "'";
 		try {
 			Statement myStatement = this.conexion.createStatement();
 			ResultSet rs = myStatement.executeQuery(sql);
