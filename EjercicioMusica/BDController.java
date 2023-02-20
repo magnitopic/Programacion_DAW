@@ -248,6 +248,18 @@ public class BDController {
 		return cod;
 	}
 
+	public String cancionName(String cod) {
+		String sql = "SELECT * from cancion where cod = '" + cod + "'";
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			ResultSet rs = myStatement.executeQuery(sql);
+			return rs.getString("title");
+		} catch (Exception e) {
+			System.out.println("Error en cancionName(): " + e);
+		}
+		return null;
+	}
+
 	// comprueba si existe en la BBDD
 	// el artista
 	public boolean existeArtista(String dni) {
@@ -270,7 +282,7 @@ public class BDController {
 	// la cancion
 	public boolean existeCancion(String cod) {
 		boolean existe = false;
-		String sql = "SELECT * FROM cancion WHERE cod = " + cod;
+		String sql = "SELECT * FROM cancion WHERE cod = '" + cod + "'";
 		try {
 			Statement myStatement = this.conexion.createStatement();
 			// System.out.println(sql);
