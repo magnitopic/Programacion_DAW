@@ -122,7 +122,7 @@ public class BDController {
 	}
 
 	public void deleteCancion(String cod) {
-		String sql = "DELETE FROM cancion WHERE cod = " + cod;
+		String sql = "DELETE FROM cancion WHERE cod='" + cod + "'";
 		try {
 			Statement myStatement = this.conexion.createStatement();
 			// System.out.println(sql);
@@ -287,9 +287,7 @@ public class BDController {
 			Statement myStatement = this.conexion.createStatement();
 			// System.out.println(sql);
 			ResultSet rs = myStatement.executeQuery(sql);
-			if (rs.next()) {
-				existe = true;
-			}
+			existe = rs.next();
 			rs.close();
 		} catch (Exception e) {
 			System.out.println("Error en existeCancion(): " + e);
