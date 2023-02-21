@@ -64,7 +64,7 @@ public class BDController {
 
 	public boolean existeJugador(int codigo) {
 		boolean returnValue = false;
-		String sql = "SELECT * FROM juagodor WHERE codigo='" + codigo + "'";
+		String sql = "SELECT * FROM jugadores WHERE codigo='" + codigo + "'";
 		try {
 			Statement myStatement = this.conexion.createStatement();
 			ResultSet rs = myStatement.executeQuery(sql);
@@ -143,7 +143,7 @@ public class BDController {
 		String sql = "DELETE FROM jugadores WHERE codigo='" + codigo + "'";
 		try {
 			Statement myStatement = this.conexion.createStatement();
-			ResultSet rs = myStatement.executeQuery(sql);
+			myStatement.executeUpdate(sql);
 		} catch (Exception e) {
 			System.out.println("Error en eliminarJugador: " + e);
 		}

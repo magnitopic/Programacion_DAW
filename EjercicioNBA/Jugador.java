@@ -80,6 +80,7 @@ public class Jugador {
 	}
 
 	public void printData() {
+		System.out.println("===================");
 		System.out.println("ID: " + this.codigo);
 		System.out.println("Nombre: " + this.nombre);
 		System.out.println("Altura: " + this.altura);
