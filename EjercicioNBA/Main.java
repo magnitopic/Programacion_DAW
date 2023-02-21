@@ -13,7 +13,10 @@ public class Main {
 			System.out.println("2.\tBaja jugador");
 			System.out.println("3.\tListado de equipos");
 			System.out.println("4.\tListado de jugadores");
-			System.out.println("5.\tSalir");
+			System.out.println("5.\tAlta Estadística");
+			System.out.println("6.\tBaja Estadística");
+			System.out.println("7.\tGenerar fichero jugones");
+			System.out.println("8.\tSalir");
 			System.out.print("--> ");
 			int opt = sn.nextInt();
 			switch (opt) {
@@ -57,6 +60,35 @@ public class Main {
 				case 4:
 					for (Jugador e : conexionBD.dameJugadores())
 						e.printData();
+					break;
+				case 5:
+					System.out.print("La temporada: ");
+					String temporada = sl.nextLine();
+					System.out.print("Id del jugador: ");
+					int jugadorId = sn.nextInt();
+					System.out.print("Puntos por partido: ");
+					float puntosPartido = sn.nextFloat();
+					System.out.println("Asistencias por partido: ");
+					float asitenciasPartido = sn.nextFloat();
+					System.out.println("Tapones por partido: ");
+					float taponesPartido = sn.nextFloat();
+					System.out.println("Rebotes  por partido: ");
+					float rebotesPartido = sn.nextFloat();
+					if (!conexionBD.existeJugador(jugadorId) || conexionBD.existeEstadistica(temporada, jugadorId)) {
+						System.out.println("Datos no validos");
+						break;
+					}
+					Estadistica newEstadistica = new Estadistica(temporada, jugadorId, puntosPartido, asitenciasPartido,
+							taponesPartido, rebotesPartido);
+					conexionBD.insertEstadistica(newEstadistica);
+					System.out.println("--> Nueva estadística guardada\n");
+					break;
+				case 6:
+					System.out.println("Introduce la temporada: ");
+					String teporadaDel = sl.nextLine();
+					System.out.println("Introduce el ID del jugador: ");
+					int jugadorIdDel = sn.nextInt();
+					
 					break;
 				default:
 					System.out.println("Bye!");

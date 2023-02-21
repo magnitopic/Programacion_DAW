@@ -150,4 +150,37 @@ public class BDController {
 			System.out.println("Error en eliminarJugador: " + e);
 		}
 	}
+
+	public void insertEstadistica(Estadistica estadistica) {
+		String sql = "INSERT INTO estadisticas values ('" +
+				estadistica.getTemporada() + "', '"
+				+ estadistica.getJugador() + "', '"
+				+ estadistica.getPuntos() + "', '"
+				+ estadistica.getAsitencias() + "', '"
+				+ estadistica.getTapones() + "', '"
+				+ estadistica.getRebotes() + "')";
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			myStatement.executeUpdate(sql);
+		} catch (Exception e) {
+			System.out.println("Error en insertEstadistica: " + e);
+		}
+	}
+
+	public boolean existeEstadistica(String temporada, int codJugador) {
+		Boolean existe = false;
+		String sql = "SELECT * from estadisticas WHERE teporada='" + temporada + "' AND jugador='" + codJugador + "'";
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			ResultSet rs = myStatement.executeQuery(sql);
+			existe = rs.next();
+		} catch (Exception e) {
+			System.out.println("Error en existeEstadistica: " + e);
+		}
+		return existe;
+	}
+
+	public void eliminarEstadistica(String temporada, int codJugador){
+
+	}
 }
