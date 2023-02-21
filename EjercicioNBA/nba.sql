@@ -41,14 +41,14 @@ INSERT INTO equipos VALUES ('Mavericks','Dallas','West','SouthWest');
 INSERT INTO equipos VALUES ('Grizzlies','Memphis','West','SouthWest');
 
 CREATE TABLE jugadores (
-  codigo int NOT NULL,
+  Codigo int NOT NULL,
   Nombre varchar(30) DEFAULT NULL,
   Procedencia varchar(20) DEFAULT NULL,
   Altura varchar(4) DEFAULT NULL,
   Peso int DEFAULT NULL,
   Posicion varchar(5) DEFAULT NULL,
   Nombre_equipo varchar(20) DEFAULT NULL,
-  PRIMARY KEY (codigo),
+  PRIMARY KEY (Codigo),
   FOREIGN KEY (Nombre_equipo) References equipos(Nombre)
 );
 
@@ -493,7 +493,7 @@ CREATE TABLE estadisticas (
   Tapones_por_partido float DEFAULT NULL,
   Rebotes_por_partido float DEFAULT NULL,
   PRIMARY KEY (temporada,jugador),
-  FOREIGN KEY (jugador) REFERENCES Jugadores(Codigo)
+  FOREIGN KEY (jugador) REFERENCES jugadores(Codigo)
 );
 
 INSERT INTO estadisticas VALUES ('03/04',283,5.9,2.2,1.54,1.6);

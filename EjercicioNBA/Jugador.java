@@ -1,7 +1,7 @@
 package EjercicioNBA;
 
 public class Jugador {
-	public int id;
+	public int codigo;
 	public String altura;
 	public String nombre;
 	public String nombre_equipo;
@@ -12,9 +12,9 @@ public class Jugador {
 	public Jugador() {
 	}
 
-	public Jugador(int id, String altura, String nombre, String nombre_equipo, int peso, String posicion,
+	public Jugador(int codigo, String altura, String nombre, String nombre_equipo, int peso, String posicion,
 			String procedencia) {
-		this.id = id;
+		this.codigo = codigo;
 		this.altura = altura;
 		this.nombre = nombre;
 		this.nombre_equipo = nombre_equipo;
@@ -23,12 +23,12 @@ public class Jugador {
 		this.procedencia = procedencia;
 	}
 
-	public int getId() {
-		return this.id;
+	public int getCodigo() {
+		return this.codigo;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void getCodigo(int codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getAltura() {
@@ -80,7 +80,7 @@ public class Jugador {
 	}
 
 	public void printData() {
-		System.out.println("ID: " + this.id);
+		System.out.println("ID: " + this.codigo);
 		System.out.println("Nombre: " + this.nombre);
 		System.out.println("Altura: " + this.altura);
 		System.out.println("Peso: " + this.peso);

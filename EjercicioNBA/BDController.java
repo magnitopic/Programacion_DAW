@@ -133,9 +133,19 @@ public class BDController {
 				+ jugador.getProcedencia() + "', '" + jugador.getNombre_equipo() + "')";
 		try {
 			Statement myStatement = this.conexion.createStatement();
-			myStatement.executeUpdate(sql);
+			myStatement.executeQuery(sql);
 		} catch (Exception e) {
 			System.out.println("Error en insertJugador: " + e);
+		}
+	}
+
+	public void eliminarJugador(int codigo) {
+		String sql = "DELETE FROM jugadores WHERE codigo='" + codigo + "'";
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			ResultSet rs = myStatement.executeQuery(sql);
+		} catch (Exception e) {
+			System.out.println("Error en eliminarJugador: " + e);
 		}
 	}
 }
