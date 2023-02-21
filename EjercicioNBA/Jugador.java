@@ -8,6 +8,7 @@ public class Jugador {
 	public int peso;
 	public String posicion;
 	public String procedencia;
+	public float ppp;
 
 	public Jugador() {
 	}
@@ -21,13 +22,14 @@ public class Jugador {
 		this.peso = peso;
 		this.posicion = posicion;
 		this.procedencia = procedencia;
+		this.ppp = 0;
 	}
 
 	public int getCodigo() {
 		return this.codigo;
 	}
 
-	public void getCodigo(int codigo) {
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 
@@ -77,6 +79,14 @@ public class Jugador {
 
 	public void setProcedencia(String procedencia) {
 		this.procedencia = procedencia;
+	}
+
+	public float getPpp() {
+		return this.ppp;
+	}
+
+	public void setPpp(float ppp) {
+		this.ppp = ppp;
 	}
 
 	public void printData() {

@@ -180,7 +180,34 @@ public class BDController {
 		return existe;
 	}
 
-	public void eliminarEstadistica(String temporada, int codJugador){
+	public void eliminarEstadistica(String temporada, int codJugador) {
+		String sql = "DELETE FROM estadisticas WHERE teporada='" + temporada + "' AND jugador='" + codJugador + "'";
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			myStatement.executeUpdate(sql);
+		} catch (Exception e) {
+			System.out.println("Error en eliminarEstadistica: " + e);
+		}
+	}
 
+	public ArrayList<Estadistica> dameEstadisticas() {
+		ArrayList<Estadistica> estadisticas = new ArrayList<Estadistica>();
+		String sql = "SELECT * FORM jugadores WHERE ";
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			ResultSet rs = myStatement.executeQuery(sql);
+			while (rs.next()) {
+				estadisticas.add(new Estadistica(
+						rs.getString(0),
+						rs.getInt(1),
+						rs.getFloat(2),
+						rs.getFloat(3),
+						rs.getFloat(4),
+						rs.getFloat(5)));
+			}
+		} catch (Exception e) {
+			System.out.println("Error en getJugones: " + e);
+		}
+		return estadisticas;
 	}
 }

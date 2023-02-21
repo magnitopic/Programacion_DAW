@@ -1,5 +1,9 @@
 package EjercicioNBA;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -88,7 +92,30 @@ public class Main {
 					String teporadaDel = sl.nextLine();
 					System.out.println("Introduce el ID del jugador: ");
 					int jugadorIdDel = sn.nextInt();
-					
+					conexionBD.eliminarEstadistica(teporadaDel, jugadorIdDel);
+					break;
+				case 7:
+					File file = new File("./EjercicioNBA/Jugones.txt");
+					try {
+						BufferedWriter br = new BufferedWriter(new FileWriter(file, true));
+						ArrayList<Jugador> jugadores = conexionBD.dameJugadores();
+						ArrayList<Estadistica> estadisticas = conexionBD.dameEstadisticas();
+						for (Estadistica e : estadisticas) {
+							for (Jugador j : jugadores) {
+								if (j.getCodigo() == e.getJugador()) {
+									j.setPpp(j.getPpp() + 1);
+									if (j.getPpp() > 30) {
+										br.write(j.getNombre() + " - " + j.getNombre_equipo() + e.getTemporada() + " - "
+												+ j.getPpp());
+										jugadores.remove(j);
+									}
+									break;
+								}
+							}
+						}
+					} catch (Exception e) {
+						System.out.println("Error al crear el archivo en case 7: " + e);
+					}
 					break;
 				default:
 					System.out.println("Bye!");
