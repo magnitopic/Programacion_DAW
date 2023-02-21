@@ -129,21 +129,23 @@ public class BDController {
 
 	public void insertJugador(Jugador jugador) {
 		String sql = "INSERT INTO jugadores VALUES ('" + jugador.getCodigo() + "', '" + jugador.getNombre() + "', '"
-				+ jugador.getAltura() + "', '" + jugador.getPeso() + "', '" + jugador.getPosicion() + "', '"
-				+ jugador.getProcedencia() + "', '" + jugador.getNombre_equipo() + "')";
+				+ jugador.getProcedencia() + "', '" + jugador.getAltura() + "', '" + jugador.getPeso() + "', '"
+				+ jugador.getPosicion() + "', '" + jugador.getNombre_equipo() + "')";
 		try {
 			Statement myStatement = this.conexion.createStatement();
-			myStatement.executeQuery(sql);
+			myStatement.executeUpdate(sql);
 		} catch (Exception e) {
 			System.out.println("Error en insertJugador: " + e);
 		}
 	}
 
 	public void eliminarJugador(int codigo) {
-		String sql = "DELETE FROM jugadores WHERE codigo='" + codigo + "'";
+		String sql1 = "DELETE FROM jugadores WHERE codigo='" + codigo + "'";
+		String sql2 = "DELETE FROM estadisticas WHERE jugador='" + codigo + "'";
 		try {
 			Statement myStatement = this.conexion.createStatement();
-			myStatement.executeUpdate(sql);
+			myStatement.executeUpdate(sql2);
+			myStatement.executeUpdate(sql1);
 		} catch (Exception e) {
 			System.out.println("Error en eliminarJugador: " + e);
 		}

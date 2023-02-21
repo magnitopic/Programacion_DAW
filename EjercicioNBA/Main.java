@@ -32,7 +32,7 @@ public class Main {
 					String posicionJug = sl.nextLine();
 					System.out.print("Nombre del equipo: ");
 					String nombreEquipoJug = sl.nextLine();
-					if (conexionBD.existeJugador(codigoJug) || conexionBD.existeEquipo(nombreEquipoJug)) {
+					if (conexionBD.existeJugador(codigoJug) || !conexionBD.existeEquipo(nombreEquipoJug)) {
 						System.out.println("Valores no validos");
 						break;
 					}
