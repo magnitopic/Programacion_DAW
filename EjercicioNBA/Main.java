@@ -20,7 +20,8 @@ public class Main {
 			System.out.println("5.\tAlta Estadística");
 			System.out.println("6.\tBaja Estadística");
 			System.out.println("7.\tGenerar fichero jugones");
-			System.out.println("8.\tSalir");
+			System.out.println("8.\tListar partidos entre dos equipos");
+			System.out.println("9.\tSalir");
 			System.out.print("--> ");
 			int opt = sn.nextInt();
 			switch (opt) {
@@ -106,7 +107,7 @@ public class Main {
 									j.setPpp(j.getPpp() + 1);
 									if (j.getPpp() > 30) {
 										br.write(j.getNombre() + " - " + j.getNombre_equipo() + e.getTemporada() + " - "
-												+ j.getPpp()+"\n");
+												+ j.getPpp() + "\n");
 										jugadores.remove(j);
 									}
 									break;
@@ -118,6 +119,16 @@ public class Main {
 						System.out.println("Error al crear el archivo en case 7: " + e);
 					}
 					break;
+				case 8:
+					System.out.print("Nombre del primer equipo: ");
+					String nameEqu1 = sl.nextLine();
+					System.out.print("Nombre del segundo equipo: ");
+					String nameEqu2 = sl.nextLine();
+					conexionBD.printPartidosEquipos(nameEqu1, nameEqu2);
+					break;
+				case 9:
+					
+				break;
 				default:
 					System.out.println("Bye!");
 					sn.close();

@@ -210,4 +210,25 @@ public class BDController {
 		}
 		return estadisticas;
 	}
+
+	public void printPartidosEquipos(String nameEqu1, String nameEqu2) {
+		String sql = "SELECT * FROM partidos WHERE (equipo_local like '" + nameEqu1 + "' AND equipo_visitante like '"
+				+ nameEqu2 + "') OR (equipo_local like '" + nameEqu2 + "' AND equipo_visitante like '" + nameEqu1
+				+ "')";
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			ResultSet rs = myStatement.executeQuery(sql);
+			while (rs.next()) {
+				System.out.println("Temporada: " + rs.getString("temporada") + " " + rs.getString("equipo_local") + " "
+						+ rs.getString("puntos_local" + ":" + rs.getString("puntos_visitante") + " "
+								+ rs.getString("equipo_visitante")));
+			}
+		} catch (Exception e) {
+			System.out.println("Error en printPartidosEquipos: " + e);
+		}
+	}
+
+	public ArrayList<Equipo> dameEquiposOrdenados(){
+		
+	}
 }
