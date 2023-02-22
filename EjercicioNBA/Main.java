@@ -106,13 +106,14 @@ public class Main {
 									j.setPpp(j.getPpp() + 1);
 									if (j.getPpp() > 30) {
 										br.write(j.getNombre() + " - " + j.getNombre_equipo() + e.getTemporada() + " - "
-												+ j.getPpp());
+												+ j.getPpp()+"\n");
 										jugadores.remove(j);
 									}
 									break;
 								}
 							}
 						}
+						br.close();
 					} catch (Exception e) {
 						System.out.println("Error al crear el archivo en case 7: " + e);
 					}
