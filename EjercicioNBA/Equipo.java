@@ -49,6 +49,7 @@ public class Equipo {
 	}
 
 	public void printData() {
+		System.out.println("==========================");
 		System.out.println("Nombre: " + this.nombre);
 		System.out.println("Division: " + this.division);
 		System.out.println("Conferencia: " + this.conferencia);

@@ -25,12 +25,8 @@ public class BDController {
 			// System.out.println(sql);
 			ResultSet rs = mySatement.executeQuery(sql);
 			if (rs.next()) {
-				return new Jugador(rs.getInt("codigo"),
-						rs.getString("altura"),
-						rs.getString("nombre"),
-						rs.getString("nombre_equipo"),
-						rs.getInt("peso"),
-						rs.getString("posicion"),
+				return new Jugador(rs.getInt("codigo"), rs.getString("altura"), rs.getString("nombre"),
+						rs.getString("nombre_equipo"), rs.getInt("peso"), rs.getString("posicion"),
 						rs.getString("procedencia"));
 			}
 		} catch (Exception e) {
@@ -46,12 +42,8 @@ public class BDController {
 			Statement myStatement = this.conexion.createStatement();
 			ResultSet rs = myStatement.executeQuery(sql);
 			while (rs.next()) {
-				Jugador newJugador = new Jugador(rs.getInt("codigo"),
-						rs.getString("altura"),
-						rs.getString("nombre"),
-						rs.getString("nombre_equipo"),
-						rs.getInt("peso"),
-						rs.getString("posicion"),
+				Jugador newJugador = new Jugador(rs.getInt("codigo"), rs.getString("altura"), rs.getString("nombre"),
+						rs.getString("nombre_equipo"), rs.getInt("peso"), rs.getString("posicion"),
 						rs.getString("procedencia"));
 				jugadores.add(newJugador);
 			}
@@ -83,9 +75,7 @@ public class BDController {
 			// System.out.println(sql);
 			ResultSet rs = mySatement.executeQuery(sql);
 			if (rs.next()) {
-				return new Equipo(rs.getString("nombre"),
-						rs.getString("ciudad"),
-						rs.getString("conferencia"),
+				return new Equipo(rs.getString("nombre"), rs.getString("ciudad"), rs.getString("conferencia"),
 						rs.getString("division"));
 			}
 		} catch (Exception e) {
@@ -101,10 +91,8 @@ public class BDController {
 			Statement myStatement = this.conexion.createStatement();
 			ResultSet rs = myStatement.executeQuery(sql);
 			while (rs.next()) {
-				Equipo newEquipo = new Equipo(rs.getString("nombre"),
-						rs.getString("ciudad"),
-						rs.getString("conferencia"),
-						rs.getString("division"));
+				Equipo newEquipo = new Equipo(rs.getString("nombre"), rs.getString("ciudad"),
+						rs.getString("conferencia"), rs.getString("division"));
 				equipos.add(newEquipo);
 			}
 		} catch (Exception e) {
@@ -152,13 +140,9 @@ public class BDController {
 	}
 
 	public void insertEstadistica(Estadistica estadistica) {
-		String sql = "INSERT INTO estadisticas values ('" +
-				estadistica.getTemporada() + "', '"
-				+ estadistica.getJugador() + "', '"
-				+ estadistica.getPuntos() + "', '"
-				+ estadistica.getAsitencias() + "', '"
-				+ estadistica.getTapones() + "', '"
-				+ estadistica.getRebotes() + "')";
+		String sql = "INSERT INTO estadisticas values ('" + estadistica.getTemporada() + "', '"
+				+ estadistica.getJugador() + "', '" + estadistica.getPuntos() + "', '" + estadistica.getAsitencias()
+				+ "', '" + estadistica.getTapones() + "', '" + estadistica.getRebotes() + "')";
 		try {
 			Statement myStatement = this.conexion.createStatement();
 			myStatement.executeUpdate(sql);
@@ -197,13 +181,8 @@ public class BDController {
 			Statement myStatement = this.conexion.createStatement();
 			ResultSet rs = myStatement.executeQuery(sql);
 			while (rs.next()) {
-				estadisticas.add(new Estadistica(
-						rs.getString(1),
-						rs.getInt(2),
-						rs.getFloat(3),
-						rs.getFloat(4),
-						rs.getFloat(5),
-						rs.getFloat(6)));
+				estadisticas.add(new Estadistica(rs.getString(1), rs.getInt(2), rs.getFloat(3), rs.getFloat(4),
+						rs.getFloat(5), rs.getFloat(6)));
 			}
 		} catch (Exception e) {
 			System.out.println("Error en dameEstadisticas: " + e);
@@ -217,18 +196,60 @@ public class BDController {
 				+ "')";
 		try {
 			Statement myStatement = this.conexion.createStatement();
+			// System.out.println(sql);
 			ResultSet rs = myStatement.executeQuery(sql);
 			while (rs.next()) {
 				System.out.println("Temporada: " + rs.getString("temporada") + " " + rs.getString("equipo_local") + " "
-						+ rs.getString("puntos_local" + ":" + rs.getString("puntos_visitante") + " "
-								+ rs.getString("equipo_visitante")));
+						+ rs.getString("puntos_local") + ":" + rs.getString("puntos_visitante") + " "
+						+ rs.getString("equipo_visitante"));
 			}
 		} catch (Exception e) {
 			System.out.println("Error en printPartidosEquipos: " + e);
 		}
 	}
 
-	public ArrayList<Equipo> dameEquiposOrdenados(){
-		
+	public ArrayList<Equipo> dameEquiposOrdenados() {
+		ArrayList<Equipo> equiposOrdenados = new ArrayList<Equipo>();
+		String sql = "SELECT * FROM equipos ORDER BY division";
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			ResultSet rs = myStatement.executeQuery(sql);
+			while (rs.next())
+				equiposOrdenados.add(new Equipo(rs.getString("nombre"), rs.getString("division"),
+						rs.getString("conferencia"), rs.getString("ciudad")));
+		} catch (Exception e) {
+			System.out.println("Error en dameEquiposOrdenados: " + e);
+		}
+		return equiposOrdenados;
+	}
+
+	public ArrayList<String> partidosGanadosEquipo(String nomEqu) {
+		ArrayList<String> partidos = new ArrayList<String>();
+		String sql = "SELECT * FROM partidos WHERE (equipo_local like '" + nomEqu
+				+ "' AND puntos_local > puntos_visitante)" + "OR (equipo_Visitante like '" + nomEqu
+				+ "' AND puntos_visitante > puntos_local)";
+		try {
+			Statement myStatement = this.conexion.createStatement();
+			ResultSet rs = myStatement.executeQuery(sql);
+			while (rs.next())
+				partidos.add("Temporada: " + rs.getString("temporada") + " " + rs.getString("equipo_local") + " "
+						+ rs.getString("puntos_local") + ":" + rs.getString("puntos_visitante") + " "
+						+ rs.getString("equipo_visitante"));
+		} catch (Exception e) {
+			System.out.println("Error en partidosGanadosEquipo: " + e);
+		}
+		return partidos;
+	}
+
+	public ArrayList<Jugador> jugadoresEspecificos(String procedencia, String nomEqu, String ciudad, String conferencia,
+			String division) {
+		String sql = "SELECT * FROM jugadores WHERE procedencia = " + procedencia + " AND " + nomEqu + " in "
+				+ "(SELECT nombre FROM equipos WHERE ciudad!= " + ciudad + " AND conferencia= " + conferencia
+				+ " AND division = " + division + ")";
+		try {
+			
+		} catch (e) {
+			// TODO: handle exception
+		}
 	}
 }
