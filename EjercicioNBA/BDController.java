@@ -246,10 +246,52 @@ public class BDController {
 		String sql = "SELECT * FROM jugadores WHERE procedencia = " + procedencia + " AND " + nomEqu + " in "
 				+ "(SELECT nombre FROM equipos WHERE ciudad!= " + ciudad + " AND conferencia= " + conferencia
 				+ " AND division = " + division + ")";
-		try {
-			
-		} catch (e) {
-			// TODO: handle exception
+		return null;
+	}
+	
+	public ArrayList<Equipo> equiposConJugadores(){
+		ArrayList<Equipo> equipos = dameEquipos();
+		ArrayList<Jugador> jugadores = dameJugadores();
+		for (Equipo e: equipos) {
+			for (Jugador j : jugadores) {
+				if (j.getNombre_equipo().equals(e.getNombre()))
+					e.getJugadores().add(j);
+			}
 		}
+		return equipos;
+	}
+
+	public ArrayList<Equipo> equiposCon15Jugadores(){
+		ArrayList<Equipo> equipos = dameEquipos();
+		ArrayList<Equipo> equipos15 = new ArrayList<Equipo>();
+		ArrayList<Jugador> jugadores = dameJugadores();
+		int i=0;
+		for (Equipo e: equipos) {
+			for (Jugador j : jugadores) {
+				if (j.getNombre_equipo().equals(e.getNombre()))
+					e.getJugadores().add(j);
+			}
+			if (e.getJugadores().size()>15)
+				equipos15.add(e);
+		}
+		return equipos15;
+	}
+	
+	public ArrayList<Equipo> equpos7pies(String nombreDiv){
+		ArrayList<Equipo> equipos = equiposConJugadores();
+		ArrayList<Equipo> equipos7Pies = equiposConJugadores();
+		for (Equipo e : equipos) {
+			boolean hasPlayer = false;
+			if (!e.getDivision().equalsIgnoreCase(nombreDiv)) {
+				for (Jugador j:e.getJugadores())
+				{
+					if (Integer.valueOf(j.getAltura())>=7)
+						hasPlayer=true;
+				}
+				if (hasPlayer)
+					equipos7Pies.add(e);
+			}
+		}
+		return equipos7Pies;
 	}
 }

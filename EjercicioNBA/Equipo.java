@@ -1,10 +1,13 @@
 package EjercicioNBA;
 
+import java.util.ArrayList;
+
 public class Equipo {
 	private String nombre;
 	private String division;
 	private String conferencia;
 	private String ciudad;
+	private ArrayList<Jugador> jugadores;
 
 	public Equipo() {
 	}
@@ -14,7 +17,18 @@ public class Equipo {
 		this.division = division;
 		this.conferencia = conferencia;
 		this.ciudad = ciudad;
+		this.jugadores = new ArrayList<Jugador>(); 
 	}
+
+
+	public Equipo(String nombre, String division, String conferencia, String ciudad, ArrayList<Jugador> jugadores) {
+		this.nombre = nombre;
+		this.division = division;
+		this.conferencia = conferencia;
+		this.ciudad = ciudad;
+		this.jugadores = jugadores;
+	}
+
 
 	public String getNombre() {
 		return this.nombre;
@@ -47,6 +61,16 @@ public class Equipo {
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
+
+
+	public ArrayList<Jugador> getJugadores() {
+		return this.jugadores;
+	}
+
+	public void setJugadores(ArrayList<Jugador> jugadores) {
+		this.jugadores = jugadores;
+	}
+
 
 	public void printData() {
 		System.out.println("==========================");

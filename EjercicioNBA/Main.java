@@ -23,8 +23,10 @@ public class Main {
 			System.out.println("8.\tListar partidos entre dos equipos");
 			System.out.println("9.\tEquipos ordenados por division");
 			System.out.println("10.\tListado de los partidos ganados por equipo especificado");
+			
 			System.out.println(
 					"11.\tListado jugadores de procedencia, conferencia, división y no de un equipo especificado");
+			System.out.println("23\tEquipos con más de 15 jugadores");
 			System.out.print("--> ");
 			int opt = sn.nextInt();
 			switch (opt) {
@@ -141,6 +143,10 @@ public class Main {
 				break;
 			case 11:
 				System.out.println("");
+				break;
+			case 23:
+				for (Equipo e: conexionBD.equiposCon15Jugadores())
+					e.printData();
 				break;
 			default:
 				System.out.println("Bye!");
