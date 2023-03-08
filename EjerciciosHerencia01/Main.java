@@ -22,6 +22,7 @@ public class Main {
 					System.out.println(new Bus(arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]).toString());
 				line = br.readLine();
 			}
+			br.close();
 		} catch (Exception e) {
 			System.out.println("Error al leer archivo: " + e);
 		}
