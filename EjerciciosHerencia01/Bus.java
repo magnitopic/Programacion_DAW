@@ -1,4 +1,4 @@
-package EjercicioHerencia;
+package EjerciciosHerencia01;
 
 public class Bus extends Vehiculo {
 	private String plazas;

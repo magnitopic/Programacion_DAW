@@ -1,4 +1,4 @@
-package EjercicioHerencia;
+package EjerciciosHerencia01;
 
 public class Coche extends Vehiculo {
 	private String combustible;

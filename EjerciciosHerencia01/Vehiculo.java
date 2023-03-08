@@ -1,4 +1,4 @@
-package EjercicioHerencia;
+package EjerciciosHerencia01;
 
 public class Vehiculo {
 	private String caballos;

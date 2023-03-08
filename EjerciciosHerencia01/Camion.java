@@ -1,4 +1,4 @@
-package EjercicioHerencia;
+package EjerciciosHerencia01;
 
 public class Camion extends Vehiculo {
 	private String ejes;

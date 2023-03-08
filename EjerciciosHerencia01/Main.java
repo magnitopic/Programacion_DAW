@@ -1,4 +1,4 @@
-package EjercicioHerencia;
+package EjerciciosHerencia01;
 
 import java.io.BufferedReader;
 import java.io.File;
