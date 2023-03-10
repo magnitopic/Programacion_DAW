@@ -8,13 +8,13 @@ import java.util.ArrayList;
 public class Main {
 	public static void main(String[] args) {
 		ArrayList<Personal> empleados = new ArrayList<Personal>();
-		File file = new File("EjercicioHerencia02/empleadosHospita.txt");
+		File file = new File("EjerciciosHerencia02/empleadosHospital.txt");
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = br.readLine();
 			line = br.readLine();
 			while (line != null) {
-				String[] arguments = line.split("::");
+				String[] arguments = line.split("\\;");
 				if (arguments[0].equalsIgnoreCase("enfermera"))
 					empleados.add(new Enfermera(arguments[1], arguments[2], arguments[3], arguments[5]));
 				else if (arguments[0].equalsIgnoreCase("medico"))
@@ -30,6 +30,12 @@ public class Main {
 			br.close();
 		} catch (Exception e) {
 			System.out.println("Error al leer archivo: " + e);
+		}
+
+		for (Personal p : empleados) {
+			if (p instanceof Medico){
+				System.out.println("medico;"+p.getNombre());
+			}
 		}
 	}
 }
