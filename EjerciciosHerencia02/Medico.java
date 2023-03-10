@@ -45,13 +45,6 @@ public class Medico extends Personal {
 
 	@Override
 	public String toString() {
-		return "{" +
-				" especialidad='" + getEspecialidad() + "'" +
-				", n_intervenciones='" + getN_intervenciones() + "'" +
-				", n_consulta='" + getN_consulta() + "'" +
-				", nombre='" + getNombre() + "'" +
-				", apellidos='" + getApellidos() + "'" +
-				", fechaNacimiento='" + getFechaNacimiento() + "'" +
-				"}";
+		return super.getNombre()+";"+super.getApellidos();
 	}
 }
