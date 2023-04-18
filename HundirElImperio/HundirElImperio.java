@@ -114,7 +114,6 @@ public class HundirElImperio {
 				System.out.println("No hay nada en esta posición");
 				board[y][x] = "A";
 			}
-
 		} while (flag);
 	}
 
